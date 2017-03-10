@@ -9,3 +9,7 @@ Content Delivery API - access token:
 
 husk installere:
 
+npm install gulp-cli gulp-sass --save-dev
+ 
+npm install browser-sync gulp --save-dev
+
