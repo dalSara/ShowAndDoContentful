@@ -6,3 +6,6 @@ førsta nyckeln 10 mars:
 space id: 59mi8sr8zemv
 Content Delivery API - access token: 
 3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059
+
+husk installere:
+

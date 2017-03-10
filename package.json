@@ -1,0 +1,24 @@
+{
+  "name": "ShowDoContentful",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Dalsara:monster666@github.com/dalSara/ShowAndDoContentful.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dalSara/ShowAndDoContentful/issues"
+  },
+  "homepage": "https://github.com/dalSara/ShowAndDoContentful#readme",
+  "devDependencies": {
+    "gulp-cli": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  }
+}
