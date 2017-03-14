@@ -15,3 +15,23 @@ npm install gulp-cli gulp-sass --save-dev
  
 npm install browser-sync gulp --save-dev
 
+//javascript-klasse og id skrives slik: 
+
+.js-klasse
+#js-id 
+
+//andre klasser og id-er skal skrives slik:
+
+.addTrackBtn 
+#addTrackBtn
+
+//kommentarer på funksjoner skal svare på hva det er og hvorfor gjør den det
+//sett heller inn en kommentar for mye
+
+/*-------------- START-TAGGER OG END PÅ FUNKSJONER I CSS/JAVASCRIPT -------------*/
+
+<!-- START OG END PÅ FUNKSJONER I HTML -->
+
+//rydd opp og ta bort ting/funksjoner som ikke blir brukt. OK å kommentere ut mens du rydder, men rydd opp når det ikke blir brukt lengre.
+
+//hver person har sin egen "søppel-fil". trash-sigrun.html, trash-natalie.html & trash-sara.html
