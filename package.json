@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://Dalsara:monster666@github.com/dalSara/ShowAndDoContentful.git"
+    "url":
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/dalSara/ShowAndDoContentful#readme",
   "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp-browserify": "^0.5.1",
     "gulp-cli": "^1.2.2",
     "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "contentful": "^3.8.1"
   }
 }
