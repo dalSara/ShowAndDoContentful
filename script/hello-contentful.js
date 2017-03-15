@@ -7,8 +7,14 @@ var client = contentful.createClient({
   accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059'
 })
 // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
-client.getEntry('CjsBanRrjMsYyUkGOUgSQ')
-.then((entry) => console.log(entry))
+client.getEntry('CjsBanRrjMsYyUkGOUgSQ').then((entry) => console.log(entry))
 
+
+
+/*
+client.getEntry('CjsBanRrjMsYyUkGOUgSQ').then(function(entry) {
+    console.log(entry)
+});
+*/
 
 
