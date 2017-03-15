@@ -9,6 +9,9 @@ Content Delivery API - access token:
 
 husk installere:
 
+npm i
+
+((----dette trengs ikke hämtas fra package.json
 npm install contentful-data --save
 
 npm install contentful --save
@@ -16,8 +19,13 @@ npm install contentful --save
 npm install gulp-cli gulp-sass --save-dev
  
 npm install browser-sync gulp --save-dev
+-------))
 
+dokumentasjonen på browserify
+https://github.com/substack/browserify-handbook
+https://github.com/substack/node-browserify#usage
 
+ikke i bruk før stunden (15 mars)
 https://github.com/contentful/contentful-management.js
 
 ------------ kode standard
