@@ -52,6 +52,9 @@
             function renderSingleEvent(event){
                 var fields = event.fields;
                 return '<div class="eventInList">' +
+                    '<div class="eventImage">' +
+                    renderImage(fields.image) +
+                    '</div>' +
                     '<div class="eventInfo">' +
                     renderEventInfo(fields) +
                     '</div>' +
@@ -62,6 +65,14 @@
                 return '<h2>' + fields.title + '</h2>' +
 
                 '<p class="whatToExpect">' + fields.whatToExpect + '</p>'
+            }
+
+            function renderImage(image){
+                if(image && image.fields.file){
+                    return '<img src="https://' + image.fields.file.url + '" width="150" height="150"/>'
+                } else {
+                return ''
+                }
             }
         </script>
     </body>
