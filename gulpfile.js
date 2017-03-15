@@ -2,8 +2,6 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass        = require('gulp-sass');
-var browserify  = require('gulp-browserify');
-var rename = require('gulp-rename');
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
@@ -24,16 +22,4 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-
-// Basic usage
-gulp.task('scripts', function() {
-    // Single entry point to browserify
-    gulp.src('./script/main.js')
-        .pipe(browserify())
-        .pipe(rename('bundle.js'))
-        .pipe(gulp.dest('./'))
-});
-
-gulp.task('default', ['serve'], function(){ //['serve', 'data'],
-  console.log('Retrieved contenful entries.');
-});
+gulp.task('default', ['serve']);
