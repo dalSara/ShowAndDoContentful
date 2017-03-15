@@ -12,13 +12,15 @@
     </head>
     <body>
 
-        <h1>Show & Do<h1>
+        <div id="header">
+            <h1>Show & Do<h1>
+        </div>
 
         <div id="content" class="contentContainer"></div>
 
-        <script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
+        <!--<script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
         <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>-->
 
         <script src="https://npmcdn.com/contentful@latest/browser-dist/contentful.min.js"></script>
         <script>
@@ -29,12 +31,16 @@
                 accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059'
             })
 
+            var EVENT_CONTENT_TYPE_ID = 'events';
+
             var container = document.getElementById('content');
 
-            client.getEntry('CjsBanRrjMsYyUkGOUgSQ')
-                .then(function (entry) {
-                console.log('Entry Client:', entry.fields)
-                container.innerHTML = renderEvents(entry.fields)
+            client.getEntries({
+                content_type: EVENT_CONTENT_TYPE_ID
+            })
+                .then(function (entries) {
+                console.log('Entry Client:', entries.items)
+                container.innerHTML = renderEvents(entries.items)
             })
 
             function renderEvents(events){
@@ -45,17 +51,17 @@
 
             function renderSingleEvent(event){
                 var fields = event.fields;
-                console.log('renderSingleEvent: ' + fields);
                 return '<div class="eventInList">' +
                     '<div class="eventInfo">' +
                     renderEventInfo(fields) +
                     '</div>' +
                     '</div>'
-
             }
 
             function renderEventInfo(fields){
-                return '<p class="whatToExpect">' + fields.whatToExpect + '</p>'
+                return '<h2>' + fields.title + '</h2>' +
+
+                '<p class="whatToExpect">' + fields.whatToExpect + '</p>'
             }
         </script>
     </body>
