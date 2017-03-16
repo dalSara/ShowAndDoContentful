@@ -7,14 +7,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
         <title>Show & Do</title>
 
     </head>
     <body>
 
-        <div id="header">
-            <h1>Show & Do</h1>
-        </div>
+        <div id="header"></div>
 
         <div id="content" class="contentContainer"></div>
 
@@ -24,5 +24,8 @@
 
         <script src="https://npmcdn.com/contentful@latest/browser-dist/contentful.min.js"></script>
         <script src="script/getData.js"></script>
+        <script>
+            $("#header").load("components/header.html");
+        </script>
     </body>
 </html>
