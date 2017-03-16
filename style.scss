@@ -373,7 +373,7 @@ nav {
 }
 /*-------------- END NAV GENERAL (ADD TRACK & NAVWEEK) --------------*/
 
-/*-------------- WRAPPER --------------*/
+/*-------------- WRAPPER (FOR HEADER & CONTENT) --------------*/
 .wrapper {
     box-sizing: content-box;
     padding: 0 5%;
@@ -389,7 +389,7 @@ nav {
         max-width: 750px;
     }
 }
-/*-------------- END WRAPPER --------------*/
+/*-------------- END WRAPPER (FOR HEADER & CONTENT) --------------*/
 
 /*-------------- MAIN (CONTENT) --------------*/
 main {
@@ -458,27 +458,378 @@ button {
         font-size: .778rem;
     }
 }
-//SAMME KODE?:
+//SAMME KODE SOM OVER?:
 /*button {
-    font-family: "Volte Semibold";
-    font-size: inherit;
-    line-height: inherit;
-    background-color: white;
-    color: #06f;
-    border: 3px solid #06f;
-    border-radius: 0;
-    padding: 10px 20px;
-    margin: 0;
-    -webkit-appearance: none;
-    cursor: pointer;
+font-family: "Volte Semibold";
+font-size: inherit;
+line-height: inherit;
+background-color: white;
+color: #06f;
+border: 3px solid #06f;
+border-radius: 0;
+padding: 10px 20px;
+margin: 0;
+-webkit-appearance: none;
+cursor: pointer;
 }
 
 button.subtle {
-    padding: 5px 10px;
-    border: none;
-    border: 1px solid #ccc;
-    font-family: inherit;
-    color: inherit;
-    font-size: .778rem;
+padding: 5px 10px;
+border: none;
+border: 1px solid #ccc;
+font-family: inherit;
+color: inherit;
+font-size: .778rem;
 }*/
 /*-------------- END INPUT --------------*/
+
+/*-------------- TABLE (FOR CALENDER) --------------*/
+table,
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: baseline;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    padding: 15px;
+    background: white;
+}
+
+td {
+    padding: 15px;
+    background: #06f;
+    color: white;
+    &:hover {
+        background: white;
+        color: #242424;
+    }
+}
+/*-------------- END TABLE (FOR CALENDER) --------------*/
+
+/*-------------- FLEX FOR ROW IN CALENDER --------------*/
+#main {
+    width: auto;
+    height: auto;
+    display: -webkit-flex;
+    /* Safari */
+    display: flex;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    div {
+        -webkit-flex-grow: 0;
+        /* Safari 6.1+ */
+        -webkit-flex-shrink: 0;
+        /* Safari 6.1+ */
+        -webkit-flex-basis: 40px;
+        /* Safari 6.1+ */
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 60px;
+        &:nth-of-type(2) {
+            -webkit-flex-basis: 92%;
+            /* Safari 6.1+ */
+            flex-basis: 92%;
+        }
+    }
+}
+
+.track-mob {
+    background: #06f;
+    border: 1px solid white;
+    color: white;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+.track-time-mob {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-bottom: 1em;
+}
+/*-------------- END FLEX FOR ROW IN CALENDER --------------*/
+
+/*-------------- SHOW/HIDE DESKTOP CAL & MOBILE CAL --------------*/
+@media screen and (min-width: 768px) {
+    #cal-mobile {
+        display: none;
+    }
+
+    .duration{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #cal-desktop {
+        display: none;
+    }
+    .duration {
+        margin-top: 5px;
+        font-size: 1em;
+        text-align: right;
+        opacity: 0.8;
+    }
+
+    .rooms {
+        display: none;
+    }
+
+    .flex-list {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .going-size {
+        width: auto;
+    }
+}
+/*-------------- END SHOW/HIDE DESKTOP CAL & MOBILE CAL --------------*/
+
+/*-------------- LIST --------------*/
+.scrollToTopBtn {
+    /*text-align: center;*/
+    /*position: relative;*/
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    color: rgb(0, 0, 0);
+}
+
+.cut-image {
+    width: auto;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    opacity: 0.5;
+}
+
+@media (min-width: 900px) {
+    .cut-image {
+        height: 200px;
+    }
+}
+
+.image-to-cut {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.flex-list {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    width: auto;
+    height: auto;
+    margin: 10px;
+}
+
+.flex-list-item {
+    width: auto;
+    height: auto;
+    align-items: baseline;
+}
+
+.going-size {
+    width: 450px;
+}
+/*-------------- END LIST --------------*/
+
+/*-------------- QA (LIST CONTENT) --------------*/
+.qa {
+    margin: 200px 0 80px;
+    * {
+        transition: all .5s;
+    }
+    h2,
+    li > * {
+        box-sizing: content-box;
+        max-width: 1200px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+    h2 {
+        margin-bottom: 20px;
+    }
+    li {
+        background: white;
+        margin-bottom: 10px;
+        > a {
+            display: block;
+            text-decoration: none;
+            position: relative;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            overflow: hidden;
+            &:after {
+                content: "";
+                background: url('../images/arrow_down.svg') no-repeat center;
+                background-size: contain;
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                right: 5%;
+                top: 35px;
+            }
+        }
+    }
+    h3 {
+        font-size: 1em;
+        margin-right: 40px;
+        /* space for arrow */
+    }
+    li {
+        > div {
+            overflow: hidden;
+        }
+        &:not(.open) > div {
+            max-height: 0;
+        }
+        &.open > {
+            div {
+                max-height: 1000px;
+            }
+            a:after {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .qa {
+        margin: 100px 0 40px;
+    }
+}
+
+@media (min-width: 901px) {
+    .qa li > a:hover h3 {
+        text-decoration: underline;
+    }
+}
+/*-------------- END QA (LIST CONTENT) --------------*/
+
+/*-------------- LINKS (LIST) ER DENNE I BRUK? --------------*/
+/*.links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        margin-bottom: 20px;
+    }
+    p {
+        margin: 0;
+    }
+}*/
+/*-------------- END LINKS (LIST) ER DENNE I BRUK? --------------*/
+
+/*-------------- EXPAND/EXPANDABLE (SHOW MORE INFO IN LIST) --------------*/
+.expand {
+    &:after {
+        content: "";
+        background: url('../images/arrow_down.svg') no-repeat center;
+        background-size: contain;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-left: 10px;
+        position: relative;
+        top: 3px;
+    }
+    &.active:after {
+        transform: rotate(180deg);
+        top: 1px;
+    }
+}
+
+.expandable {
+    transition: all .5s;
+    &.open {
+        max-height: 2000px;
+    }
+    &:not(.open) {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+/*-------------- END EXPAND/EXPANDABLE (SHOW MORE INFO IN LIST) --------------*/
+
+/*-------------- YES/NO BUTTON (IN MORE INFO IN LIST) --------------*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 140px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.switch input {display:none;}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "NO";
+    height: 42px;
+    width: 62px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #06f;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(68px);
+    -ms-transform: translateX(68px);
+    transform: translateX(68px);
+    content: "YES";
+}
+/*-------------- END YES/NO BUTTON (IN MORE INFO IN LIST) --------------*/
+
+/*-------------- SCROLL-TO --------------*/
+.scrollTo {
+    text-decoration: none;
+}
+/*-------------- END SCROLL-TO --------------*/
