@@ -1,3 +1,7 @@
+//Eksempel fra: https://jsfiddle.net/contentful/kefaj4s8/
+//NB: Klasser er foreløpig ikke i bruk!
+
+
 /*-------------- CLIENT --------------*/
 var client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
