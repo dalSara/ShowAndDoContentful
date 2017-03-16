@@ -8,6 +8,8 @@
         <meta name="author" content="">
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/fonts.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <title>Show & Do</title>
 
@@ -15,6 +17,10 @@
     <body>
 
         <div id="header"></div>
+
+        <div id="navigation"></div>
+
+        <div id="calender"></div>
 
         <div id="content" class="contentContainer"></div>
         <div id="changecontent" class="changecontentContainer"></div>
@@ -28,7 +34,10 @@
 
         <script src="script/changeData.js"></script>
         <script>
-         //   $("#header").load("components/header.html");
+
+            $("#header").load("components/header.html");
+            $("#navigation").load("components/navigation.html");
+            $("#calender").load("components/calender.html");
         </script>
     </body>
 </html>
