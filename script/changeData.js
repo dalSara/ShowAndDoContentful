@@ -10,12 +10,14 @@ var client = contentful.createClient({
     accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059'
 })
 /*-------------- END CLIENT --------------*/
+//Set a id to our list and tells where we want to display it
 
 var EVENT_CONTENT_TYPE_ID = 'events';
 
-var container = document.getElementById('content');
+var container = document.getElementById('changecontent');
 
 /*-------------- GET ENTRIES --------------*/
+//Get us all the enteries from the list with our id
 client.getEntries({
     content_type: EVENT_CONTENT_TYPE_ID
 })
@@ -58,6 +60,7 @@ function renderEventInfo(fields){
 /*-------------- END GET DATA FROM ONE EVENT --------------*/
 
 /*-------------- GET IMAGE --------------*/
+//Gets the url from the choosen list and display the iamge in size
 function renderImage(image){
     if(image && image.fields.file){
         return '<img src="https://' + image.fields.file.url + '" width="150" height="150"/>';
