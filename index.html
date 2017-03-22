@@ -16,18 +16,111 @@
     </head>
     <body>
 
-        <div id="header"></div>
+        <!-------------- HEADER -------------->
+        <div id="header">
+            <header class="pageHeader">
+                <div class="wrapper basic">
+                    <a class="logo" href="index.html">
+                        <img src="../images/logo.png" alt="Making Waves Logo">
+                    </a>
+                    <button>Menu</button>
+                    <nav class="mainMenu">
+                        <ul>
+                            <li><a href="addTrack.html">Add track</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <!-------------- END HEADER -------------->
 
-        <div id="navigation"></div>
+        <main>
+            <div class="wrapper basic">
 
-        <div id="calender"></div>
+                <!-------------- NAVIGATION -------------->
+                <div id="navigation">
+                    <div id="navWeek">
+                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
+                        <div><a id="thisWeekBtn">This week</a></div>
+                        <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                    </div>
+                </div>
+                <!-------------- END NAVIGATION -------------->
 
-        <div id="content" class="contentContainer"></div>
+                <!-------------- CALENDER -------------->
+                <div id="calender" >
+                    <!-- TABLE VISIBLE ONLY ON LARGE SCREENS -->
+                    <div id="cal-desktop">
+                        <table class="table-cal">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1300-
+                                        <br>1345
+                                    </th>
+                                    <td class="cal JStrack1" rowspan="3"></td>
+                                    <td class="cal JStrack2" rowspan="3"></td>
+                                    <td class="cal JStrack4" rowspan="2"></td>
+                                    <td class="cal JStrack3" rowspan="2"></td>
+                                    <td class="cal JStrack6" rowspan="1"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1400-
+                                        <br>1445
+                                    </th>
+                                    <td class="cal JStrack7"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1500-
+                                        <br>1545
+                                    </th>
+                                    <td class="cal JStrack5"></td>
+                                    <td style="background: white"></td>
+                                    <td class="cal JStrack8"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- end TABLE VISIBLE ONLY ON LARGE SCREENS -->
 
+                    <!-- DIV VISIBLE ONLY ON SMALL SCREENS -->
+                    <div id="cal-mobile">
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1300-<br>1345</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack1"></div>
+                                <div class="track-mob JStrack2"></div>
+                                <div class="track-mob JStrack3"></div>
+                                <div class="track-mob JStrack4"></div>
+                                <div class="track-mob JStrack6"></div>
+                            </div>
+                        </div>
 
-        <!--<script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
-        <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>-->
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1400-<br>1445</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack7"></div>
+                            </div>
+                        </div>
+
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1500-<br>1545</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack5"></div>
+                                <div class="track-mob JStrack8"></div>
+                            </div>
+                        </div>
+                    </div><!-- END DIV VISIBLE ONLY ON SMALL SCREENS -->
+                </div>
+                <!-------------- END CALENDER -------------->
+
+            </div><!-- END WRAPPER BASIC -->
+        </main><!-- END MAIN -->
+
 
         <script src="https://npmcdn.com/contentful@latest/browser-dist/contentful.min.js"></script>
         <script src="script/getData.js"></script>
@@ -35,10 +128,6 @@
         <script src="script/changeData.js"></script>
         <script>
 
-            $("#header").load("components/header.html");
-            $("#navigation").load("components/navigation.html");
-            $("#calender").load("components/calender.html");
-            $("#changeDataPage").load("components/changeData.html");
         </script>
     </body>
 </html>
