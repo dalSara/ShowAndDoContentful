@@ -11,7 +11,7 @@ husk installere:
 
 npm i
 
-((----dette trengs ikke hämtas fra package.json
+((----dette trengs ikke, hämtas fra package.json
 npm install contentful-data --save
 
 npm install contentful --save
@@ -20,6 +20,9 @@ npm install gulp-cli gulp-sass --save-dev
  
 npm install browser-sync gulp --save-dev
 -------))
+
+dokumentasjon på kodestruktur:
+http://learn.jquery.com/code-organization/concepts/
 
 dokumentasjonen på browserify
 https://github.com/substack/browserify-handbook
@@ -51,3 +54,8 @@ https://github.com/contentful/contentful-management.js
 //rydd opp og ta bort ting/funksjoner som ikke blir brukt. OK å kommentere ut mens du rydder, men rydd opp når det ikke blir brukt lengre.
 
 //hver person har sin egen "søppel-fil". trash-sigrun.html, trash-natalie.html & trash-sara.html
+
+
+
+Huske lista:
+- ta bort dependencys vi ikke bruker
