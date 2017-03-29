@@ -28,7 +28,7 @@ gulp.task('sass', function() {
 // Basic usage
 gulp.task('scripts', function() {
     // Single entry point to browserify
-    gulp.src('./script/main.js')
+    gulp.src('./scripts/main.js')
         .pipe(browserify())
         .pipe(rename('bundle.js'))
         .pipe(gulp.dest('./'))
