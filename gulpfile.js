@@ -24,7 +24,7 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-
+/*
 // Basic usage
 gulp.task('scripts', function() {
     // Single entry point to browserify
@@ -32,7 +32,7 @@ gulp.task('scripts', function() {
         .pipe(browserify())
         .pipe(rename('bundle.js'))
         .pipe(gulp.dest('./'))
-});
+});*/
 
 gulp.task('default', ['serve'], function(){ //['serve', 'data'],
   console.log('Retrieved contenful entries.');
