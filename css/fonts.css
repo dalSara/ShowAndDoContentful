@@ -2,70 +2,70 @@
 
 @font-face {
     font-family: "Volte Light";
-    src: url('../fonts/Volte-Light.woff2') format('woff2'), url('../fonts/Volte-Light.woff') format('woff');
+    src: url('../assets/fonts/Volte-Light.woff2') format('woff2'), url('../fonts/Volte-Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Light Italic";
-    src: url('../fonts/Volte-LightItalic.woff2') format('woff2'), url('../fonts/Volte-LightItalic.woff') format('woff');
+    src: url('../assets/fonts/Volte-LightItalic.woff2') format('woff2'), url('../fonts/Volte-LightItalic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Regular";
-    src: url('../fonts/Volte-Regular.woff2') format('woff2'), url('../fonts/Volte-Regular.woff') format('woff');
+    src: url('../assets/fonts/Volte-Regular.woff2') format('woff2'), url('../fonts/Volte-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Regular Italic";
-    src: url('../fonts/Volte-RegularItalic.woff2') format('woff2'), url('../fonts/Volte-RegularItalic.woff') format('woff');
+    src: url('../assets/fonts/Volte-RegularItalic.woff2') format('woff2'), url('../fonts/Volte-RegularItalic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Medium";
-    src: url('../fonts/Volte-Medium.woff2') format('woff2'), url('../fonts/Volte-Medium.woff') format('woff');
+    src: url('../assets/fonts/Volte-Medium.woff2') format('woff2'), url('../fonts/Volte-Medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Medium Italic";
-    src: url('../fonts/Volte-MediumItalic.woff2') format('woff2'), url('../fonts/Volte-MediumItalic.woff') format('woff');
+    src: url('../assets/fonts/Volte-MediumItalic.woff2') format('woff2'), url('../fonts/Volte-MediumItalic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Semibold";
-    src: url('../fonts/Volte-Semibold.woff2') format('woff2'), url('../fonts/Volte-Semibold.woff') format('woff');
+    src: url('../assets/fonts/Volte-Semibold.woff2') format('woff2'), url('../fonts/Volte-Semibold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Semibold Italic";
-    src: url('../fonts/Volte-SemiboldItalic.woff2') format('woff2'), url('../fonts/Volte-SemiboldItalic.woff') format('woff');
+    src: url('../assets/fonts/Volte-SemiboldItalic.woff2') format('woff2'), url('../fonts/Volte-SemiboldItalic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Bold";
-    src: url('../fonts/Volte-Bold.woff2') format('woff2'), url('../fonts/Volte-Bold.woff') format('woff');
+    src: url('../assets/fonts/Volte-Bold.woff2') format('woff2'), url('../fonts/Volte-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Volte Bold Italic";
-    src: url('../fonts/Volte-BoldItalic.woff2') format('woff2'), url('../fonts/Volte-BoldItalic.woff') format('woff');
+    src: url('../assets/fonts/Volte-BoldItalic.woff2') format('woff2'), url('../fonts/Volte-BoldItalic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -75,21 +75,21 @@
 
 @font-face {
     font-family: 'Aften Screen';
-    src: url('../fonts/aften_screen.woff') format('woff');
+    src: url('../assets/fonts/aften_screen.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Aften Screen';
-    src: url('../fonts/aften_screen_italic.woff') format('woff');
+    src: url('../assets/fonts/aften_screen_italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Aften Screen';
-    src: url('../fonts/aften_screen_bold.woff') format('woff');
+    src: url('../assets/fonts/aften_screen_bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
