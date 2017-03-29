@@ -52,7 +52,8 @@ function renderSingleEvent(event){
 function renderEventInfo(fields){
     return '<h2>' + fields.title + '</h2>' +
 
-    '<p class="whatToExpect">' + fields.whatToExpect + '</p>';
+    '<p class="whatToExpect">' + fields.whatToExpect + '</p>' +
+        '<a href="components/changeData.html">Change</a>';
 }
 /*-------------- END GET DATA FROM ONE EVENT --------------*/
 
