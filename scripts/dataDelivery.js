@@ -24,6 +24,10 @@ var DATADELIVERYMODUL = (function(){
         })/*-------------- END GET ENTRIES --------------*/
     };/*-------------- END EVENTJSON --------------*/
 
+    var getOneEvent = function(oneEventIndex){
+        return eventJSON.event.fields[oneEventIndex];
+    };
+
     var getTitle = function(titleIndex){
         return eventJSON.event.fields[titleIndex].title;
     };
@@ -61,6 +65,7 @@ var DATADELIVERYMODUL = (function(){
     };
 
     return{
+        getOneEvent: getOneEvent,
         getTitle: getTitle,
         getLocation: getLocation,
         getNumberOfParticipants: getNumberOfParticipants,
