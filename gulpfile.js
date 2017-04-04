@@ -7,7 +7,7 @@ var browserify  = require('browserify');
 var rename      = require('gulp-rename');
 var source      = require('vinyl-source-stream');
 var sourceFile  = './scripts/main.js';
-var destFolder  = './js/';
+var destFolder  = './scripts/';
 var destFile    = 'bundle.js';
 
 
@@ -30,7 +30,7 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-
+/*
 // Basic usage
 gulp.task('scripts', function() {
     // Single entry point to browserify
@@ -38,8 +38,8 @@ gulp.task('scripts', function() {
         .pipe(browserify())
         .pipe(rename('bundle.js'))
         .pipe(gulp.dest('./'))
-});
-/*
+}); */
+
 gulp.task('browserify', function() {
     return browserify(sourceFile)
         .bundle()
@@ -47,26 +47,8 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest(destFolder));
 });
 
-  var browserifyWatch = watchify(browserify({
-    cache: {},
-    packageCache: {},
-    debug: true,
-    entries: files
-  });
 
-gulp.task('watch', function() {
-    var bundler = watchify(sourceFile);
-    bundler.on('update', rebundle);
 
-    function rebundle() {
-        return bundler.bundle()
-            .pipe(source(destFile))
-            .pipe(gulp.dest(destFolder));
-    }
-
-    return rebundle();
-});*/
-
-gulp.task('default', ['serve'], function(){ //['serve', 'data', 'watch' , 'browserify'],
+gulp.task('default', ['serve','browserify'], function(){ //['serve', 'data' 'watch' , ],
     console.log('Retrieved contenful entries.');
 });

@@ -43,3 +43,24 @@ client.getEntries({
     container.innerHTML = renderEvents(entries.items);
 })
 /*-------------- END GET ENTRIES --------------*/
+
+
+  var browserifyWatch = watchify(browserify({
+    cache: {},
+    packageCache: {},
+    //debug: true,
+    //entries: ['./scripts/debug.js']
+    plugin: [watchify]
+  }));
+
+gulp.task('watch', function() {
+    var bundler = watchify(sourceFile);
+    bundler.on('update', rebundle);
+
+    function rebundle() {
+        return bundler.bundle()
+            .pipe(source(destFile))
+            .pipe(gulp.dest(destFolder));
+    }
+
+    return rebundle();
