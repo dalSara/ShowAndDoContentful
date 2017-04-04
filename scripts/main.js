@@ -17,6 +17,8 @@ var CONTENTFULMODUL = (function(){
                 //console.log(entries.items)
             })
 
+            debugger;
+
             // let's get a content type
             space.getContentType('test')
                 .then((contentType) => {

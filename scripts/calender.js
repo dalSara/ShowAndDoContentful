@@ -2,21 +2,21 @@
 //APP pattern (Object literal)
 var CALENDER = {
     /*-------------- VARIABLES -------------*/
-    oneEventIndex: 0,
+    oneEvntIndex: 0,
     eventTitle: 0,
     /*-------------- END VARIABLES -------------*/
 
     /*-------------- HTML-objects -------------*/
     $MPtest: null,
 
-    $JStrack1: null,
+    /*$JStrack1: null,
     $JStrack2: null,
     $JStrack3: null,
     $JStrack4: null,
     $JStrack5: null,
     $JStrack6: null,
     $JStrack7: null,
-    $JStrack8: null,
+    $JStrack8: null,*/
     /*-------------- END HTML-objects -------------*/
 
     /*-------------- INIT -------------*/
@@ -27,14 +27,14 @@ var CALENDER = {
         var setElements = function(){
             CAL.$MPtest = $("#MPtest");
 
-            CAL.$JStrack1 = $(".JStrack1");
+            /*CAL.$JStrack1 = $(".JStrack1");
             CAL.$JStrack2 = $(".JStrack2");
             CAL.$JStrack3 = $(".JStrack3");
             CAL.$JStrack4 = $(".JStrack4");
             CAL.$JStrack5 = $(".JStrack5");
             CAL.$JStrack6 = $(".JStrack6");
             CAL.$JStrack7 = $(".JStrack7");
-            CAL.$JStrack8 = $(".JStrack8");
+            CAL.$JStrack8 = $(".JStrack8");*/
         }();
 
         var setEvents = function(){
@@ -50,13 +50,14 @@ var CALENDER = {
     showInfo: function(){
         var CAL = CALENDER;
 
-        var oneEventIndex = CAL.oneEventIndex;
-        var oneEvent = DATADELIVERYMODUL.getOneEvent(oneEventIndex + 1);
+        var titleIndex = CAL.eventTitle;
+        var title = DATADELIVERYMODUL.getTitle(titleIndex);
 
         //var $newTitle = $("<a href='#JsScroll1' class='scrollTo'>" + oneEvent.title + "</a>");
-        var $newTitle = $("<p>" + oneEvent.title + "</p>");
+        var $newTitle = $("<p>" + title + "</p>");
 
         CAL.$MPtest.append($newTitle);
+
         /*var oneEvent = DATADELIVERYMODUL.getOneEvent(oneEventIndex + 1); //Get all text from JSON, from index 1 and ->
 
         var $newTitle = $("<a href='#JsScroll1' class='scrollTo'>" + oneEvent.title + "</a>");
