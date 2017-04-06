@@ -50,5 +50,5 @@ gulp.task('browserify', function() {
 
 
 gulp.task('default', ['serve','browserify'], function(){ //['serve', 'data' 'watch' , ],
-    console.log('Retrieved contenful entries.');
+
 });
