@@ -1,4 +1,4 @@
-function addTrack (){
+function editTrack (){
 
     //contentful management id the module that have contact with contentful.
     //this is the conection to the module
@@ -22,7 +22,7 @@ function addTrack (){
         addTrackBtn = document.getElementById("addTrackBtn");
 
 
-        addTrackBtn.onclick = createNewEvent;
+        addTrackBtn.onclick = createNewEvent();
 
 
     }(); /*--end init--*/
@@ -38,13 +38,17 @@ function addTrack (){
         client.getSpace('59mi8sr8zemv')
             .then((space) => {
             // Now that we have a space, we can get entries from that space
-            space.getEntries()
-                .then((entries) => {
-                //  console.log(entries.items)
-            })
+        //    space.getEntries()
+          //      .then((entries) => {
+            //     console.log(entries.items)
+        //    })
 
             //This function is finding the correct contenttype in contentful and add new data to that space
 
+            space.getEntry('3eDQQRsiK4YoqEqagMsiU')
+                .then(entry => console.log(entry.fields.panda))
+
+            /*
             space.createEntry('test', {
                 fields: {
                     testTest: {
@@ -55,13 +59,13 @@ function addTrack (){
 
                     }
                 }
-            })
+            })//end createEntry
             //.then(e => console.log(e))
-
-        })
+            */
+        })//end getSpace
 
     }
 
 }
 
-exports.addTrack = addTrack
+exports.editTrack = editTrack
