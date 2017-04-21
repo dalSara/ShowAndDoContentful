@@ -12621,66 +12621,88 @@ exports.isBuffer = function (obj) {
 };
 
 },{}],333:[function(require,module,exports){
-//contentful management id the module that have contact with contentful.
-//this is the conection to the module
-var contentful = require('contentful-management')
-var client = contentful.createClient({
-    // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-    accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
-})
+function addTrack (){
 
-//HTML-objeckter
-var testTestText;
-var pandaText;
-var addTrackBtn;
+    //contentful management id the module that have contact with contentful.
+    //this is the conection to the module
+    var contentful = require('contentful-management')
+    var client = contentful.createClient({
+        // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
+    });
 
-var init = function (){
 
-    var setHTMLObjects = function(){
+    //HTML-objeckter
+
+    var testTestText;
+    var pandaText;
+    var addTrackBtn;
+
+    var init = function (){
+
         testTestText = document.getElementById("testTestText");
         pandaText = document.getElementById("pandaText");
         addTrackBtn = document.getElementById("addTrackBtn");
-    }();
 
 
+        addTrackBtn.onclick = createNewEvent;
 
-    var setEvents = function (){
-        addTrackBtn.onclick = createNewEvent();
 
-    }()
     }(); /*--end init--*/
 
-function createNewEvent (){
 
-    var pandaNewText = pandaText.value;
-    var testTestNewText = testTestText.value;
+//the function that creates a new event, and post it to contentful
+    function createNewEvent (){
 
-    // This API call will request a space with the specified ID
-    client.getSpace('59mi8sr8zemv')
-        .then((space) => {
-        // Now that we have a space, we can get entries from that space
-        space.getEntries()
-            .then((entries) => {
-            console.log(entries.items)
-        })
+        var pandaNewText = pandaText.value;
+        var testTestNewText = testTestText.value;
 
-        //This function is finding the correct space in contentful and add new data to that space
+        console.log("Panda text: " + pandaNewText);
 
-        space.createEntry('test', {
-            fields: {
-                testTest: {
-                    'en-US': testTestText.value,
-                },
-                panda: {
-                    'en-US': pandaNewText
+
+        // This API call will request a space with the specified ID
+        client.getSpace('59mi8sr8zemv')
+            .then((space) => {
+            // Now that we have a space, we can get entries from that space
+           space.getEntries()
+               .then((entries) => {
+              //  console.log(entries.items)
+            })
+
+            //This function is finding the correct contenttype in contentful and add new data to that space
+
+            space.createEntry('test', {
+                fields: {
+                    testTest: {
+                        'en-US': testTestNewText
+                    },
+                    panda: {
+                        'en-US': pandaNewText
+
+                    }
                 }
-            }
+            })
+                //.then(e => console.log(e))
+
         })
-            .then(e => console.log(e))
 
-    })
-    console.log("funkar")
-};
+    }
 
 
-},{"contentful-management":9}]},{},[333]);
+}
+
+exports.addTrack = addTrack
+
+},{"contentful-management":9}],334:[function(require,module,exports){
+
+var dm = require('./addTrack.js')
+dm.addTrack()
+
+//require('./dataManagement.js')
+//addTrack()
+
+//addTrackBtn = document.getElementById("addTrackBtn").onclick(dm.addTrack());
+
+///addTrackBtn.onclick(createNewEvent())
+//var createNewEvent = require('./dataManagement.js').createNewEvent();
+},{"./addTrack.js":333}]},{},[334]);
