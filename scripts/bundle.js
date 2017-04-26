@@ -12703,42 +12703,63 @@ function editTrack (){
 
     //HTML-objeckter
 
-    var testTestText;
-    var pandaText;
-    var addTrackBtn;
+    var testTestEdit;
+    var pandaEdit;
+    var editTrackBtn;
 
     var init = function (){
 
-        testTestText = document.getElementById("testTestText");
-        pandaText = document.getElementById("pandaText");
-        addTrackBtn = document.getElementById("addTrackBtn");
+        testTestEdit = document.getElementById("testTestEdit");
+        pandaEdit = document.getElementById("pandaEdit");
+        editTrackBtn = document.getElementById("editTrackBtn");
 
 
-        addTrackBtn.onclick = createNewEvent();
+       editEvent();
 
 
     }(); /*--end init--*/
 
 
     //the function that creates a new event, and post it to contentful
-    function createNewEvent (){
+    function editEvent (){
 
-        var pandaNewText = pandaText.value;
-        var testTestNewText = testTestText.value;
+   //     var pandaNewEdit = pandaEdit.value;
+     //   var testTestNewEdit = testTestEdit.value;
 
         // This API call will request a space with the specified ID
         client.getSpace('59mi8sr8zemv')
             .then((space) => {
             // Now that we have a space, we can get entries from that space
-        //    space.getEntries()
-          //      .then((entries) => {
+            //    space.getEntries()
+            //      .then((entries) => {
             //     console.log(entries.items)
-        //    })
+            //    })
 
             //This function is finding the correct contenttype in contentful and add new data to that space
 
+
+
+            //            function setText(){
             space.getEntry('3eDQQRsiK4YoqEqagMsiU')
-                .then(entry => console.log(entry.fields.panda))
+                .then((entry) => { console.log(entry.fields.testTest)
+                                  // (testTestNewText).appendTo.testTestText
+                                   var test = "testTestText".innerHTML = (entry.fields.testTest.value)
+                                   console.log(test)
+                                  //return ("testTestText".value).innerHTML = (entry.fields.testTest.value);
+                                //return document.getElementById('testTestEdit').value = entry.fields.testTest.;
+                                 })
+
+
+
+            /*
+                   // .then((entry) => {
+                       // entry.getFields(panda)
+               // (pandaText).innerHTML = (entry.fields.panda)
+          //  }
+
+          document.getElementById("demo").innerHTML = "Paragraph changed!";
+
+
 
             /*
             space.createEntry('test', {
@@ -12756,19 +12777,20 @@ function editTrack (){
             */
         })//end getSpace
 
-    }
+    }//end createNewEvent
 
-}
+
+
+}//end EditTrack
 
 exports.editTrack = editTrack
 
 },{"contentful-management":9}],335:[function(require,module,exports){
-
 var add = require('./addTrack.js')
-add.addTrack()
+add.addTrack();
 
 var edit = require('./editTrack.js')
-edit.editTrack()
+edit.editTrack();
 
 //require('./dataManagement.js')
 //addTrack()
