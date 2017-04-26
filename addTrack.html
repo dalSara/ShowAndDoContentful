@@ -1,29 +1,96 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<title>New HMTL document by NewJect</title>
+    <title>New HMTL document by NewJect</title>
+    <style>
+        #addTrackBtn {
+            display: inline-block;
+            background: #0066FF;
+            border: 4px solid #0066FF;
+            /* Submit: */
+            font-family: Volte-Semibold;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            width: 50%;
+            text-align: center;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
 
+        input[type=text], input[type=submit], textarea, .custom-file-upload {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+            font-size: 1em;
+        }
+
+        input[type=submit] {
+            font-family: "Volte Semibold";
+            background: #0066FF;
+            color: #fff;
+            font-size: 1em;
+            border: 3px solid #fff;
+            padding: 20px 0px 15px 0px;
+        }
+
+        input[type=submit]:hover {
+            border: 3px solid #0066FF;
+            background: #0066FF;
+            color: #fff;
+        }
+
+        input[type=text]:focus,  textarea:focus {
+            border: 3px solid #0066FF;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            background: #fff;
+            width: auto;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px 20px;
+            resize: none;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<div>
-<h3>Panda Test</h3>
+    <div>
+        <h3>Panda Test</h3>
 
 
-testTest: <input id="testTestText" type="text" value=""><br><br>
-panda: <input id="pandaText" type="text" value=""><br><br>
-    <p id="addTrackBtn" type="submit" value="Add track"> click me </p>
+        testTest: <input id="testTestText" type="text" value=""><br><br> panda: <input id="pandaText" type="text" value=""><br><br>
+        <p tabindex="0" role="button" id="addTrackBtn" type="submit" value="Add track">Submit</p>
 
-</div>
+    </div>
 
     <script src="scripts/bundle.js"></script>
 
 
 </body>
+
 </html>
