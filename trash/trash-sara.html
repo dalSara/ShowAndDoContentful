@@ -1,3 +1,20 @@
+        client.getSpace('59mi8sr8zemv')
+            .then((space) => {
+            // Now that we have a space, we can get entries from that space
+            space.getEntry('3eDQQRsiK4YoqEqagMsiU', {
+                fields: {
+                    testTest: {
+                        'en-US':
+                    },
+                    panda: {
+                        'en-US':
+
+                    }
+                }
+            })
+
+
+
 <script src="https://npmcdn.com/contentful@latest/browser-dist/contentful.min.js"></script>
 <script>
 var client = contentful.createClient({
