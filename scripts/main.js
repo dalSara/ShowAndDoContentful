@@ -1,6 +1,8 @@
+var add = require('./addTrack.js')
+add.addTrack();
 
-var dm = require('./addTrack.js')
-dm.addTrack()
+var edit = require('./editTrack.js')
+edit.editTrack();
 
 //require('./dataManagement.js')
 //addTrack()
