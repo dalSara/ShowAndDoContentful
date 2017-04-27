@@ -1,4 +1,5 @@
 /*-------------- CONSTANTS --------------*/
+
 $basecolor: #1B98E0;
 $eventcolor: #D9D9D9;
 @mixin border-radius($radius) {
@@ -7,9 +8,13 @@ $eventcolor: #D9D9D9;
     -ms-border-radius: $radius;
     border-radius: $radius;
 }
+
+
 /*-------------- END CONSTANTS --------------*/
 
+
 /*-------------- GENERAL --------------*/
+
 * {
     box-sizing: border-box;
 }
@@ -142,9 +147,13 @@ iframe {
     max-width: 100%;
     border: none;
 }
+
+
 /*-------------- END GENERAL --------------*/
 
+
 /*-------------- PAGEHEADER --------------*/
+
 .pageHeader {
     background: white;
     overflow: hidden;
@@ -152,12 +161,12 @@ iframe {
     padding-top: 35px;
     margin-bottom: 100px;
     .logo {
-        background: url('../images/logo-sd.svg') no-repeat center, url('../images/logo_col1.svg') no-repeat -10000px center;
+        background: url('../assets/images/logo-sd.svg') no-repeat center, url('../images/logo_col1.svg') no-repeat -10000px center;
         /* preload */
         display: inline-block;
         vertical-align: top;
         &:hover {
-            background: url('../images/logo_col1.svg') no-repeat center;
+            background: url('../assets/images/logo_col1.svg') no-repeat center;
         }
         img {
             display: block;
@@ -171,7 +180,9 @@ iframe {
     }
 }
 
+
 /* button (menu) */
+
 .pageHeader button {
     border-style: solid;
     border-color: #3d3d3d;
@@ -235,9 +246,13 @@ iframe {
         }
     }
 }
+
+
 /*-------------- END PAGEHEADER --------------*/
 
+
 /*-------------- FRONTPAGE --------------*/
+
 .frontpage {
     .pageHeader {
         margin-bottom: 0px;
@@ -283,9 +298,13 @@ iframe {
         margin: 0 0 20px 0;
     }
 }
+
+
 /*-------------- END FRONTPAGE --------------*/
 
+
 /*-------------- MAIN MENU (BURGERMENU) --------------*/
+
 .mainMenu {
     font-family: 'Volte Semibold';
     text-transform: uppercase;
@@ -331,9 +350,13 @@ iframe {
         margin-bottom: 20px;
     }
 }
+
+
 /*-------------- END MAIN MENU (BURGERMENU) --------------*/
 
+
 /*-------------- NAV GENERAL (ADD TRACK & NAVWEEK) --------------*/
+
 nav {
     ul {
         list-style: none;
@@ -371,9 +394,13 @@ nav {
     /* IE 10 */
     flex: 1;
 }
+
+
 /*-------------- END NAV GENERAL (ADD TRACK & NAVWEEK) --------------*/
 
+
 /*-------------- WRAPPER (FOR HEADER & CONTENT) --------------*/
+
 .wrapper {
     box-sizing: content-box;
     padding: 0 5%;
@@ -389,9 +416,13 @@ nav {
         max-width: 750px;
     }
 }
+
+
 /*-------------- END WRAPPER (FOR HEADER & CONTENT) --------------*/
 
+
 /*-------------- MAIN (CONTENT) --------------*/
+
 main {
     display: block;
     .wrapper {
@@ -434,9 +465,13 @@ main {
     vertical-align: middle;
     margin: 0 20px;
 }
+
+
 /*-------------- END MAIN (CONTENT) --------------*/
 
+
 /*-------------- INPUT --------------*/
+
 button {
     font-family: "Volte Semibold";
     font-size: inherit;
@@ -458,7 +493,9 @@ button {
         font-size: .778rem;
     }
 }
+
 //SAMME KODE SOM OVER?:
+
 /*button {
 font-family: "Volte Semibold";
 font-size: inherit;
@@ -481,9 +518,106 @@ font-family: inherit;
 color: inherit;
 font-size: .778rem;
 }*/
+
+.buttonsAddTrack {
+    height: 80px;
+}
+
+.buttonsAddTrack:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+#addTrackBtn {
+    display: inline-block;
+    background: #0066FF;
+    border: 4px solid #0066FF;
+    /* Submit: */
+    font-family: Volte-Semibold;
+    font-size: 1rem;
+    color: #FFFFFF;
+    width: 49.5%;
+    text-align: center;
+    cursor: pointer;
+    padding: 1%;
+}
+
+#previewTrackBtn {
+    display: inline-block;
+    background: #C6C6C6;
+    border: 4px solid #C6C6C6;
+    /* Submit: */
+    font-family: Volte-Semibold;
+    font-size: 1rem;
+    color: #3D3D3D;
+    width: 49.5%;
+    text-align: center;
+    cursor: pointer;
+    padding: 1%;
+}
+
+input[type=text],
+input[type=submit],
+textarea,
+.custom-file-upload {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-size: 1em;
+}
+
+input[type=submit] {
+    font-family: "Volte Semibold";
+    background: #0066FF;
+    color: #fff;
+    font-size: 1em;
+    border: 3px solid #fff;
+    padding: 20px 0px 15px 0px;
+}
+
+input[type=submit]:hover {
+    border: 3px solid #0066FF;
+    background: #0066FF;
+    color: #fff;
+}
+
+input[type=text]:focus,
+textarea:focus {
+    border: 3px solid #0066FF;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background: #fff;
+    width: auto;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    resize: none;
+}
+
+
 /*-------------- END INPUT --------------*/
 
+
 /*-------------- TABLE (FOR CALENDER) --------------*/
+
 table,
 td,
 th {
@@ -511,9 +645,13 @@ td {
         color: #242424;
     }
 }
+
+
 /*-------------- END TABLE (FOR CALENDER) --------------*/
 
+
 /*-------------- FLEX FOR ROW IN CALENDER --------------*/
+
 #main {
     width: auto;
     height: auto;
@@ -555,15 +693,18 @@ td {
     font-weight: 600;
     padding-bottom: 1em;
 }
+
+
 /*-------------- END FLEX FOR ROW IN CALENDER --------------*/
 
+
 /*-------------- SHOW/HIDE DESKTOP CAL & MOBILE CAL --------------*/
+
 @media screen and (min-width: 768px) {
     #cal-mobile {
         display: none;
     }
-
-    .duration{
+    .duration {
         display: none;
     }
 }
@@ -578,23 +719,24 @@ td {
         text-align: right;
         opacity: 0.8;
     }
-
     .rooms {
         display: none;
     }
-
     .flex-list {
         -webkit-flex-direction: column;
         flex-direction: column;
     }
-
     .going-size {
         width: auto;
     }
 }
+
+
 /*-------------- END SHOW/HIDE DESKTOP CAL & MOBILE CAL --------------*/
 
+
 /*-------------- LIST --------------*/
+
 .scrollToTopBtn {
     /*text-align: center;*/
     /*position: relative;*/
@@ -646,16 +788,20 @@ td {
 .going-size {
     width: 450px;
 }
+
+
 /*-------------- END LIST --------------*/
 
+
 /*-------------- QA (LIST CONTENT) --------------*/
+
 .qa {
     margin: 200px 0 80px;
     * {
         transition: all .5s;
     }
     h2,
-    li > * {
+    li>* {
         box-sizing: content-box;
         max-width: 1200px;
         margin-right: auto;
@@ -669,7 +815,7 @@ td {
     li {
         background: white;
         margin-bottom: 10px;
-        > a {
+        >a {
             display: block;
             text-decoration: none;
             position: relative;
@@ -678,7 +824,7 @@ td {
             overflow: hidden;
             &:after {
                 content: "";
-                background: url('../images/arrow_down.svg') no-repeat center;
+                background: url('../assets/images/arrow_down.svg') no-repeat center;
                 background-size: contain;
                 position: absolute;
                 width: 16px;
@@ -694,13 +840,13 @@ td {
         /* space for arrow */
     }
     li {
-        > div {
+        >div {
             overflow: hidden;
         }
-        &:not(.open) > div {
+        &:not(.open)>div {
             max-height: 0;
         }
-        &.open > {
+        &.open> {
             div {
                 max-height: 1000px;
             }
@@ -718,13 +864,18 @@ td {
 }
 
 @media (min-width: 901px) {
-    .qa li > a:hover h3 {
+    .qa li>a:hover h3 {
         text-decoration: underline;
     }
 }
+
+
 /*-------------- END QA (LIST CONTENT) --------------*/
 
+
 /*-------------- LINKS (LIST) ER DENNE I BRUK? --------------*/
+
+
 /*.links {
     list-style: none;
     padding: 0;
@@ -736,13 +887,17 @@ td {
         margin: 0;
     }
 }*/
+
+
 /*-------------- END LINKS (LIST) ER DENNE I BRUK? --------------*/
 
+
 /*-------------- EXPAND/EXPANDABLE (SHOW MORE INFO IN LIST) --------------*/
+
 .expand {
     &:after {
         content: "";
-        background: url('../images/arrow_down.svg') no-repeat center;
+        background: url('../assets/images/arrow_down.svg') no-repeat center;
         background-size: contain;
         display: inline-block;
         width: 12px;
@@ -771,9 +926,13 @@ td {
         overflow: hidden;
     }
 }
+
+
 /*-------------- END EXPAND/EXPANDABLE (SHOW MORE INFO IN LIST) --------------*/
 
+
 /*-------------- YES/NO BUTTON (IN MORE INFO IN LIST) --------------*/
+
 .switch {
     position: relative;
     display: inline-block;
@@ -783,7 +942,9 @@ td {
     justify-content: center;
 }
 
-.switch input {display:none;}
+.switch input {
+    display: none;
+}
 
 .slider {
     position: absolute;
@@ -812,24 +973,30 @@ td {
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #06f;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(68px);
     -ms-transform: translateX(68px);
     transform: translateX(68px);
     content: "YES";
 }
+
+
 /*-------------- END YES/NO BUTTON (IN MORE INFO IN LIST) --------------*/
 
+
 /*-------------- SCROLL-TO --------------*/
+
 .scrollTo {
     text-decoration: none;
 }
+
+
 /*-------------- END SCROLL-TO --------------*/

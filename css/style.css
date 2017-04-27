@@ -116,7 +116,7 @@ iframe {
   padding-top: 35px;
   margin-bottom: 100px; }
   .pageHeader .logo {
-    background: url("../assets/images/logo-sd.svg") no-repeat center, url("../assets/images/logo_col1.svg") no-repeat -10000px center;
+    background: url("../assets/images/logo-sd.svg") no-repeat center, url("../images/logo_col1.svg") no-repeat -10000px center;
     /* preload */
     display: inline-block;
     vertical-align: top; }
@@ -379,6 +379,88 @@ font-family: inherit;
 color: inherit;
 font-size: .778rem;
 }*/
+.buttonsAddTrack {
+  height: 80px; }
+
+.buttonsAddTrack:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%; }
+
+#addTrackBtn {
+  display: inline-block;
+  background: #0066FF;
+  border: 4px solid #0066FF;
+  /* Submit: */
+  font-family: Volte-Semibold;
+  font-size: 1rem;
+  color: #FFFFFF;
+  width: 49.5%;
+  text-align: center;
+  cursor: pointer;
+  padding: 1%; }
+
+#previewTrackBtn {
+  display: inline-block;
+  background: #C6C6C6;
+  border: 4px solid #C6C6C6;
+  /* Submit: */
+  font-family: Volte-Semibold;
+  font-size: 1rem;
+  color: #3D3D3D;
+  width: 49.5%;
+  text-align: center;
+  cursor: pointer;
+  padding: 1%; }
+
+input[type=text],
+input[type=submit],
+textarea,
+.custom-file-upload {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  font-size: 1em; }
+
+input[type=submit] {
+  font-family: "Volte Semibold";
+  background: #0066FF;
+  color: #fff;
+  font-size: 1em;
+  border: 3px solid #fff;
+  padding: 20px 0px 15px 0px; }
+
+input[type=submit]:hover {
+  border: 3px solid #0066FF;
+  background: #0066FF;
+  color: #fff; }
+
+input[type=text]:focus,
+textarea:focus {
+  border: 3px solid #0066FF; }
+
+input[type="file"] {
+  display: none; }
+
+.custom-file-upload {
+  background: #fff;
+  width: auto;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer; }
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  resize: none; }
+
 /*-------------- END INPUT --------------*/
 /*-------------- TABLE (FOR CALENDER) --------------*/
 table,

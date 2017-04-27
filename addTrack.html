@@ -8,137 +8,91 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>New HMTL document by NewJect</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>Add track - Show & Do</title>
     <style>
-        #addTrackBtn {
-            display: inline-block;
-            background: #0066FF;
-            border: 4px solid #0066FF;
-            /* Submit: */
-            font-family: Volte-Semibold;
-            font-size: 1.5rem;
-            color: #FFFFFF;
-            width: 50%;
-            text-align: center;
-            padding: 0.5rem;
-            cursor: pointer;
-        }
 
-        input[type=text], input[type=submit], textarea, .custom-file-upload {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-            font-size: 1em;
-        }
-
-        input[type=submit] {
-            font-family: "Volte Semibold";
-            background: #0066FF;
-            color: #fff;
-            font-size: 1em;
-            border: 3px solid #fff;
-            padding: 20px 0px 15px 0px;
-        }
-
-        input[type=submit]:hover {
-            border: 3px solid #0066FF;
-            background: #0066FF;
-            color: #fff;
-        }
-
-<<<<<<< HEAD
-        input[type=text]:focus,  textarea:focus {
-            border: 3px solid #0066FF;
-        }
-=======
-<title>Show & Do - add track</title>
->>>>>>> origin/master
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .custom-file-upload {
-            background: #fff;
-            width: auto;
-            display: inline-block;
-            padding: 6px 12px;
-            cursor: pointer;
-        }
-
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 12px 20px;
-            resize: none;
-        }
 
     </style>
 </head>
 
 <body>
 
-<<<<<<< HEAD
-    <div>
-        <h3>Panda Test</h3>
+    <!-------------- HEADER -------------->
+    <div id="header">
+        <header class="pageHeader">
+            <div class="wrapper basic">
+                <a class="logo" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Making Waves Logo">
+                </a>
+                <button>Menu</button>
+                <nav class="mainMenu">
+                    <ul>
+                        <li><a href="addTrack.html">Add track</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <!-------------- END HEADER -------------->
 
 
-        testTest: <input id="testTestText" type="text" value=""><br><br> panda: <input id="pandaText" type="text" value=""><br><br>
-        <p tabindex="0" role="button" id="addTrackBtn" type="submit" value="Add track">Submit</p>
-=======
-<div>
-<h3>Add track</h3>
 
-<!--
+    <div id="MPtest"></div>
+
+
+
+
+    <main>
+        <div class="wrapper basic">
+
+
+            <div>
+                <h3>Add track</h3>
+
+                <!--
 testTest: <input id="testTestText" type="text" value=""><br><br>
 panda: <input id="pandaText" type="text" value=""><br><br>
     <p id="addTrackBtn" type="submit" value="Add track"> click me </p>
 -->
-    Title <br>
-    <input id="JSaddTitle" type="text" value=""><br><br>
+                Pick the date for your track
+                <!-------------- NAVIGATION -------------->
+                <div id="navigation">
+                    <div id="navWeek">
+                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
+                        <div><a id="thisWeekBtn">This week</a></div>
+                        <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                    </div>
+                </div>
+                <!-------------- END NAVIGATION -------------->
+                Title <br>
+                <input id="JSaddTitle" type="text" value=""><br><br> Prerequisites (is there anything the attendees need to know beforehand?)<br>
+                <input id="JSaddPrereq" type="text" value=""><br><br> Preferred starttime (click to select)<br>
+                <input id="JSstartOne" type="text" value="13.00">
+                <input id="JSstartTwo" type="text" value="14.00">
+                <input id="JSstartthree" type="text" value="15.00"><br><br> How long will your track be? (click to select)<br>
+                <input id="JShourOne" type="text" value="1 hour">
+                <input id="JShourTwo" type="text" value="2 hour">
+                <input id="JShourthree" type="text" value="3 hour"><br><br> What to expect (The agenda, what will you teach to other etc)<br>
+                <input id="JSexpect" type="text" value=""><br><br> Who should join? (Who is this track best suited for?)<br>
+                <input id="JSjoin" type="text" value=""><br><br> Do you have an image to add attention to your track? (you can edit this later)<br>
+                <input id="JSimage" type="text" value=""><br><br> or you can choose a stock photo (click to select)
+                <div id="JSstockOne"></div>
+                <div id="JSstockTwo"></div>
+                <div id="JSstockThree"></div>
 
-    Prerequisites (is there anything the attendees need to know beforehand?)<br>
-            <input id="JSaddPrereq" type="text" value=""><br><br>
-
-    Preferred starttime (click to select)<br>
-            <input id="JSstartOne" type="text" value="13.00">
-            <input id="JSstartTwo" type="text" value="14.00">
-            <input id="JSstartthree" type="text" value="15.00"><br><br>
-
-    How long will your track be? (click to select)<br>
-            <input id="JShourOne" type="text" value="1 hour">
-            <input id="JShourTwo" type="text" value="2 hour">
-            <input id="JShourthree" type="text" value="3 hour"><br><br>
-
-    What to expect (The agenda, what will you teach to other etc)<br>
-            <input id="JSexpect" type="text" value=""><br><br>
-
-    Who should join? (Who is this track best suited for?)<br>
-            <input id="JSjoin" type="text" value=""><br><br>
-
-    Do you have an image to add attention to your track? (you can edit this later)<br>
-            <input id="JSimage" type="text" value=""><br><br>
-
-    or you can choose a stock photo (click to select)
-            <div id="JSstockOne"></div>
-            <div id="JSstockTwo"></div>
-            <div id="JSstockThree"></div>
-
-    Anything else to add?
-    (links, videos for preparation, other tracks, co-host, equipment etc)<br>
-            <input id="JSelse" type="text" value=""><br><br>
-
-
-
->>>>>>> origin/master
-
-    </div>
-
+                Anything else to add? (links, videos for preparation, other tracks, co-host, equipment etc)<br>
+                <input id="JSelse" type="text" value=""><br><br>
+                <div class="buttonsAddTrack">
+                    <div tabindex="0" role="button" id="previewTrackBtn" type="submit" value="Add track">Preview</div>
+                    <div tabindex="0" role="button" id="addTrackBtn" type="submit" value="Add track">Submit</div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script src="scripts/bundle.js"></script>
 
 
