@@ -5,7 +5,7 @@ function addTrack (){
     var contentful = require('contentful-management')
     var client = contentful.createClient({
         // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
+        accessToken: ''
     });
 
 
@@ -31,7 +31,7 @@ function addTrack (){
     var JSaddStockOne;
     var JSaddStockTwo;
     var JSaddStockThree;
-    var JSaddSelse;
+    var JSaddElse;
 
     */
 
@@ -98,15 +98,69 @@ function addTrack (){
 
             //This function is finding the correct contenttype in contentful and add new data to that space
 
-            space.createEntry('test', {
+
+            space.createEntry('events', {
                 fields: {
-                    testTest: {
-                        'en-US': testTestNewText
+                    JSaddTitle: {
+                        'en-US': JSaddNewTitle
                     },
-                    panda: {
-                        'en-US': pandaNewText
+                    JSaddPrereq: {
+                        'en-US': JSaddNewPrereq
+
+                    },
+                    JSaddStartOne: {
+                        'en-US': JSaddNewStartOne
+
+                    },
+                    JSaddStartTwo: {
+                        'en-US': JSaddNewStartTwo
+
+                    },
+                    JSaddStartthree: {
+                        'en-US': JSaddNewStartthree
+
+                    },
+                    JSaddHourOne: {
+                        'en-US': JSaddNewHourOne
+
+                    },
+                    JSaddHourTwo: {
+                        'en-US': JSaddNewHourTwo
+
+                    },
+                    JSaddHourthree: {
+                        'en-US': JSaddNewHourthree
+
+                    },
+                    JSaddExpect: {
+                        'en-US': JSaddNewExpect
+
+                    },
+                    JSaddJoin: {
+                        'en-US': JSaddNewJoin
+
+                    },
+                    JSaddImage: {
+                        'en-US': JSaddNewImage
+
+                    },
+                    JSaddStockOne: {
+                        'en-US': JSaddNewStockOne
+
+                    },
+                    JSaddStockTwo: {
+                        'en-US': JSaddNewStockTwo
+
+                    },
+                    JSaddStockThree: {
+                        'en-US': JSaddNewStockThree
+
+                    },
+                    JSaddElselse: {
+                        'en-US': JSaddNewElse
 
                     }
+
                 }
             })
             //.then(e => console.log(e))
