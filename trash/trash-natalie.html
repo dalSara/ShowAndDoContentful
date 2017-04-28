@@ -7,33 +7,126 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/fonts.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/fonts.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
 
         <title>Show & Do</title>
+        <style>
+            /*-------------- TABLE (FOR CALENDER) --------------*/
+
+            p, h4{
+                color: white;
+            }
+
+            #calendar {
+                width: 100%;
+            }
+            #startTimes{
+                display: grid;
+                grid-template-columns: 150px;
+                grid-gap: 15px;
+                float: left;
+            }
+            .times{
+                height: 280px;
+                padding: 20px;
+                border: 1px solid gray;
+            }
+            .cal{
+                padding: 20px;
+            }
+            #row1{
+                display: grid;
+                height: 870px;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                /*20% 20% 20% 20% 20%;*/
+                grid-template-rows: 1fr 1fr 1fr;
+                /*33.33% 33.33% 33.33%;*/
+                border: 1px solid black;
+                grid-gap: 15px;
+            }
+
+            .largeTrack{
+                background-color: #06f;
+            }
+            .mediumTrack{
+                background-color: red;
+            }
+            .smallTrack{
+                background-color: green;
+            }
+            #location{
+                float: right;
+            }
+        </style>
 
     </head>
-    <body>
-        <!--<div id="header"></div>
-        <div id="navigation"></div>
-        <div id="calender"></div>
-        <div id="content" class="contentContainer"></div>-->
+    <body class="frontpage">
+        <!-------------------------------- HEADER -------------------------------->
+        <header class="pageHeader">
+            <div class="wrapper basic">
+                <a class="logo" href="index.html">
+                    <img src="../assets/images/logo-sd.svg" alt="Making Waves Logo">
+                </a>
+                <!--<button>Menu</button>-->
+                <nav class="mainMenu">
+                    <ul>
+                        <li><a href="addTrack.html">Add track</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-------------------------------- end HEADER -------------------------------->
+        <main><!-- MAIN CONTENT -->
+            <div class="wrapper basic">
 
-        <!--<script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
-        <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>-->
+                <!-------------------------------- NAVIGATION -------------------------------->
+                <div id="navigation">
+                    <div id="navWeek">
+                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> < Previous<br>
+                            <strong id="prevDate"></strong>
+                            </a></div>
+                        <div style="text-align: center"><a id="thisWeekBtn">Displayed week<br>
+                            <strong id="thisDate"></strong></a></div>
+                        <div><a id="nextBtn">Next >  <i class="fa fa-angle-right" aria-hidden="true"></i><br>
+                            <strong id="nextDate"></strong>
+                            </a></div>
+                    </div>
+                </div>
+                <!-------------------------------- end NAVIGATION -------------------------------->
 
-        <script src="https://npmcdn.com/contentful@latest/browser-dist/contentful.min.js"></script>
-        <script src="script/getData.js"></script>
+                <!-------------------------------- CALENDER -------------------------------->
+                <div id="calendar">
+                    <div id="startTimes">
+                        <div class="times">1300-1345</div>
 
-        <script src="script/changeData.js"></script>
-        <script>
+                        <div class="times">1400-1445</div>
 
-            /*$("#header").load("components/header.html");
-            $("#navigation").load("components/navigation.html");
-            $("#calender").load("components/calender.html");
-            $("#changeDataPage").load("components/changeData.html");*/
-        </script>
+                        <div class="times">1500-1545</div>
+                    </div>
+
+                    <div id="tracks">
+                        <div id="row1" class="rows"></div>
+                    </div>
+                </div>
+
+                <!-------------------------------- end CALENDER -------------------------------->
+
+            </div><!-- END WRAPPER BASIC -->
+        </main><!-- END MAIN CONTENT -->
+
+        <div id="content" class="contentContainer"></div><!-------------- CONTENTFUL -------------->
+
+        <div id="changecontent" class="changecontentContainer"></div>
+
+        <!-------------- SCRIPTS -------------->
+        <script src="../node_modules/contentful/browser-dist/contentful.min.js"></script>
+        <!--<script src="node_modules/contentful-management/dist/contentful-management.js"></script>-->
+        <script src="../scripts/bundle.js"></script>
+        <script src="../scripts/dataDeliveryNatalie.js"></script>
+        <!--<script src="../scripts/dataDelivery.js"></script>-->
+        <!--<script src="scripts/calender.js"></script>-->
+        <!-------------- END SCRIPTS -------------->
     </body>
 </html>
