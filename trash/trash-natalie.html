@@ -10,12 +10,14 @@
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/fonts.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 
         <title>Show & Do</title>
         <style>
             /*-------------- TABLE (FOR CALENDER) --------------*/
 
-            p, h4{
+            p, h4, .fa-map-marker{
                 color: white;
             }
 
@@ -31,10 +33,11 @@
             .times{
                 height: 280px;
                 padding: 20px;
-                border: 1px solid gray;
+                /*border: 1px solid gray;*/
             }
             .cal{
                 padding: 20px;
+                border-radius: 10px;
             }
             #row1{
                 display: grid;
@@ -43,7 +46,7 @@
                 /*20% 20% 20% 20% 20%;*/
                 grid-template-rows: 1fr 1fr 1fr;
                 /*33.33% 33.33% 33.33%;*/
-                border: 1px solid black;
+                /*border: 1px solid black;*/
                 grid-gap: 15px;
             }
 
@@ -56,9 +59,27 @@
             .smallTrack{
                 background-color: green;
             }
-            #location{
+            .icon-room-filled, #location{
+                float: left;
+            }
+            #locationWrapper{
                 float: right;
             }
+            #location{
+                margin-left: 5px;
+            }
+            .icon-room-filled {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                -webkit-mask: url("../assets/images/location-pin-2-filled.svg") no-repeat 50% 50%;
+                mask: url("../images/assets/location-pin-2-filled.svg") no-repeat 50% 50%;
+                -webkit-mask-size: cover;
+                mask-size: cover;
+                background-color: #fff;
+            }
+
+
         </style>
 
     </head>
@@ -84,14 +105,18 @@
                 <!-------------------------------- NAVIGATION -------------------------------->
                 <div id="navigation">
                     <div id="navWeek">
-                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> < Previous<br>
-                            <strong id="prevDate"></strong>
-                            </a></div>
-                        <div style="text-align: center"><a id="thisWeekBtn">Displayed week<br>
-                            <strong id="thisDate"></strong></a></div>
-                        <div><a id="nextBtn">Next >  <i class="fa fa-angle-right" aria-hidden="true"></i><br>
-                            <strong id="nextDate"></strong>
-                            </a></div>
+                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous<br>
+                            <strong id="prevDate">10.02.17</strong>
+                            </a>
+                        </div>
+                        <div style="text-align: center"><a id="thisWeekBtn"><br>
+                            <h2 id="thisDate">10.03.17</h2><br>
+                            </a>
+                        </div>
+                        <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i><br>
+                            <strong id="nextDate">24.03.17</strong>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <!-------------------------------- end NAVIGATION -------------------------------->
@@ -99,12 +124,14 @@
                 <!-------------------------------- CALENDER -------------------------------->
                 <div id="calendar">
                     <div id="startTimes">
-                        <div class="times">1300-1345</div>
+                        <div class="times"><strong>1300-1345</strong></div>
 
-                        <div class="times">1400-1445</div>
+                        <div class="times"><strong>1400-1445</strong></div>
 
-                        <div class="times">1500-1545</div>
+                        <div class="times"><strong>1500-1545</strong></div>
                     </div>
+
+                    <p><i class="icon-clock-filled"></i></p>
 
                     <div id="tracks">
                         <div id="row1" class="rows"></div>
@@ -112,6 +139,9 @@
                 </div>
 
                 <!-------------------------------- end CALENDER -------------------------------->
+                <div style="text-align: center"><br>
+                    <i class="fa fa-angle-down fa-3x" style="opacity: 0.5" aria-hidden="true"></i>
+                </div>
 
             </div><!-- END WRAPPER BASIC -->
         </main><!-- END MAIN CONTENT -->

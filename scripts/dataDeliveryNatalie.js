@@ -132,11 +132,13 @@ function renderEventInfo(fields){
     if(fields.location == null){
         return  '<h4>' + fields.title + '</h4>' +
                 '<p>' + startTime + '</p>' +
-                '<p id="location">Coming soon!</p>';
+                '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
+                '<p id="location">TBA</p></div>';
     }else{
         return  '<h4>' + fields.title + '</h4>' +
                 '<p>' + startTime + '</p>' +
-                '<p id="location">' + fields.location + '</p>';
+                '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
+                '<p id="location">' + fields.location + '</p></div>';
     }
 }
 /*-------------- END GET DATA FROM ONE EVENT --------------*/
