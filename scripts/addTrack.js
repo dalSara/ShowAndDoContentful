@@ -5,7 +5,7 @@ function addTrack (){
     var contentful = require('contentful-management')
     var client = contentful.createClient({
         // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-        accessToken: ''
+        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
     });
 
 
@@ -25,6 +25,7 @@ function addTrack (){
     var JSaddHourOne;
     var JSaddHourTwo:
     var JSaddHourthree;
+    var JSaddNrOfPart;
     var JSaddExpect;
     var JSaddJoin;
     var JSaddImage;
@@ -32,6 +33,7 @@ function addTrack (){
     var JSaddStockTwo;
     var JSaddStockThree;
     var JSaddElse;
+    var JSaddStatus;
 
     */
 
@@ -49,6 +51,7 @@ function addTrack (){
         JSaddHourOne = document.getElementById("JSaddHourOne");
         JSaddHourTwo= document.getElementById("JSaddHourTwo");
         JSaddHourthree = document.getElementById("JSaddHourthree");
+        JSaddNrOfPart =
         JSaddExpect = document.getElementById("JSaddExpect");
         JSaddJoin = document.getElementById("JSaddJoin");
         JSaddImage = document.getElementById("JSaddImage");
@@ -56,6 +59,7 @@ function addTrack (){
         JSaddStockTwo = document.getElementById("JSaddStockTwo");
         JSaddStockThree = document.getElementById("JSaddStockThree");
         JSaddElse = document.getElementById("JSaddElse");
+        JSaddStatus = document.getElementById("JSaddStatus");
         */
 
         addTrackBtn.onclick = createNewEvent;
@@ -72,12 +76,14 @@ function addTrack (){
         /*
         var JSaddNewTitle = JSaddTitle.value;
         var JSaddNewPrereq = JSaddPrereq.value;
+        //use switcha
         var JSaddNewStartOne = JSaddStartOne.value;
         var JSaddNewStartTwo = JSaddStartTwo.value;
         var JSaddNewStartthree = JSaddStartthree.value;
         var JSaddNewHourOne = JSaddHourOne.value;
         var JSaddNewHourTwo = JSaddHourTwo.value;
         var JSaddNewHourthree = JSaddHourthree.value;
+        var JSaddNewNrOfPart = JSaddNrOfPart.value;
         var JSaddNewExpect = JSaddExpect.value;
         var JSaddNewJoin = JSaddJoin.value;
         var JSaddNewImage = JSaddImage.value;
@@ -85,6 +91,7 @@ function addTrack (){
         var JSaddNewStockTwo = JSaddStockTwo.value;
         var JSaddNewStockThree = JSaddStockThree.value;
         var JSaddNewElse = JSaddElse.value;
+        var JSaddStatus
         */
 
         // This API call will request a space with the specified ID
@@ -98,7 +105,7 @@ function addTrack (){
 
             //This function is finding the correct contenttype in contentful and add new data to that space
 
-
+            /*
             space.createEntry('events', {
                 fields: {
                     JSaddTitle: {
@@ -132,6 +139,9 @@ function addTrack (){
                         'en-US': JSaddNewHourthree
 
                     },
+                    JSaddNrOfPart. {
+                        'en-US': JSaddNewNrOfPart
+                    },
                     JSaddExpect: {
                         'en-US': JSaddNewExpect
 
@@ -160,9 +170,14 @@ function addTrack (){
                         'en-US': JSaddNewElse
 
                     }
+                    JSaddStatus: {
+                        'en-US': "true"
+
+                    }
+
 
                 }
-            })
+            })//end create entry*/
             //.then(e => console.log(e))
 
         })
