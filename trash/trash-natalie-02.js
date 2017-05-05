@@ -1,5 +1,6 @@
 //Eksempel fra: https://jsfiddle.net/contentful/kefaj4s8/
 //NB: Klasser er foreløpig ikke i bruk!
+//js-className
 
 /*-------------- CLIENT --------------*/
 var client = contentful.createClient({
@@ -16,31 +17,69 @@ var row1 = document.getElementById('row1');
 
 /*-------------- GET ENTRIES --------------*/
 client.getEntries({
-    content_type: EVENT_CONTENT_TYPE_ID
+    content_type: EVENT_CONTENT_TYPE_ID,
+    order: 'fields.date' //Sort by date in datesForShowDo
 })
     .then(function (entries) {
-    //console.log('Entry Client:', entries);
-    console.log('Entry Client: All dates:', entries.items); //all dates
 
-    /*-------------- GET ONE DATE --------------*/
+    var allDates = entries.items;
+    console.log('Entry Client: All dates (sorted):', allDates); //all dates
+
+
+    /*-------------- TODAYS DATE --------------*/
+    var today = new Date();
+    //ISO8601 formatted YYYY-MM-DD (to match Contentful):
+    var todayFormatted = today.getFullYear() + '-' + ('0' + (today.getMonth() +1)).slice(-2) + '-' + ('0' + today.getDay()).slice(-2);
+    //console.log('TODAY:', todayFormatted);
+    /*-------------- END TODAYS DATE --------------*/
+
+    /*-------------- GET DATES --------------*/
+    //loop through dates in datesForShowDo
+    for(var i = 0; i < allDates.length; i++){
+        var dates = allDates[i];
+        var oneDate = dates.fields.date;
+
+        if(todayFormatted == oneDate){
+            var thisWeeksShowDo = oneDate;
+            console.log('Mach todays date! ', thisWeeksShowDo);
+
+            //EVENTS TO DISPLAY:
+            var thisWeeksEvents = dates.fields.link;
+
+            //console.log('liiiiink', thisWeeksEvents);
+        }/*else if(todayFormatted != oneDate){
+            console.log('No mach');
+        }*/
+    }
+    /*-------------- END GET DATES --------------*/
+
+
+
+
+    /*-------------- GET EVENTS IN ONE DATE --------------*/
     //if event exists in date
-    var eventsInDate = entries.items[0].fields.link; //events
-    if(eventsInDate != null || eventsInDate == true){
-        console.log('All events in this date', eventsInDate);//[0]);
+    //var firstDate = allDates[1];
+    //console.log('The first dateeeeee!! ', firstDate.fields.date);
+
+    //var eventsInDate = firstDate.fields.link; //events i one date
+    //if(eventsInDate != null || eventsInDate == true){
+
+    if(thisWeeksEvents != null || thisWeeksEvents == true){
+        console.log('All events in this date', thisWeeksEvents);//[0]);
 
         //loop through events in one date
-        for(var i = 0; i < eventsInDate.length; i++){
-            var oneEvent = eventsInDate[i];
+        for(var i = 0; i < thisWeeksEvents.length; i++){
+            var oneEvent = thisWeeksEvents[i];
         }
     }
-    /*-------------- END GET ONE DATE --------------*/
+    /*-------------- END EVENTS IN ONE DATE --------------*/
 
-    /*-------------- SORTING JSON BY SIZE --------------*/
+    /*-------------- SORTING EVENTS BY SIZE --------------*/
     //if event exists in date
-    if(oneEvent != null || oneEvent == true){
+    if(thisWeeksEvents != null || thisWeeksEvents == true){
         var eventArray = [];
-        for(var i = 0; i < eventsInDate.length; i++){
-            var oneEvent = eventsInDate[i].fields;
+        for(var i = 0; i < thisWeeksEvents.length; i++){
+            var oneEvent = thisWeeksEvents[i].fields;
             eventArray.push(oneEvent);
         }
 
@@ -56,16 +95,13 @@ client.getEntries({
             }
             return 0;
         });
-
         console.log('Sortert LARGE -> SMALL ', eventArray);
     }
-    /*-------------- END SORTING JSON BY SIZE --------------*/
+    /*-------------- END SORTING EVENTS BY SIZE --------------*/
 
     row1.innerHTML = renderEvents(eventArray);
-    //row1.innerHTML = renderEvents(dateArray);
 })
 /*-------------- END GET ENTRIES --------------*/
-
 
 /*-------------- GET ALL EVENTS --------------*/
 function renderEvents(events){
@@ -78,14 +114,15 @@ function renderEvents(events){
 function renderSingleEvent(event){
     //if event exists in date
     if(event != null || event == true){
-        console.log(':::::::::', event); //one date
+        //console.log(':::::::::', event); //one date
 
         //if time exists in time
         if(event.time != null || event.time == true){
             var time = event.time;
             var startTime = time.substring(time.length - 5);
 
-            console.log('StartTime:', startTime);
+            //console.log('StartTime:', startTime);
+            //console.log(event.time);
         }
     }
 
