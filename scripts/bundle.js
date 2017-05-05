@@ -12638,7 +12638,8 @@ function editTrack (){
     console.log("hej")
     // getting a specific Post
     client.getSpace('59mi8sr8zemv')
-        .then((space) => space.getEntries({include: 2,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
+        .then((space) => space.getEntries({include: 2,'sys.id': '4MT7iMgIcwOEI2gcsyWmcE'})).then((entries) => {
+        // datesSD contenttyp.then((space) => space.getEntries({include: 2,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
         // output the author name
         //  for (var i = 0; i < entries.items.length; i++){
         //    console.log(entries.items[i].fields.title)
