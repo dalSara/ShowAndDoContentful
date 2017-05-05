@@ -4,7 +4,7 @@ function editTrack (){
     const contentful = require('contentful-management')
 
     const client = contentful.createClient({
-        accessToken: '',
+        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b',
         //  Space: '59mi8sr8zemv',
         resolveLinks: true
     })
@@ -15,8 +15,8 @@ function editTrack (){
     console.log("hej")
     // getting a specific Post
     client.getSpace('59mi8sr8zemv')
-        .then((space) => space.getEntries({include: 2,'sys.id': '4MT7iMgIcwOEI2gcsyWmcE'})).then((entries) => {
-        // datesSD contenttyp.then((space) => space.getEntries({include: 2,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
+       // .then((space) => space.getEntries({include: 2,'sys.id': '4MT7iMgIcwOEI2gcsyWmcE'})).then((entries) => { //5mai
+        .then((space) => space.getEntries({include: 2,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
         // output the author name
         //  for (var i = 0; i < entries.items.length; i++){
         //    console.log(entries.items[i].fields.title)
@@ -24,7 +24,7 @@ function editTrack (){
         //
 
         //finner ett datum
-        var eventsInDate = entries.items[0].fields.date; //events
+        var eventsInDate = entries.items[0].fields.; //events
         if(eventsInDate != null || eventsInDate == true){
             console.log('All events in this date', eventsInDate);//[0]);
 
@@ -32,9 +32,9 @@ function editTrack (){
             for(var i = 0; i < eventsInDate.length; i++){
                 var oneEvent = eventsInDate[i];
                 console.log(oneEvent)
-            }
-        }
-    })
+            }//end for
+        }//end if
+    })//end get entries
 
     //response.items[0].fields.author.fields.name
     //};
@@ -71,6 +71,34 @@ client.getSpace('<space_id>')
     });
 
 
+    //Html-objekter (riktiga)
+    /*
+    var JSeditPrevDateOne;
+    var JSeditPrevDateTwo;
+    var JSeditThisDate;
+    var JSeditNextDateOne;
+    var JSeditNextDateTwo;
+
+    var JSeditTitle;
+    var JSeditPrereq;
+    var JSeditStartOne;
+    var JSeditStartTwo;
+    var JSeditStartthree;
+    var JSeditHourOne;
+    var JSeditHourTwo:
+    var JSeditHourthree;
+    var JSeditNrOfPart;
+    var JSeditExpect;
+    var JSeditJoin;
+    var JSeditImage;
+    var JSeditStockOne;
+    var JSeditStockTwo;
+    var JSeditStockThree;
+    var JSeditElse;
+    var JSeditStatus;
+
+    */
+
     //HTML-objeckter
 
     var testTestEdit;
@@ -84,30 +112,30 @@ client.getSpace('<space_id>')
         pandaEdit = document.getElementById("pandaEdit");
         editTrackBtn = document.getElementById("editTrackBtn");
 
-        editEvent();
+     //   editEvent();
 
 
     }(); /*--end init--*/
 
-    /*
+
     //the function that creates a new event, and post it to contentful
-    function editEvent (){
+ //   function editEvent (){
 
         // This API call will request a space with the specified ID
-        client.getSpace('59mi8sr8zemv')
-            .then((space) => {
+     //  client.getSpace('59mi8sr8zemv')
+       //     .then((space) => {
             // Now that we have a space, we can get entries from that space
             //space.getEntry('1A8p6eaZhmOAoM6W4oGcaW')
-            space.getEntries('datesForShowDo')
-                .then((entries) => {
-                console.log(entries.items[4])
-            })
+         //   space.getEntries('datesForShowDo')
+           //     .then((entries) => {
+             //   console.log(entries.items[4])
+        //    })//end get entries
 
 
-            /*
+
 
             //This function is finding the correct contenttype in contentful and add new data to that space
-
+/*
                 .then((entry) => {
 
                 console.log(entry.fields.title)
@@ -115,16 +143,16 @@ client.getSpace('<space_id>')
 
                 document.getElementById('pandaEdit').setAttribute('value', JSON.stringify(entry.fields.title));
 
-            })*/
-
-    /*
-
-
-        })//end getSpace
-
-    }//end EditEvent
-
+            })//end entry
 */
+
+
+
+    //    })//end getSpace
+
+//    }//end EditEvent
+
+
     //getLink();
 }//end EditTrack
 

@@ -837,6 +837,16 @@ button {
     padding: .5rem;
     width: 32%;
 }
+.selectDate {
+    display: inline-block;
+    border: 3px solid #CCCCCC;
+    font-family: Volte-Regular;
+    font-size: .8rem;
+    text-align: center;
+    color: #3D3D3D;
+    padding: .5rem;
+    width: 7%;
+}
 
 .selectedTime {
     border: 5px solid #0066FF;

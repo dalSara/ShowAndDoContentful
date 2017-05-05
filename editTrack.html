@@ -45,15 +45,20 @@ panda: <input id="pandaEdit" type="text" value=""><br><br>
         <main>
             <div class="wrapper basic">
 
-                <h2>Add track</h2>
+                <h2>Edit track</h2>
 
                 Pick the date for your track
                 <!-------------- NAVIGATION -------------->
                 <div id="navigation">
                     <div id="navWeek">
                         <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
-                        <div><a id="thisWeekBtn">This week</a></div>
+                        <div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateOne">05.05.17</div>
+                        <div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateTwo">15.00.17</div>
+                        <div tabindex="0" role="button"  class="selectDate selectedTime"  id="JSeditThisDate">05.05.17</div>
+                        <div tabindex="0" role="button" class="selectDate" id="JSeditNextDateOne">05.05.17</div>
+                        <div tabindex="0" role="button" class="selectDate" id="JSeditNextDateTwo">15.00.17</div>
                         <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+
                     </div>
                 </div>
                 <!-------------- END NAVIGATION -------------->
