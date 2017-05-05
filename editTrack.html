@@ -1,29 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-<title>Edit</title>
+        <link rel="stylesheet" type="text/css" href="css/fonts.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
-</head>
-<body>
+        <title>Edit Track</title>
 
-<div>
-<h3>Panda Test</h3>
+    </head>
+    <body>
+
+        <!--        <div>
+<h3>Edit Track</h3>
 
 
 testTest: <input id="testTestEdit" type="text" value=""><br><br>
 panda: <input id="pandaEdit" type="text" value=""><br><br>
-    <p id="editTrackBtn"> click me </p>
+<p id="editTrackBtn"> click me </p>
 
 </div>
+--->
 
-    <script src="scripts/bundle.js"></script>
+        <!--------------------------------HEADER-------------------------------->
+        <header class="pageHeader">
+            <div class="wrapper basic">
+                <a class="logo" href="index.html">
+                    <img src="../assets/images/logo-sd.svg" alt="Making Waves Logo">
+                </a>
+                <!--<button>Menu</button>-->
+                <nav class="mainMenu">
+                    <ul>
+                        <li><a href="addTrack.html">Add track</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!--------------------------------end HEADER-------------------------------->
+
+        <main>
+            <div class="wrapper basic">
+
+                <h2>Add track</h2>
+
+                Pick the date for your track
+                <!-------------- NAVIGATION -------------->
+                <div id="navigation">
+                    <div id="navWeek">
+                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
+                        <div><a id="thisWeekBtn">This week</a></div>
+                        <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                    </div>
+                </div>
+                <!-------------- END NAVIGATION -------------->
+                Title <br>
+                <input id="JSeditTitle" type="text" value=""><br><br> Host(s) (who’s going to hold the track? Fill in your name and co-hosts names)<br>
+                <input id="JSeditHosts" type="text" value=""><br><br> Prerequisites (is there anything the attendees need to know beforehand?)<br>
+                <input id="JSeditPrereq" type="text" value=""><br><br> Preferred starttime (click to select)
+                <br>
+                <div class="selectTime selectedTime" id="JSeditStartOne">13.00</div>
+                <div class="selectTime" id="JSeditStartTwo">14.00</div>
+                <div class="selectTime" id="JSeditStartThree">15.00</div>
+                <br><br> How long will your track be? (click to select)
+                <br>
+                <div class="selectTime" id="JSeditHourOne">1 hour</div>
+                <div class="selectTime" id="JSeditHourTwo">2 hours</div>
+                <div class="selectTime" id="JSeditHourThree">3 hours</div><br><br>
+                How many of your co-workers may join your track?
+                <input id="JSeditNrOfPart" type="text" value=""><br><br>
+                Location<br>
+                <input type="text" value="A room will be assigned to you by the organizer." disabled><br><br>
+                What to expect (The agenda, what will you teach to other etc)<br>
+                <input id="JSeditExpect" type="text" value=""><br><br> Who should join? (Who is this track best suited for?)<br>
+                <input id="JSeditJoin" type="text" value=""><br><br> Do you have an image to add attention to your track? (you can edit this later)<br>
+                <input id="JSeditImage" type="text" value=""><br><br> or you can choose a stock photo (click to select)
+                <div id="JSeditStockOne"></div>
+                <div id="JSeditStockTwo"></div>
+                <div id="JSeditStockThree"></div>
+
+                Anything else to add? (links, videos for preparation, other tracks, co-host, equipment etc)<br>
+                <input id="JSeditElse" type="text" value="">
+                <div class="buttonseditTrack">
+                    <div tabindex="0" role="button" id="previewTrackBtn" type="submit" value="Add track">Preview</div>
+                    <div tabindex="0" role="button" id="editTrackBtn" type="submit" value="Add track">Submit</div>
+                </div>
+            </div>
+
+        </main>
 
 
-</body>
+        <script src="scripts/bundle.js"></script>
+
+    </body>
 </html>
