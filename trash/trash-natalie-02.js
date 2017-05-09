@@ -1,3 +1,5 @@
+//var moment = require('moment'); treng ikkje??
+
 //Eksempel fra: https://jsfiddle.net/contentful/kefaj4s8/
 //NB: Klasser er foreløpig ikke i bruk!
 //js-className
@@ -25,13 +27,19 @@ client.getEntries({
     var allDates = entries.items;
     console.log('Entry Client: All dates (sorted):', allDates); //all dates
 
-
     /*-------------- TODAYS DATE --------------*/
     var today = new Date();
     //ISO8601 formatted YYYY-MM-DD (to match Contentful):
-    var todayFormatted = today.getFullYear() + '-' + ('0' + (today.getMonth() +1)).slice(-2) + '-' + ('0' + today.getDay()).slice(-2);
-    //console.log('TODAY:', todayFormatted);
+    var year = today.getFullYear();
+    var month = ('0' + (today.getMonth() +1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+    var todaysDate = year + '-' + month + '-' + day;
+    //console.log('TODAY:', todaysDate);
     /*-------------- END TODAYS DATE --------------*/
+
+    /*var momentToday = moment().max(allDates);
+    console.log('momentToday', momentToday);
+    console.log('today', today);*/
 
     /*-------------- GET DATES --------------*/
     //loop through dates in datesForShowDo
@@ -39,17 +47,27 @@ client.getEntries({
         var dates = allDates[i];
         var oneDate = dates.fields.date;
 
-        if(todayFormatted == oneDate){
-            var thisWeeksShowDo = oneDate;
-            console.log('Mach todays date! ', thisWeeksShowDo);
+        /*if(i >= 0 && i < allDates.length - 1){
+            var nextItem = allDates89[i + 1];
+        }
+        console.log(nextItem);*/
+        if(oneDate == "2017-05-05"){ //todaysDate
+            var todaysShowDo = oneDate;
+            console.log('Mach todaysDate', todaysShowDo);
 
             //EVENTS TO DISPLAY:
-            var thisWeeksEvents = dates.fields.link;
-
+            var thisWeeksEvents = dates.fields.link; //!!!! ENDRE var navn?
             //console.log('liiiiink', thisWeeksEvents);
-        }/*else if(todayFormatted != oneDate){
-            console.log('No mach');
-        }*/
+        //if date is smaller then today
+        }else if(oneDate != todaysDate  && oneDate < todaysDate){
+            var previousShowDo = oneDate;
+            console.log('Earlier than todaysDate', previousShowDo);
+        //if date is larger then today
+        }else if(oneDate != todaysDate  && oneDate > todaysDate){
+            var nextShowDo = oneDate;
+
+            console.log('Later than todaysDate', nextShowDo);
+        }
     }
     /*-------------- END GET DATES --------------*/
 
@@ -102,6 +120,10 @@ client.getEntries({
     row1.innerHTML = renderEvents(eventArray);
 })
 /*-------------- END GET ENTRIES --------------*/
+
+function getTodaysDate(){
+
+}
 
 /*-------------- GET ALL EVENTS --------------*/
 function renderEvents(events){
