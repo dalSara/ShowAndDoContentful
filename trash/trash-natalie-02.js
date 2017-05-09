@@ -16,6 +16,7 @@ var client = contentful.createClient({
 var EVENT_CONTENT_TYPE_ID = 'datesForShowDo';
 
 var row1 = document.getElementById('row1');
+var list = document.getElementById('list');
 
 /*-------------- GET ENTRIES --------------*/
 client.getEntries({
@@ -37,10 +38,6 @@ client.getEntries({
     //console.log('TODAY:', todaysDate);
     /*-------------- END TODAYS DATE --------------*/
 
-    /*var momentToday = moment().max(allDates);
-    console.log('momentToday', momentToday);
-    console.log('today', today);*/
-
     //console.log(allDates);
 
     /*-------------- GET NEXT DATE --------------*/
@@ -48,8 +45,6 @@ client.getEntries({
     for(var i = 0; i < allDates.length; i++){
         var dates = allDates[i];
         var oneDate = dates.fields.date;
-        //console.log('allDates[i]', dates);
-        //console.log('dates.fields.date', oneDate);
 
         if(oneDate >= todaysDate){
             var nextShowDo = oneDate;
@@ -83,9 +78,6 @@ client.getEntries({
     //if event exists in date
     //var firstDate = allDates[1];
     //console.log('The first dateeeeee!! ', firstDate.fields.date);
-
-    //var eventsInDate = firstDate.fields.link; //events i one date
-    //if(eventsInDate != null || eventsInDate == true){
 
     if(thisWeeksEvents != null || thisWeeksEvents == true){
         console.log('All events in this date', thisWeeksEvents);//[0]);
@@ -122,23 +114,22 @@ client.getEntries({
     }
     /*-------------- END SORTING EVENTS BY SIZE --------------*/
 
-    row1.innerHTML = renderEvents(eventArray);
+    row1.innerHTML = renderEventsCal(eventArray);
+    list.innerHTML = renderEventsList(eventArray);
 })
 /*-------------- END GET ENTRIES --------------*/
 
 function getTodaysDate(){
 
 }
-
-/*-------------- GET ALL EVENTS --------------*/
-function renderEvents(events){
-    return events.map(renderSingleEvent).join('\n');
+/*-------------- GET ALL EVENTS TO CALENDAR --------------*/
+function renderEventsCal(events){
+    return events.map(renderSingleEventCal).join('\n');
 }
-/*-------------- END GET ALL EVENTS --------------*/
+/*-------------- END GET ALL EVENTS CALENDAR --------------*/
 
-
-/*-------------- PUT ELEMENTS TOGETHER --------------*/
-function renderSingleEvent(event){
+/*-------------- PUT ELEMENTS TOGETHER: CALENDAR --------------*/
+function renderSingleEventCal(event){
     //if event exists in date
     if(event != null || event == true){
         //console.log(':::::::::', event); //one date
@@ -147,73 +138,200 @@ function renderSingleEvent(event){
         if(event.time != null || event.time == true){
             var time = event.time;
             var startTime = time.substring(time.length - 5);
-
-            //console.log('StartTime:', startTime);
-            //console.log(event.time);
         }
     }
 
     if(startTime == "13:00" && event.size == "Large"){
-        return '<div class="cal largeTrack" style="grid-row: 1/4;">' +
+        return '<div class="cal largeTrackCal">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Medium"){
-        return '<div class="cal mediumTrack" style="grid-row: 1/3;">' +
+        return '<div class="cal mediumTrackCal-13">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Small"){
-        return '<div class="cal smallTrack" style="grid-row: 1/2;">' +
+        return '<div class="cal smallTrackCal-13">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Medium"){
-        return '<div class="cal mediumTrack" style="grid-row: 2/4;">' +
+        return '<div class="cal mediumTrackCal-14">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Small"){
-        return '<div class="cal smallTrack" style="grid-row: 2/3;">' +
+        return '<div class="cal smallTrackCal-14">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "15:00" && event.size == "Small"){
-        return '<div class="cal smallTrack" style="grid-row: 3/4;">' +
+        return '<div class="cal smallTrackCal-15">' +
 
-            '<div class="eventInfo">' +
-            renderEventInfo(event) +
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }
 }
-/*-------------- END PUT ELEMENTS TOGETHER --------------*/
+/*-------------- END PUT ELEMENTS TOGETHER: CALENDAR --------------*/
 
-/*-------------- GET DATA FROM ONE EVENT --------------*/
-function renderEventInfo(event){
+/*-------------- GET DATA FROM ONE EVENT: CALENDAR --------------*/
+function renderEventInfoCal(event){
     var date = event.time;
     var startTime = date.substring(date.length - 5);
 
     if(event.location == null){
-        return  '<h4>' + event.title + '</h4>' +
-            '<p>' + startTime + '</p>' +
-            '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
-            '<p id="location">TBA</p></div>';
+        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
+            '<p class="startTimeCal">' + startTime + '</p>' +
+            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
+            '<p class="locationCal">TBA</p></div>';
     }else{
-        return  '<h4>' + event.title + '</h4>' +
-            '<p>' + startTime + '</p>' +
-            '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
-            '<p id="location">' + event.location + '</p></div>';
+        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
+            '<p class="startTimeCal">' + startTime + '</p>' +
+            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
+            '<p class="locationCal">' + event.location + '</p></div>';
     }
 }
-/*-------------- END GET DATA FROM ONE EVENT --------------*/
+/*-------------- END GET DATA FROM ONE EVENT: CALENDAR --------------*/
+
+/*-------------- GET ALL EVENTS TO LIST --------------*/
+function renderEventsList(events){
+    return events.map(renderSingleEventList).join('\n');
+}
+/*-------------- END GET ALL EVENTS LIST --------------*/
+
+/*-------------- PUT ELEMENTS TOGETHER: LIST --------------*/
+function renderSingleEventList(event){
+    //if event exists in date
+    if(event != null || event == true){
+        //console.log(':::::::::', event); //one date
+
+        //if time exists in time
+        if(event.time != null || event.time == true){
+            var time = event.time;
+            var startTime = time.substring(time.length - 5);
+        }
+    }
+
+    //if(startTime == "13:00" && event.size == "Large"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfoList">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    /*}else if(startTime == "13:00" && event.size == "Medium"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "13:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Medium"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "15:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }*/
+}
+/*-------------- END PUT ELEMENTS TOGETHER: LIST --------------*/
+
+/*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
+function renderEventInfoList(event){
+    var date = event.time;
+    var startTime = date.substring(date.length - 5);
+
+    return  '<div class="leftListInfo">' +
+        '<h3 class="eventTitleList">' + event.title + '</h3>' +
+        '<h4>HOST</h4><p>' + event.host + '</p>' +
+        '<h4>WHAT TO EXPECT</h4><p>' + event.whatToExpect + '</p>' +
+        '<h4>PREREQUISITES</h4><p>' + event.prerequisites + '</p>' +
+        '<h4>BEST SUITED FOR</h4><p>' + event.whoShouldJoin + '</p>' +
+        '</div>' +
+
+        '<div class="rightListInfo">' +
+        '<div class="timeWrapperList">' +
+            '<i class="icon-clock"></i><p class="startTimeList">' + startTime + '</p>' +
+        '</div>' +
+        '<div class="locationWrapperList">' +
+            '<i class="icon-room"></i><p class="locationList">' + event.location + '</p>' +
+        '</div>' +
+        '<div  class="goingBtnWrapper">' +
+        '<button type="button" class="goingBtn" id="going"></button>' +
+            '<div class="goingInput hidden" id="goingInput">' +
+                '<div class="inputName">' +
+                    'Name: <input type="text" value="" id="name" name="name">' +
+                    '<div tabindex="0" role="button" id="registerBtn" type="submit">Register</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+        '<div class="goingWrapperList">' +
+            '<h4>PEOPLE GOING</h4><p>  ...list of people...    </p>' +
+        '</div>' +
+        '</div>';
+
+}
+/*-------------- END GET DATA FROM ONE EVENT: LIST --------------*/
+
+/*-------------- GET IMAGE --------------*/
+function renderImage(image){
+    if(image && image.fields.file){
+        return '<img src="' + image.fields.file.url + '"/>';
+    } else {
+        return '';
+    }
+}
+/*-------------- END GET IMAGE --------------*/
