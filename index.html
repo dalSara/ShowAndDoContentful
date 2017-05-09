@@ -1,144 +1,157 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/fonts.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <title>Show & Do</title>
+        <title>Show & Do</title>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <!--------------------------------HEADER-------------------------------->
-    <header class="pageHeader">
-        <div class="wrapper basic">
-            <a class="logo" href="index.html">
-                <img src="../assets/images/logo-sd.svg" alt="Making Waves Logo">
-            </a>
-            <!--<button>Menu</button>-->
-            <nav class="mainMenu">
-                <ul>
-                    <li><a href="addTrack.html" id="addTrackBtn">Add track</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!--------------------------------end HEADER-------------------------------->
-
-    <main>
-        <div class="wrapper basic">
-
-            <!-------------- NAVIGATION -------------->
-            <div id="navigation">
-                <div id="navWeek">
-                    <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
-                    <div><a id="thisWeekBtn">This week</a></div>
-                    <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
-                </div>
+        <!--------------------------------HEADER-------------------------------->
+        <header class="pageHeader">
+            <div class="wrapper basic">
+                <a class="logo" href="index.html">
+                    <img src="../assets/images/logo-sd.svg" alt="Making Waves Logo">
+                </a>
+                <!--<button>Menu</button>-->
+                <nav class="mainMenu">
+                    <ul>
+                        <li><a href="addTrack.html" id="addTrackBtn">Add track</a></li>
+                    </ul>
+                </nav>
             </div>
-            <!-------------- END NAVIGATION -------------->
+        </header>
+        <!--------------------------------end HEADER-------------------------------->
 
-            <!-------------- CALENDER -------------->
-            <div id="calender">
-                <!-- TABLE VISIBLE ONLY ON LARGE SCREENS -->
-                <div id="cal-desktop">
-                    <table class="table-cal">
-                        <tbody>
-                            <tr>
-                                <th scope="row">1300-
-                                    <br>1345
-                                </th>
-                                <td class="cal JStrack1" rowspan="3"></td>
-                                <td class="cal JStrack2" rowspan="3"></td>
-                                <td class="cal JStrack4" rowspan="2"></td>
-                                <td class="cal JStrack3" rowspan="2"></td>
-                                <td class="cal JStrack6" rowspan="1"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1400-
-                                    <br>1445
-                                </th>
-                                <td class="cal JStrack7"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1500-
-                                    <br>1545
-                                </th>
-                                <td class="cal JStrack5"></td>
-                                <td style="background: white"></td>
-                                <td class="cal JStrack8"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- end TABLE VISIBLE ONLY ON LARGE SCREENS -->
+        <main>
+            <div class="wrapper basic">
 
-                <!-- DIV VISIBLE ONLY ON SMALL SCREENS -->
-                <div id="cal-mobile">
-                    <div id="main">
-                        <div>
-                            <div class="track-time-mob">1300-<br>1345</div>
+                <!-------------- NAVIGATION -------------->
+                <div id="navigation">
+                    <div id="navWeek">
+                        <div><p id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous<br>
+                            <strong id="prevDate"></strong>
+                            </p>
                         </div>
-                        <div>
-                            <div class="track-mob JStrack1"></div>
-                            <div class="track-mob JStrack2"></div>
-                            <div class="track-mob JStrack3"></div>
-                            <div class="track-mob JStrack4"></div>
-                            <div class="track-mob JStrack6"></div>
+                        <div style="text-align: center"><a id="thisWeekBtn"><br>
+                            <h2 id="thisDate"></h2><br>
+                            </a>
                         </div>
-                    </div>
-
-                    <div id="main">
-                        <div>
-                            <div class="track-time-mob">1400-<br>1445</div>
-                        </div>
-                        <div>
-                            <div class="track-mob JStrack7"></div>
-                        </div>
-                    </div>
-
-                    <div id="main">
-                        <div>
-                            <div class="track-time-mob">1500-<br>1545</div>
-                        </div>
-                        <div>
-                            <div class="track-mob JStrack5"></div>
-                            <div class="track-mob JStrack8"></div>
+                        <div><p id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i><br>
+                            <strong id="nextDate"></strong>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <!-- END DIV VISIBLE ONLY ON SMALL SCREENS -->
+                <!-------------- END NAVIGATION -------------->
+
+                <!-------------- CALENDER -------------->
+                <div id="calender">
+                    <!-- TABLE VISIBLE ONLY ON LARGE SCREENS -->
+                    <div id="cal-desktop">
+                        <table class="table-cal">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1300-
+                                        <br>1345
+                                    </th>
+                                    <td class="cal JStrack1" rowspan="3"></td>
+                                    <td class="cal JStrack2" rowspan="3"></td>
+                                    <td class="cal JStrack4" rowspan="2"></td>
+                                    <td class="cal JStrack3" rowspan="2"></td>
+                                    <td class="cal JStrack6" rowspan="1"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1400-
+                                        <br>1445
+                                    </th>
+                                    <td class="cal JStrack7"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1500-
+                                        <br>1545
+                                    </th>
+                                    <td class="cal JStrack5"></td>
+                                    <td style="background: white"></td>
+                                    <td class="cal JStrack8"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end TABLE VISIBLE ONLY ON LARGE SCREENS -->
+
+                    <!-- DIV VISIBLE ONLY ON SMALL SCREENS -->
+                    <div id="cal-mobile">
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1300-<br>1345</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack1"></div>
+                                <div class="track-mob JStrack2"></div>
+                                <div class="track-mob JStrack3"></div>
+                                <div class="track-mob JStrack4"></div>
+                                <div class="track-mob JStrack6"></div>
+                            </div>
+                        </div>
+
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1400-<br>1445</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack7"></div>
+                            </div>
+                        </div>
+
+                        <div id="main">
+                            <div>
+                                <div class="track-time-mob">1500-<br>1545</div>
+                            </div>
+                            <div>
+                                <div class="track-mob JStrack5"></div>
+                                <div class="track-mob JStrack8"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END DIV VISIBLE ONLY ON SMALL SCREENS -->
+                </div>
+                <!-------------- END CALENDER -------------->
+
             </div>
-            <!-------------- END CALENDER -------------->
+            <!-- END WRAPPER BASIC -->
+        </main>
+        <!-- END MAIN -->
 
-        </div>
-        <!-- END WRAPPER BASIC -->
-    </main>
-    <!-- END MAIN -->
+        <div id="content" class="contentContainer"></div>
+        <!-------------- CONTENTFUL -------------->
 
-    <div id="content" class="contentContainer"></div>
-    <!-------------- CONTENTFUL -------------->
+        <div id="changecontent" class="changecontentContainer"></div>
 
-    <div id="changecontent" class="changecontentContainer"></div>
-
-    <!-------------- SCRIPTS -------------->
-    <script src="scripts/bundle.js"></script>
-    <!--
+        <!-------------- SCRIPTS -------------->
         <script src="node_modules/contentful/browser-dist/contentful.min.js"></script>
-        <script src="node_modules/contentful-management/dist/contentful-management.js"></script>
-        <script src="scripts/dataDelivery.js"></script>
-        <script src="scripts/calender.js"></script>
+        <script src="scripts/date.js"></script>
+        <script>
+            initDates(function(){})
+        </script>
+
+
+        <!--   <script src="node_modules/contentful-management/dist/contentful-management.js"></script>
+<script src="scripts/dataDelivery.js"></script>
+<script src="scripts/calender.js"></script>
 -->
-    <!-------------- END SCRIPTS -------------->
-</body>
+        <!-------------- END SCRIPTS -------------->
+    </body>
 
 </html>

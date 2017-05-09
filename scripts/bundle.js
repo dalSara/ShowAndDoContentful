@@ -129,14 +129,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * @typedef {ContentfulManagement} ContentfulManagement
  * @property {function(params: {accessToken: string, insecure?: boolean, host?: string, agent?: Object, headers?: Object, concurrency?: number, delay?: number, maxRetries?: number, retryOnTooManyRequests?: boolean}): ClientAPI} createClient - Create a client instance, this is the entry point to the library
- *
+ * 
  * @example
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
+ * }) 
 */
 function createClient(axios, params) {
   params = (0, _defaults2.default)((0, _cloneDeep2.default)(params), {
@@ -299,7 +299,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {string} sys.id - Space id
  * @property {string} sys.type - Entity type
  * @property {string} name - Space name
- * @property {function(): Promise} delete - Deletes the space
+ * @property {function(): Promise} delete - Deletes the space 
  * @property {function(): Promise<Space>} update - Updates the space
  * @property {function(id: string): Promise<ContentType>} getContentType - Get a contentType by id
  * @property {function(): Promise<ContentTypeCollection>} getContentTypes - Gets a collection of contentTypes
@@ -339,12 +339,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * //================================================================================================
- * // To get a space object you have two options:
+ * // To get a space object you have two options: 
  * //
- * // 1. by creating a new space
+ * // 1. by creating a new space 
  * //
  * // var space = await client.createSpace({name: "My new space"})
  * //
@@ -354,10 +354,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //
  * // var space = await client.getSpace('SPACE_ID')
  * //================================================================================================
- *
+ * 
  * // We'll pick option 2.
  * //
- * // A space object will be like so
+ * // A space object will be like so 
  * // {
  * //   "sys": {
  * //     "type": "Space",
@@ -383,43 +383,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //   "name": "Contentful Example API"
  * // }
  * var space = await client.getSpace('cfexampleapi')
- *
- * // Example Deleting a space
+ * 
+ * // Example Deleting a space 
  * space.delete()
  * .catch(err => console.log(err))
- *
+ * 
  * // Example updating a space
  * space.name = 'Updated Space Name'
  * space.update()
  * .then(space => console.log(space.name) // `Updated Space Name`)
- *
+ * 
  * // Example getting a contentType
  * space.getContentType('contentTypeId')
  * .then(contentType => console.log(contentType)) // @see {ContentType}
- *
+ * 
  * // Example getting an editorInterface for a contentType
  * // an editorInterface is a set of configuration that defines how a field look like
  * // example singleLine, etc...
  * space.getEditorInterfaceForContentType('contentTypeId')
  * .then(editorInterface => console.log(editorInterface))
- *
+ * 
  * // Example creating a contentType
  * space.createContentType({name: 'Post', fields: []})
  * .then(ct => console.log(ct))
- *
- * // Example Creating a contentType with a custom id
+ * 
+ * // Example Creating a contentType with a custom id 
  * space.createContentTypeWithId('post', {name: 'Post', fields: []})
  * .then(ct => console.log(ct))
- *
+ * 
  * // Example getting all entries form a space where contentType is `contentTypeId`
  * // you can add more query params along with the content_type key, like 'limit':'1000', 'order':'sys.createdAt' and more
  * // for more infos about the query check https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters
  * space.getEntries({content_type: 'contentTypeId'})
  * .then(entries => console.log(entries.items))
- *
+ * 
  * // Example Creating an entry with a localized title field
- * // you can fill in all the fields defined in the contentType with the id 'contentTypeId'
- * // so if you have another field of type text for example called description, you can add 'description' in the fields object
+ * // you can fill in all the fields defined in the contentType with the id 'contentTypeId' 
+ * // so if you have another field of type text for example called description, you can add 'description' in the fields object 
  * // that will be sent to the server
  * space.createEntry('contentTypeId', {
  *   fields: {
@@ -430,19 +430,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *   }
  * })
  * .then(e => console.log(e))
- *
- * // Example getting an entry by id
+ * 
+ * // Example getting an entry by id 
  * space.getEntry('entryId')
  *  .then(entity => console.log(entry))
- *
- * // Example getting assets
+ * 
+ * // Example getting assets 
  * space.getAssets()
  *  .then(response => console.log(response.items))
- *
+ * 
  * // Example getting an asset
  * space.getAsset('assetId')
  * .then(asset => console.log(asset)) // @see {Asset}
- *
+ * 
  * // Example creating an asset
  * // After creation, call asset.processForLocale or asset.processForAllLocales to start asset processing.
  * // After processing the upload property name will be replace by 'url'
@@ -479,8 +479,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * client.getSpaces()
  *   .then((spaceCollection) => {
  *     console.log(spaceCollection.items) // list of spaces @see {Space}
@@ -1257,19 +1257,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {string} name
  * @property {string} description
  * @property {function(): Promise<ApiKey>} update() - Sends an update to the server with any changes made to the object's properties
- * @property {function(): Promise} delete() - Deletes this object on the server
+ * @property {function(): Promise} delete() - Deletes this object on the server 
  * @property {function(): Object} toPlainObject - Returns this Api Key as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * var space = await client.getSpace('SPACE_ID')
- *
+ * 
  * //=======================================================================================================
  * // You can get an ApiKey object by
  * //
@@ -1283,19 +1283,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //
  * // var apiKey = await space.getApiKey('API_KEY_ID')
  * //=======================================================================================================
- *
+ * 
  * // we'll use option 2
  * var apiKey = await space.getApiKey('API_KEY_ID')
- *
+ * 
  * // Example updating an APIKey
  * apiKey.name = 'New name'
  * apiKey.update()
  * .then(apiKey => console.log(apiKey.name))
- *
+ * 
  * // Example deleting an ApiKey
  * apiKey.delete()
  * .catch(err => console.log(err))
- *
+ *  
  */
 
 /**
@@ -1306,16 +1306,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {ApiKey[]} items - Array of ApiKey
  * @property {function(): Object} toPlainObject - Returns this Api Key collection as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * var space = await client.getSpace('SPACE_ID')
- *
+ * 
  * //get all the api keys
  * space.getApiKeys()
  * .then(apiKeys => console.log(apiKeys.items))
@@ -1432,17 +1432,17 @@ var ASSET_PROCESSING_CHECK_RETRIES = 5;
  * @property {function(options: {processingCheckWait: number, processingCheckRetries: number}): Promise<Asset>} processForAllLocales - Triggers asset processing after an upload, for the files uploaded to all locales of an asset.
  * @property {function(): Object} toPlainObject - Returns this Asset as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * var space = await client.getSpace('SPACE_ID')
- * var asset = await space.getAsset('ASSET_ID')
- *
+ * var asset = await space.getAsset('ASSET_ID') 
+ * 
  * // Example Creating an asset
  * var createdAsset = await space.createAsset(
  *   fields: {
@@ -1460,36 +1460,36 @@ var ASSET_PROCESSING_CHECK_RETRIES = 5;
  *     }
  *   }
  * )
- *
+ * 
  * // Example Updating an asset
  * asset.fields.title = 'My new Title'
  * asset.update()
  * .then(asset => console.log(asset.fields.name['en-US']))
- *
+ * 
  * // Process an asset for a specific locale
  * asset.processForLocale('en-US')
  * .then(asset => console.log(asset.fields.file['en-US'].url))
- *
+ * 
  * // Process Asset for all locales
  * asset.processForAllLocales()
  * .then(asset => console.log(asset.fields.file['en-US'].url, asset.fields.file['de-DE'].url))
- *
+ * 
  * // Publish an asset
  * asset.publish()
  * .then(asset => console.log(asset.sys.publishedVersion))
- *
+ * 
  * // Delete an asset
  * asset.delete()
  * .catch(err => console.log(err))
- *
+ * 
  * // unPublish an asset
  * asset.unpublish()
  * .then(asset => console.log(asset.sys))
- *
+ * 
  * // archive an asset
  * asset.archive()
  * .then(asset => console.log(asset.sys.archivedVersion))
- *
+ * 
  * // unarchive an asset
  * asset.unarchive()
  * .then(asset => console.log(asset.sys))
@@ -1503,14 +1503,14 @@ var ASSET_PROCESSING_CHECK_RETRIES = 5;
  * @property {Asset[]} items - an array of assets
  * @property {function(): Object} toPlainObject - Returns this Asset collection as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * let space = await client.getSpace('SPACE_ID')
  * let assetCollection = await space.getAssets()
  * console.log("the space contains ", assetCollection.items.length, " assets")
@@ -1809,8 +1809,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * //=======================================================================================================
  * // You can get an Entry object by
  * //
@@ -1824,12 +1824,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //
  * // var contentType = await space.getContentType('contentTypeId')
  * //=======================================================================================================
- *
+ * 
  * // Example updating a ContentType
  * contentType.name = 'New name'
  * contentType.update()
  * .then(contentType => console.log(contentType.name))
- *
+ * 
  * //Example deleting a content type
  * contentType.delete()
  * .catch(err => console.log(err))
@@ -1843,14 +1843,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {ContentType[]} items - An array of contentTypes
  * @property {function(): Object} toPlainObject - Returns this Content Type collection as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * var space = await client.getSpace('SPACE_ID')
  * //Example getting contentTypes
  * space.getContentTypes()
@@ -2035,17 +2035,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {function(): Control} getControlForField - Gets a control for a specific field
  * @property {function(): Object} toPlainObject() - Returns this Content Type as a plain JS object
  * @example
- *
+ * 
  * // require contentful-management
  * var contentfulManagement = require('contentful-management')
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * // request our space from Contentful
  * var space = await client.getSpace('SPACE_ID')
- *
+ * 
  * //=======================================================================================================
  * // web can get an editor interface in two ways
  * // 1. request our ContentType from Contentful
@@ -2062,11 +2062,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //
  * // var editorInterface = await space.getEditorInterfaceForContentType('CONTENT_TYPE_ID')
  * //=======================================================================================================
- *
+ * 
  * // we'll use option 2
- *
+ * 
  * var editorInterface = await space.getEditorInterfaceForContentType('CONTENT_TYPE_ID')
- *
+ * 
  * // Example Updating  and editor interface
  * editorInterface.controls[0] = { "fieldId": "title", "widgetId": "singleLine"}
  * editorInterface.update()
@@ -2162,7 +2162,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @property {boolean} isUpdated - Checks if the entry is updated. This means the entry was previously published but has unpublished changes.
  * @property {boolean} isDraft -  Checks if the entry is in draft mode. This means it is not published.
  * @property {boolean} isArchived - Checks if entry is archived. This means it's not exposed to the Delivery/Preview APIs.
- * @property {function(): Promise<Entry>} update - Updates an entry in the server
+ * @property {function(): Promise<Entry>} update - Updates an entry in the server 
  * @property {function(): Promise<Entry>} delete - Deletes an entry on the server
  * @property {function(): Promise<Entry>} publish - Publishes an entry
  * @property {function(): Promise<Entry>} unPublish - Un-publishes an entry
@@ -2175,8 +2175,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * var client = contentfulManagement.createClient({
  * // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
  * accessToken: 'YOUR_ACCESS_TOKEN'
- * })
- *
+ * }) 
+ * 
  * //=======================================================================================================
  * // You can get an Entry object by
  * //
@@ -2190,28 +2190,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * //
  * // var entry = await space.getEntry('ENTRY_ID')
  * //=======================================================================================================
- *
+ * 
  * // Example updating an entry
  * entry.fields.name['en-US'] = 'Blog Post'
  * entry.update()
  * .then(entry => console.log(entry.fields.name['en-US']))
- *
+ * 
  * // Example deleting an entry
  * entry.delete()
  * .catch(err => console.log(err))
- *
+ * 
  * // Example publish an entry
  * entry.publish()
  * .then(entry => console.log(entry.sys.publishedVersion))
- *
+ * 
  * // Example unPublishing an entry
  * entry.unpublish()
  * .then(entry => console.log(entry.sys))
- *
+ * 
  * // Example archiving an entry
  * entry.archive()
  * .then(entry => console.log(entry.sys.archivedVersion))
- *
+ * 
  * // Example unarchiving an entry
  * entry.unarchive()
  * .then(entry => console.log(entry.sys))
@@ -3468,7 +3468,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library`
+$export.R = 128; // real proto method for `library` 
 module.exports = $export;
 },{"./_core":42,"./_ctx":43,"./_global":51,"./_hide":53}],49:[function(require,module,exports){
 module.exports = function(exec){
@@ -12621,69 +12621,7 @@ exports.isBuffer = function (obj) {
 };
 
 },{}],333:[function(require,module,exports){
-function editTrack (){
-
-    // contentful-management.js v3.x.x
-    const contentful = require('contentful-management')
-
-    const client = contentful.createClient({
-        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b',
-        //  Space: '59mi8sr8zemv',
-        resolveLinks: true
-    })
-
-
-
-    //  function getLink (client){
-    console.log("hej")
-    // getting a specific Post
-    client.getSpace('59mi8sr8zemv')
-       // .then((space) => space.getEntries({include: 2,'sys.id': '4MT7iMgIcwOEI2gcsyWmcE'})).then((entries) => { //5mai
-        .then((space) => space.getEntries({include: 2,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
-        // output the author name
-        //  for (var i = 0; i < entries.items.length; i++){
-        //    console.log(entries.items[i].fields.title)
-        //    }
-        //
-
-        //finner ett datum
-        var eventsInDate = entries.items[0]; //events
-        if(eventsInDate != null || eventsInDate == true){
-            console.log('All events in this date', eventsInDate);//[0]);
-
-            //loop through events in one date
-            for(var i = 0; i < eventsInDate.length; i++){
-                var oneEvent = eventsInDate[i];
-                console.log(oneEvent)
-            }//end for
-        }//end if
-    })//end get entries
-
-    //response.items[0].fields.author.fields.name
-    //};
-    /*
-    , include: '2'
-    client.getSpace('59mi8sr8zemv')
-        .then((space) => space.getEntries())
-        .then(function (entries) {
-        ((entries) => console.log(entries.items.title))
-       // console.log(entries.items.title);
-    })
-
-    //   var eventArray = [];
-    //    for(var i = 0; i < entries.items.length; i++){
-    //      var oneEvent = entries.items[i].fields;
-    //    eventArray.push(oneEvent);
-    //    }
-
-    /*
-client.getSpace('<space_id>')
-.then((space) => space.getContentType('<content_type_id>'))
-.then((contentType) => console.log(contentType))
-.catch(console.error)
-
-
-
+function addTrack (){
 
     //contentful management id the module that have contact with contentful.
     //this is the conection to the module
@@ -12694,101 +12632,228 @@ client.getSpace('<space_id>')
     });
 
 
-    //Html-objekter (riktiga)
+    //HTML-objeckter (test)
     /*
-    var JSeditPrevDateOne;
-    var JSeditPrevDateTwo;
-    var JSeditThisDate;
-    var JSeditNextDateOne;
-    var JSeditNextDateTwo;
+    var testTestText;
+    var pandaText;
+      */
 
-    var JSeditTitle;
-    var JSeditPrereq;
-    var JSeditStartOne;
-    var JSeditStartTwo;
-    var JSeditStartthree;
-    var JSeditHourOne;
-    var JSeditHourTwo:
-    var JSeditHourthree;
-    var JSeditNrOfPart;
-    var JSeditExpect;
-    var JSeditJoin;
-    var JSeditImage;
-    var JSeditStockOne;
-    var JSeditStockTwo;
-    var JSeditStockThree;
-    var JSeditElse;
-    var JSeditStatus;
+    //Html-objekter (riktiga)
 
-    */
+    var JSaddTitle;
+    var JSaddHosts;
+    var JSaddPrereq;
+    var JSaddStartOne; //tids formatet 2017-05-05T13:00
+    //var JSaddStartTwo;
+    //var JSaddStartthree;
+    var JSaddHourOne;
+    //var JSaddHourTwo:
+    //var JSaddHourthree;
+    var JSaddNrOfPart;
+    var JSaddExpect;
+    var JSaddJoin;
+    var JSaddImage;
+    //var JSaddStockOne;
+    //var JSaddStockTwo;
+    //var JSaddStockThree;
+    var JSaddElse;
+    // var JSaddStatus;
 
-    //HTML-objeckter
+    var addTrackBtn;
 
-    var testTestEdit;
-    var pandaEdit;
-    var editTrackBtn;
-    var pandaHej;
+
 
     var init = function (){
 
-        testTestEdit = document.getElementById('testTestEdit');
-        pandaEdit = document.getElementById("pandaEdit");
-        editTrackBtn = document.getElementById("editTrackBtn");
+        //testTestText = document.getElementById("testTestText");
+        //pandaText = document.getElementById("pandaText");
 
-     //   editEvent();
 
+        JSaddTitle = document.getElementById("JSaddTitle");
+        JSaddPrereq = document.getElementById ("JSaddPrereq");
+        JSaddStartOne = document.getElementById("JSaddStartOne");
+        // JSaddStartTwo = document.getElementById("JSaddStartTwo");
+        //JSaddStartthree = document.getElementById("JSaddStartthree");
+        JSaddHourOne = document.getElementById("JSaddHourOne");
+        //JSaddHourTwo= document.getElementById("JSaddHourTwo");
+        //JSaddHourthree = document.getElementById("JSaddHourthree");
+        JSaddNrOfPart = document.getElementById("JSaddNrOfPart");
+        JSaddExpect = document.getElementById("JSaddExpect");
+        JSaddJoin = document.getElementById("JSaddJoin");
+        JSaddImage = document.getElementById("JSaddImage");
+        //JSaddStockOne = document.getElementById("JSaddStockOne");
+        //JSaddStockTwo = document.getElementById("JSaddStockTwo");
+        //JSaddStockThree = document.getElementById("JSaddStockThree");
+        JSaddElse = document.getElementById("JSaddElse");
+        //JSaddStatus = document.getElementById("JSaddStatus");
+        addTrackBtn = document.getElementById("addTrackBtn");
+
+
+        addTrackBtn.onclick = createNewEvent;
+        renderImage();
 
     }(); /*--end init--*/
 
+    client.getSpace('59mi8sr8zemv')
+        .then((space) => space.getAsset('254oDdBfDs63PccEG5XRLU'))
+        .then((asset) => console.log(asset))
+        .catch(console.error)
+    
+    function renderImage(asset) {
+        if (stockPhotos && stockPhotos.fields.file.url) {
+            return 
+                '<div id="JSaddStockOne"><img src="' + stockPhotos.fields.file.url + '" width="150" height="150" /></div>'
+            console.log("if bilde")
+        } else {
+            
+            return console.log("bajs")
+        }
+    } 
+
 
     //the function that creates a new event, and post it to contentful
- //   function editEvent (){
+    function createNewEvent (){
+        /*
+        var pandaNewText = pandaText.value;
+        var testTestNewText = testTestText.value;
+            */
+
+
+        var JSaddNewTitle = JSaddTitle.value;
+        var JSaddNewHosts = JSaddHosts;
+        var JSaddNewPrereq = JSaddPrereq.value;
+        //use switcha
+        //var JSaddNewStartOne = JSaddStartOne.value;
+        //var JSaddNewStartTwo = JSaddStartTwo.value;
+        //var JSaddNewStartthree = JSaddStartthree.value;
+        //var JSaddNewHourOne = JSaddHourOne.value;
+        //var JSaddNewHourTwo = JSaddHourTwo.value;
+        //var JSaddNewHourthree = JSaddHourthree.value;
+        var JSaddNewNrOfPart = JSaddNrOfPart.value;
+        var JSaddNewExpect = JSaddExpect.value;
+        var JSaddNewJoin = JSaddJoin.value;
+        var JSaddNewImage = JSaddImage.value;
+        //  var JSaddNewStockOne = JSaddStockOne.value;
+        //var JSaddNewStockTwo = JSaddStockTwo.value;
+        //var JSaddNewStockThree = JSaddStockThree.value;
+        var JSaddNewElse = JSaddElse.value;
+        var JSaddStatus
+
 
         // This API call will request a space with the specified ID
-     //  client.getSpace('59mi8sr8zemv')
-       //     .then((space) => {
+        client.getSpace('59mi8sr8zemv')
+            .then((space) => {
             // Now that we have a space, we can get entries from that space
-            //space.getEntry('1A8p6eaZhmOAoM6W4oGcaW')
-         //   space.getEntries('datesForShowDo')
-           //     .then((entries) => {
-             //   console.log(entries.items[4])
-        //    })//end get entries
-
+            space.getEntries()
+                .then((entries) => {
+                console.log(entries.items)
+            })
 
 
 
             //This function is finding the correct contenttype in contentful and add new data to that space
-/*
-                .then((entry) => {
-
-                console.log(entry.fields.title)
 
 
-                document.getElementById('pandaEdit').setAttribute('value', JSON.stringify(entry.fields.title));
+            space.createEntry('events', {
+                fields: {
+                    title: {
+                        'en-US': JSaddNewTitle
+                    },
+                    host: {
+                        'en-US': JSaddNewHosts
+                    },
+                    prerequisites: {
+                        'en-US': JSaddNewPrereq
 
-            })//end entry
-*/
+                    },
+                    time: {
+                        'en-US': "2017-05-05T13:00"
+                    },
+                    /*  JSaddStartOne: {
+                        'en-US': JSaddNewStartOne
+
+                    },
+                    JSaddStartTwo: {
+                        'en-US': JSaddNewStartTwo
+
+                    },
+                    JSaddStartthree: {
+                        'en-US': JSaddNewStartthree
+
+                  }, */ 
+                    size: {
+                        'en-US': "small"
+                    },
+                    /*JSaddHourOne: {
+                        'en-US': JSaddNewHourOne
+
+                    },
+                    JSaddHourTwo: {
+                        'en-US': JSaddNewHourTwo
+
+                    },
+                    JSaddHourthree: {
+                        'en-US': JSaddNewHourthree
+
+                 }, */  
+                    numberOfParticipants: {
+                        'en-US': JSaddNewNrOfPart
+                    },
+                    whatToExpect: {
+                        'en-US': JSaddNewExpect
+
+                    },
+                    whoShouldJoin: {
+                        'en-US': JSaddNewJoin
+
+                    },
+                    image: {
+                        'en-US': JSaddNewJoin
+
+                    },/*
+                    JSaddStockOne: {
+                        'en-US': "5ro2kn2gMwQIu4csowSYKo"
+
+                    },
+                    JSaddStockTwo: {
+                        'en-US': JSaddNewStockTwo
+
+                    },
+                    JSaddStockThree: {
+                        'en-US': JSaddNewStockThree
+
+                    }, */
+                    anythingElse: {
+                        'en-US': JSaddNewElse
+
+                    }
+                    //   JSaddStatus: {
+                    //     'en-US': "true"
+
+                    //}
 
 
+                }//end input array
+            })//end create entry
+            //.then(e => console.log(e))
 
-    //    })//end getSpace
 
-//    }//end EditEvent
+        })//end getspace 
 
+    }
 
-    //getLink();
-}//end EditTrack
+}
 
-exports.editTrack = editTrack
+exports.addTrack = addTrack
 
 },{"contentful-management":9}],334:[function(require,module,exports){
 //var getContent = require('./contentful.js')
 //getContent.getContentful();
-var edit = require('./editTrack.js')
-edit.editTrack();
+//var edit = require('./editTrack.js')
+//edit.editTrack();
 
-//var add = require('./addTrack.js')
-//add.addTrack();
+var add = require('./addTrack.js')
+add.addTrack();
 
 
 //require('./dataManagement.js')
@@ -12799,4 +12864,4 @@ edit.editTrack();
 ///addTrackBtn.onclick(createNewEvent())
 //var createNewEvent = require('./dataManagement.js').createNewEvent();
 
-},{"./editTrack.js":333}]},{},[334]);
+},{"./addTrack.js":333}]},{},[334]);

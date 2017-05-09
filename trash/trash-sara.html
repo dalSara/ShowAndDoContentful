@@ -1,3 +1,15 @@
+// om link/ref i cont.  https://npm.taobao.org/package/contentful 
+
+
+.then((space) => space.getEntries({'content_type': 'datesForShowDo'})
+            .then(function (entries) {
+            entries.items.forEach(function (entry) {
+                if(entry.fields.date) {
+                    console.log(entry.fields.link.fields.title)
+                }
+            })
+        })
+
 function GetFormattedDate() {
    var todayTime = new Date();
    var month = format(todayTime .getMonth() + 1);
