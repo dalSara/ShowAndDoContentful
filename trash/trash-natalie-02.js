@@ -41,36 +41,41 @@ client.getEntries({
     console.log('momentToday', momentToday);
     console.log('today', today);*/
 
-    /*-------------- GET DATES --------------*/
+    //console.log(allDates);
+
+    /*-------------- GET NEXT DATE --------------*/
     //loop through dates in datesForShowDo
     for(var i = 0; i < allDates.length; i++){
         var dates = allDates[i];
         var oneDate = dates.fields.date;
+        //console.log('allDates[i]', dates);
+        //console.log('dates.fields.date', oneDate);
 
-        /*if(i >= 0 && i < allDates.length - 1){
-            var nextItem = allDates89[i + 1];
-        }
-        console.log(nextItem);*/
-        if(oneDate == "2017-05-05"){ //todaysDate
-            var todaysShowDo = oneDate;
-            console.log('Mach todaysDate', todaysShowDo);
-
-            //EVENTS TO DISPLAY:
-            var thisWeeksEvents = dates.fields.link; //!!!! ENDRE var navn?
-            //console.log('liiiiink', thisWeeksEvents);
-        //if date is smaller then today
-        }else if(oneDate != todaysDate  && oneDate < todaysDate){
-            var previousShowDo = oneDate;
-            console.log('Earlier than todaysDate', previousShowDo);
-        //if date is larger then today
-        }else if(oneDate != todaysDate  && oneDate > todaysDate){
+        if(oneDate >= todaysDate){
             var nextShowDo = oneDate;
 
             console.log('Later than todaysDate', nextShowDo);
+            var thisWeeksEvents = dates.fields.link; //EVENTS TO DISPLAY
+            break;
+            //if date is earlier then today
         }
     }
-    /*-------------- END GET DATES --------------*/
+    /*-------------- END GET NEXT DATE --------------*/
 
+    /*-------------- GET PREV DATE --------------*/
+    /*for(var i = 0; i < allDates.length; i++){
+        var dates = allDates[i];
+        var oneDate = dates.fields.date;
+
+        if(oneDate <= todaysDate){
+            var previousShowDo = oneDate;
+            console.log('Earlier than todaysDate', previousShowDo);
+
+            var thisWeeksEvents = dates.fields.link;
+            break;
+        }
+    }*/
+    /*-------------- GET PREV DATE --------------*/
 
 
 
@@ -201,14 +206,14 @@ function renderEventInfo(event){
 
     if(event.location == null){
         return  '<h4>' + event.title + '</h4>' +
-                '<p>' + startTime + '</p>' +
-                '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
-                '<p id="location">TBA</p></div>';
+            '<p>' + startTime + '</p>' +
+            '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
+            '<p id="location">TBA</p></div>';
     }else{
         return  '<h4>' + event.title + '</h4>' +
-                '<p>' + startTime + '</p>' +
-                '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
-                '<p id="location">' + event.location + '</p></div>';
+            '<p>' + startTime + '</p>' +
+            '<div id="locationWrapper"><i class="icon-room-filled"></i>' +
+            '<p id="location">' + event.location + '</p></div>';
     }
 }
 /*-------------- END GET DATA FROM ONE EVENT --------------*/
