@@ -7,9 +7,8 @@ var client = contentful.createClient({
 })
 /*-------------- END CLIENT --------------*/
 
-var globalTargetDateIndex = null
-
-var globalAllDatesArray = null
+var globalTargetDateIndex = null;
+var globalAllDatesArray = null;
 
 var prevBtn = document.getElementById("prevBtn");
 var thisWeekBtn = document.getElementById("thisWeekBtn");
@@ -32,54 +31,54 @@ function initDates(callbackAction){
         globalAllDatesArray = entries.items;
         console.log('Entry Client: All dates (sorted):', globalAllDatesArray); //all dates
 
-        var today = new Date()
+        var today = new Date();
         var year = today.getFullYear();
         var month = ('0' + (today.getMonth() +1)).slice(-2);
         var day = ('0' + today.getDate()).slice(-2); 
         today = year + '-' + month + '-' + day;
 
-        globalTargetDateIndex= 0 
+        globalTargetDateIndex = 0;
 
         for(var i = 0; i < globalAllDatesArray.length - 1; i++){
 
             if(globalAllDatesArray[i].fields.date <= today && 
                globalAllDatesArray[i+1].fields.date >= today){
-                globalTargetDateIndex = i
-                break
+                globalTargetDateIndex = i;
+                break;
             }
 
             //var thisWeeksEvents = dates.fields.link; //!!!! ENDRE var navn?
 
         }    
 
-        updateDateLabels()
-        callbackAction()
+        updateDateLabels();
+        callbackAction();
         //TODO enable pre/next buttons
 
-        prevBtn.onclick = goPrevious
-        nextBtn.onclick = goNext
+        prevBtn.onclick = goPrevious;
+        nextBtn.onclick = goNext;
 
     })
 
     function goNext(){
         if(globalTargetDateIndex < globalAllDatesArray.length - 1){
-            globalTargetDateIndex ++
-            updateDateLabels()
-            callbackAction()
+            globalTargetDateIndex ++;
+            updateDateLabels();
+            callbackAction();
         }
     }
 
 
     function goPrevious(){
         if(globalTargetDateIndex > 0){
-            globalTargetDateIndex --
-            updateDateLabels()
-            callbackAction()
+            globalTargetDateIndex --;
+            updateDateLabels();
+            callbackAction();
         }    
     }
 
     function getDateLabel(index){
-        var date = globalAllDatesArray[index]
+        var date = globalAllDatesArray[index];
         //ISO8601 formatted YYYY-MM-DD (to match Contentful):
      /*   var year = date.getFullYear();
         var month = ('0' + (date.getMonth() +1)).slice(-2);
@@ -87,25 +86,25 @@ function initDates(callbackAction){
         var formatted = year + '-' + month + '-' + day;
         */
         
-        formatted = JSON.stringify(date.fields.date)
-        return formatted
+        formatted = JSON.stringify(date.fields.date);
+        return formatted;
     }
 
     function updateDateLabels(){
 
         if(globalTargetDateIndex > 0 ){
-            prevDate.innerHTML = getDateLabel(globalTargetDateIndex - 1)
+            prevDate.innerHTML = getDateLabel(globalTargetDateIndex - 1);
         } else {
-            prevDate.innerHTML = ""
+            prevDate.innerHTML = "";
         }
 
         if(globalTargetDateIndex < globalAllDatesArray.length - 1){
-            nextDate.innerHTML = getDateLabel(globalTargetDateIndex + 1)
+            nextDate.innerHTML = getDateLabel(globalTargetDateIndex + 1);
         } else {
-            nextDate.innerHTML = ""
+            nextDate.innerHTML = "";
         }
 
-        thisDate.innerHTML = getDateLabel(globalTargetDateIndex )
+        thisDate.innerHTML = getDateLabel(globalTargetDateIndex);
     }
 }
 
