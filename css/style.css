@@ -663,6 +663,13 @@ button {
   padding: .5rem;
   width: 7%; }
 
+.stockImgAddTrack {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  width: 300px;
+  height: 200px; }
+
 .selectedTime {
   border: 5px solid #0066FF;
   color: #0066FF;
