@@ -121,6 +121,20 @@
                 width: 400px;
                 float: left;
             }
+            .icon-edit {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                -webkit-mask: url("../assets/images/pencil-write-2.svg") no-repeat 50% 50%;
+                mask: url("../assets/images/notepad-edit.svg") no-repeat 50% 50%;
+                -webkit-mask-size: cover;
+                mask-size: cover;
+                background-color: #000;
+
+            }
+            .eventTitleList, .icon-edit{
+                float: left;
+            }
             .eventImage{
                 width: 1200px;
                 height: 300px;
@@ -129,6 +143,9 @@
             }
             .eventTitleList{
                 text-decoration: underline;
+                -moz-text-decoration-color: #06f; /* Code for Firefox */
+                text-decoration-color: #06f;
+                margin-right: 10px;
             }
             .icon-clock{
                 display: inline-block;
@@ -157,7 +174,7 @@
             .icon-room, .locationList{
                 float: left;
             }
-            .locationWrapperList, .goingWrapperList{
+            .locationWrapperList, .goingWrapperList, .titleEditWrapper{
                 clear: left;
             }
             /*----GOING-BTN----*/

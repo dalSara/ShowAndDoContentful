@@ -282,7 +282,9 @@ function renderEventInfoList(event){
     }
 
     return  '<div class="leftListInfo">' +
-        '<h3 class="eventTitleList">' + event.title + '</h3>' +
+        '<div class="titleEditWrapper">' +
+        '<h3 class="eventTitleList">' + event.title + '</h3><i class="icon-edit"></i>' +
+        '</div><br><br>' +
         '<h4>HOST</h4><p>' + event.host + '</p>' +
         '<h4>WHAT TO EXPECT</h4><p>' + event.whatToExpect + '</p>' +
         '<h4>PREREQUISITES</h4><p>' + event.prerequisites + '</p>' +
