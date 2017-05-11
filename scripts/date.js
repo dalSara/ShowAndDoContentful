@@ -18,8 +18,6 @@ var prevDate = document.getElementById("prevDate");
 var thisDate = document.getElementById("thisDate");
 var nextDate = document.getElementById("nextDate");
 
-
-
 var EVENT_CONTENT_TYPE_ID = 'datesForShowDo';
 
 function initDates(callbackAction){
@@ -41,18 +39,15 @@ function initDates(callbackAction){
 
         for(var i = 0; i < globalAllDatesArray.length - 1; i++){
 
-            if(globalAllDatesArray[i].fields.date <= today && 
-               globalAllDatesArray[i+1].fields.date >= today){
-                globalTargetDateIndex = i;
+            if(globalAllDatesArray[i].fields.date <= today && globalAllDatesArray[i+1].fields.date >= today){
+                globalTargetDateIndex = i+1;
                 break;
             }
-
             //var thisWeeksEvents = dates.fields.link; //!!!! ENDRE var navn?
-
         }    
 
         updateDateLabels();
-        callbackAction();
+        //callbackAction();
         //TODO enable pre/next buttons
 
         prevBtn.onclick = goPrevious;
@@ -64,7 +59,7 @@ function initDates(callbackAction){
         if(globalTargetDateIndex < globalAllDatesArray.length - 1){
             globalTargetDateIndex ++;
             updateDateLabels();
-            callbackAction();
+            //callbackAction();
         }
     }
 
@@ -73,20 +68,14 @@ function initDates(callbackAction){
         if(globalTargetDateIndex > 0){
             globalTargetDateIndex --;
             updateDateLabels();
-            callbackAction();
+            //callbackAction();
         }    
     }
 
     function getDateLabel(index){
         var date = globalAllDatesArray[index];
-        //ISO8601 formatted YYYY-MM-DD (to match Contentful):
-     /*   var year = date.getFullYear();
-        var month = ('0' + (date.getMonth() +1)).slice(-2);
-        var day = ('0' + date.getDate()).slice(-2); 
-        var formatted = year + '-' + month + '-' + day;
-        */
         
-        formatted = JSON.stringify(date.fields.date);
+        formatted = date.fields.date;
         return formatted;
     }
 
