@@ -13,9 +13,10 @@ var client = contentful.createClient({
 })
 /*-------------- END CLIENT --------------*/
 var globalTargetDateIndex = null;
-var thisShowDoEvents = null;
-var todaysDate = null;
 var allDates = null;
+var selectedDate = null;
+
+var thisShowDoEvents = null;
 
 var EVENT_CONTENT_TYPE_ID = 'datesForShowDo';
 
@@ -27,8 +28,22 @@ var nextBtn = document.getElementById("nextBtn");
 var thisWeekBtn = document.getElementById("thisWeekBtn");
 var prevBtn = document.getElementById("prevBtn");
 
-var row1 = document.getElementById('row1');
+var calendar = document.getElementById('calendar');
 var list = document.getElementById('list');
+
+function getSelectedDate(specifiedDate) {
+    selectedDate = new Date();
+    if(specifiedDate) selectedDate = specifiedDate;
+    /*-------------- TODAYS DATE --------------*/
+    //ISO8601 formatted YYYY-MM-DD (to match Contentful):
+    var year = selectedDate.getFullYear();
+    var month = ('0' + (selectedDate.getMonth() +1)).slice(-2);
+    var day = ('0' + selectedDate.getDate()).slice(-2);
+    var selectedDate = year + '-' + month + '-' + day;
+    /*-------------- END TODAYS DATE --------------*/
+
+    return selectedDate;
+}
 
 /*-------------- GET ENTRIES --------------*/
 client.getEntries({
@@ -37,57 +52,48 @@ client.getEntries({
 })
     .then(function (entries) {
 
-    var allDates = entries.items;
+    allDates = entries.items;
     console.log('Entry Client: All dates (sorted):', allDates); //all dates
 
-    /*-------------- TODAYS DATE --------------*/
-    var today = new Date();
-    //ISO8601 formatted YYYY-MM-DD (to match Contentful):
-    var year = today.getFullYear();
-    var month = ('0' + (today.getMonth() +1)).slice(-2);
-    var day = ('0' + today.getDate()).slice(-2);
-    var todaysDate = year + '-' + month + '-' + day;
-    /*-------------- END TODAYS DATE --------------*/
 
+    selectedDate = getSelectedDate();
     /*-------------- GET THIS DATE --------------*/
     //loop through dates in datesForShowDo
     for(var i = 0; i < allDates.length; i++){
         //var dates = allDates[i];
         //var oneDate = dates.fields.date;
 
-        if(allDates[i].fields.date <= todaysDate && allDates[i+1].fields.date >= todaysDate){
-            globalTargetDateIndex = i+1;
-            console.log('Index nr: ', globalTargetDateIndex); //3
+        if(allDates[i].fields.date <= selectedDate && allDates[i+1].fields.date >= selectedDate){
+            globalTargetDateIndex = i + 1;
 
-            var oneDate = allDates[i].fields.date;
-            console.log('Later than todaysDate', oneDate);
+            var oneDate = allDates[globalTargetDateIndex].fields.date;
+            console.log('Later than selectedDate', oneDate);
 
-            var thisWeeksEvents = allDates[i].fields.link; //EVENTS TO DISPLAY
+            thisShowDoEvents = allDates[i + 1].fields.link; //EVENTS TO DISPLAY
 
-            nextDate.innerHTML = allDates[globalTargetDateIndex + 1].fields.date;
-            thisDate.innerHTML = allDates[globalTargetDateIndex].fields.date; //Display this date
-            prevDate.innerHTML = allDates[globalTargetDateIndex - 1].fields.date;
+            //nextDate.innerHTML = allDates[globalTargetDateIndex + 1].fields.date;
+            //thisDate.innerHTML = allDates[globalTargetDateIndex].fields.date; //Display this date
+            //prevDate.innerHTML = allDates[globalTargetDateIndex - 1].fields.date;
             break;
         }
     }
     /*-------------- END GET THIS DATE --------------*/
 
-    /*-------------- GET INDEX OF THE DATE --------------*/
-    /*var thisDateIndex = allDates[globalTargetDateIndex];
-    console.log(thisDateIndex.fields.date);
-    /*-------------- END GET INDEX OF THE  DATE --------------*/
+    getEventArray(thisShowDoEvents);
+    updateDateLabels();
+    /*Display dates*/
 
-    sortEvents(thisWeeksEvents);
-    //updateDateLabels();
 
+    /*Display events*/
     nextBtn.onclick = nextShowDo;
+    thisDate.onclick =
     prevBtn.onclick = previousShowDo;
 })
 /*-------------- END GET ENTRIES --------------*/
 
 /*-------------- GET INDEX OF THE DATE --------------*/
 function getDateIndex(index){
-    var dateIndex = allDates[index+1];
+    var dateIndex = allDates[index+1]; //[index+1]
     var date = dateIndex.fields.date;
 
     return date;
@@ -98,66 +104,94 @@ function getDateIndex(index){
 function updateDateLabels(){
 
     if(globalTargetDateIndex > 0){
-        prevDate.innerHTML = getDateIndex(globalTargetDateIndex - 1);
+        prevDate.innerHTML = getDateIndex(globalTargetDateIndex - 2);
     } else {
         prevDate.innerHTML = "";
-        row1.innerHTML = "";
     }
 
     if(globalTargetDateIndex < allDates.length - 1){
-        nextDate.innerHTML = getDateIndex(globalTargetDateIndex + 1);
+        nextDate.innerHTML = getDateIndex(globalTargetDateIndex);
     } else {
-        nextDate.innerHTML = "";
-        row1.innerHTML = "";
+        nextDate.innerHTML = "TBA";
     }
 
-    thisDate.innerHTML = getDateIndex(globalTargetDateIndex);
+    thisDate.innerHTML = getDateIndex(globalTargetDateIndex - 1);
+
 }
 
 function nextShowDo(){
-    nextDate.innerHTML = "";
-    nextDate.innerHTML = allDates[globalTargetDateIndex + 1].fields.date;
-    if(globalTargetDateIndex < 3){ // < globalAllDatesArray.length - 1){
-        globalTargetDateIndex ++;
-        //updateDateLabels();
+    if(globalTargetDateIndex < allDates.length -1){
+        var showDoIndex = globalTargetDateIndex++;
+        updateDateLabels();
+
+        var nextShowDoDate = allDates[showDoIndex + 1].fields;
+        var nextShowDoEvents = nextShowDoDate.link;
+
+        console.log('NEXT DATE', nextShowDoDate);
+        console.log('NEXT DATES EVENTS', nextShowDoEvents);
+        //var eventArray = sortEvents(thisShowDoEvents);
+
+        getEventArray(nextShowDoEvents); //DISPLAY NEXT WEEK
+
+
+    }else{
+        alert('No more Show & Dos are added.'); //NEEDS A BETTER ERROR MESSAGE
+        return globalTargetDateIndex--; //To stop adding index
     }
+
 }
 function previousShowDo(){
     if(globalTargetDateIndex > 0){
-        globalTargetDateIndex --;
+        var showDoIndex = globalTargetDateIndex--;
         updateDateLabels();
+
+        var previousShowDoDate = allDates[showDoIndex - 1].fields;
+        var previousShowDoEvents = previousShowDoDate.link;
+
+        console.log('NEXT DATE', previousShowDoDate);
+        console.log('NEXT DATES EVENTS', previousShowDoEvents);
+        //var eventArray = sortEvents(thisShowDoEvents);
+
+        getEventArray(previousShowDoEvents); //DISPLAY NEXT WEEK
+
+    }else{
+        alert('No more Show & Dos to display from the past.');
+        return globalTargetDateIndex--; //To stop adding index
     }
 }
 
-//var thisWeeksEvents = dates.fields.link; //EVENTS TO DISPLAY
+//var thisShowDoEvents = dates.fields.link; //EVENTS TO DISPLAY
 
+function sortEvents(thisShowDoEvents) {
+    var eventArray = [];
+    for(var i = 0; i < thisShowDoEvents.length; i++){
+        var oneEvent = thisShowDoEvents[i].fields;
+        eventArray.push(oneEvent);
+    }
 
-function sortEvents(thisWeeksEvents){
-    /*-------------- SORTING EVENTS BY SIZE --------------*/
-    //if event exists in date
-    if(thisWeeksEvents != null || thisWeeksEvents == true){
-        var eventArray = [];
-        for(var i = 0; i < thisWeeksEvents.length; i++){
-            var oneEvent = thisWeeksEvents[i].fields;
-            eventArray.push(oneEvent);
+    eventArray.sort(function (a, b){
+        var sizeA = a.size;
+        var sizeB = b.size;
+
+        if(sizeA < sizeB){
+            return -1;
         }
+        if(sizeA > sizeB){
+            return 1;
+        }
+        return 0;
+    });
+    return eventArray;
+}
 
-        eventArray.sort(function (a, b){
-            var sizeA = a.size;
-            var sizeB = b.size;
-
-            if(sizeA < sizeB){
-                return -1;
-            }
-            if(sizeA > sizeB){
-                return 1;
-            }
-            return 0;
-        });
+function getEventArray(thisShowDoEvents){
+    /*-------------- SORTING EVENTS BY SIZE --------------*/
+    if(thisShowDoEvents != null || thisShowDoEvents == true){ //if event exists in date
+        var eventArray = sortEvents(thisShowDoEvents);
         console.log('Sortert LARGE -> SMALL ', eventArray);
     }
     /*-------------- END SORTING EVENTS BY SIZE --------------*/
-    row1.innerHTML = renderEventsCal(eventArray);
+    calendar.innerHTML = renderEventsCal(eventArray);
     list.innerHTML = renderEventsList(eventArray);
 }
 
@@ -284,8 +318,8 @@ function renderEventInfoList(event){
     return  '<div class="leftListInfo">' +
         '<div class="titleEditWrapper">' +
         '<h3 class="eventTitleList">' + event.title + '</h3><i class="icon-edit"></i>' +
-        '</div><br><br>' +
-        '<h4>HOST</h4><p>' + event.host + '</p>' +
+        '</div>' +
+        '<h4 class="eventsHost">HOST</h4><p>' + event.host + '</p>' +
         '<h4>WHAT TO EXPECT</h4><p>' + event.whatToExpect + '</p>' +
         '<h4>PREREQUISITES</h4><p>' + event.prerequisites + '</p>' +
         '<h4>BEST SUITED FOR</h4><p>' + event.whoShouldJoin + '</p>' +
@@ -293,7 +327,7 @@ function renderEventInfoList(event){
 
         '<div class="rightListInfo">' +
         '<div class="timeWrapperList">' +
-        '<i class="icon-clock"></i><p class="startTimeList">' + startTime + '</p>' +
+        '<i class="icon-clock"></i><p class="startTimeList">' + startTime + ' <i>- endtime</i></p>' +
         '</div>' +
         '<div class="locationWrapperList">' +
         '<i class="icon-room"></i><p class="locationList">' + event.location + '</p>' +
@@ -321,8 +355,9 @@ function renderEventInfoList(event){
 function renderImage(image){
     if(image && image.fields.file){
         return '<img src="' + image.fields.file.url + '"/>';
-    }else{
-        return '';
+    /*}else if(image.fields.file == null || image.fields != true || image.fields.file == 'undefined'){
+        return '<p>Image is missing</p>';*/
+        //NEEDS ERROR MESSAGE
     }
 }
 /*-------------- END GET IMAGE --------------*/
