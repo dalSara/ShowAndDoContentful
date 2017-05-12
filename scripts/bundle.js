@@ -12668,6 +12668,18 @@ function addTrack (){
             type:"Link"
         }}
 
+        var imageTwo = {sys: {
+            id: '2dmGUtiw7uwugWQcsiGcUk',
+            linkType: "Asset",
+            type:"Link"
+        }}
+        var imageThree = {sys: {
+            id: '5u6CWGgkmcwiIUEIsiQMGE',
+            linkType: "Asset",
+            type:"Link"
+        }}
+
+
 
     function timeOne (){
         choosenTime = startOne
@@ -12720,11 +12732,26 @@ function addTrack (){
     function chooseImageOne (){
         var choosenImage = imageOne
         document.getElementById("JSaddStockOne").classList.add('selectedTime');
-        document.getElementById("JSaddHourOne").classList.remove('selectedTime');
-        document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockThree").classList.remove('selectedTime');
         return choosenImage
     }
 
+    function chooseImageTwo (){
+        var choosenImage = imageTwo
+        document.getElementById("JSaddStockTwo").classList.add('selectedTime');
+        document.getElementById("JSaddStockOne").classList.remove('selectedTime');
+        document.getElementById("JSaddStockThree").classList.remove('selectedTime');
+        return choosenImage
+    }
+
+    function chooseImageThree (){
+        var choosenImage = imageThree
+        document.getElementById("JSaddStockThree").classList.add('selectedTime');
+        document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockOne").classList.remove('selectedTime');
+        return choosenImage
+    }
 
     var init = function (){
 
@@ -12756,8 +12783,8 @@ function addTrack (){
         JSaddHourTwo.onclick = mediumTrack;
         JSaddHourThree.onclick = largeTrack;
         JSaddStockOne.onclick = chooseImageOne;
-        //JSaddStockTwo;
-        //JSaddStockThree;
+        JSaddStockTwo.onclick = chooseImageTwo;
+        JSaddStockThree.onclick = chooseImageThree;
         addTrackBtn.onclick = createNewEvent;
 
 
@@ -12766,7 +12793,7 @@ function addTrack (){
 
 
     //the function that creates a new event, and post it to contentful
-    function createNewEvent (choosenTime, choosenTrack, choosenImage){
+    function createNewEvent (){
         alert("Your track has been added");
         var JSaddNewTitle = JSaddTitle.value;
         var JSaddNewHosts = JSaddHosts.value;
@@ -12788,75 +12815,9 @@ function addTrack (){
         var JSaddStatus
 
 
-        var imageTwo = {sys: {
-            id: '2dmGUtiw7uwugWQcsiGcUk',
-            linkType: "Asset",
-            type:"Link"
-        }}
-        var imageThree = {sys: {
-            id: '5u6CWGgkmcwiIUEIsiQMGE',
-            linkType: "Asset",
-            type:"Link"
-        }}
+        var choosenTime = "2017-06-02T13:00:31Z";
+        var choosenTrack = "Small";
 
-        var choosenTime = "2017-06-02T13:00:31Z"
-
-        /*
-            function setTime (entries){
-                var timesInday = items.time;
-                for(var i = 0; i < takenTime.length; i++)
-
-
-                    if(startTime == "13:00" && event.size == "Large"){
-                        return
-
-                        '<div class="eventInfoList">' +
-                            renderEventInfoList(event) +
-                            '</div>' +
-                            '</div>';
-                        /*}else if(startTime == "13:00" && event.size == "Medium"){
-
-    }else if(startTime == "13:00" && event.size == "Small"){
-        return '<div class="listEvent">' +
-            '<div class="eventImage">' +
-            renderImage(event.image) +
-            '</div>' +
-
-            '<div class="eventInfo">' +
-            renderEventInfoList(event) +
-            '</div>' +
-            '</div>';
-    }else if(startTime == "14:00" && event.size == "Medium"){
-        return '<div class="listEvent">' +
-            '<div class="eventImage">' +
-            renderImage(event.image) +
-            '</div>' +
-
-            '<div class="eventInfo">' +
-            renderEventInfoList(event) +
-            '</div>' +
-            '</div>';
-    }else if(startTime == "14:00" && event.size == "Small"){
-        return '<div class="listEvent">' +
-            '<div class="eventImage">' +
-            renderImage(event.image) +
-            '</div>' +
-
-            '<div class="eventInfo">' +
-            renderEventInfoList(event) +
-            '</div>' +
-            '</div>';
-    }else if(startTime == "15:00" && event.size == "Small"){
-        return '<div class="listEvent">' +
-            '<div class="eventImage">' +
-            renderImage(event.image) +
-            '</div>' +
-
-            '<div class="eventInfo">' +
-            renderEventInfoList(event) +
-            '</div>' +
-            '</div>';
-    }*/
 
         var newTrack = {
             fields: {
@@ -12874,7 +12835,7 @@ function addTrack (){
                     'en-US': choosenTime
                 },
                 size: {
-                    'en-US': "Small"
+                    'en-US': choosenTrack
                 },
 
                 numberOfParticipants: {

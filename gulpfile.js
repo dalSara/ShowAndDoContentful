@@ -6,11 +6,11 @@ var browserify  = require('browserify');
 //var watchify    = require('watchify');
 var rename      = require('gulp-rename');
 var source      = require('vinyl-source-stream');
-var sourceFileA  = './scripts/main.js';
-var sourceFileE  = './scripts/mainE.js';
+var sourceFile  = './scripts/main.js';
+//var sourceFileE  = './scripts/mainE.js';
 var destFolder  = './scripts/';
 var destFile    = 'bundle.js';
-var destFileE    = 'bundleE.js';
+//var destFileE    = 'bundleE.js';
 
 
 // Static Server + watching scss/html files
@@ -43,18 +43,19 @@ gulp.task('scripts', function() {
 }); */
 
 gulp.task('browserify', function() {
-    return browserify(sourceFileA, sourceFileE)
+    return browserify(sourceFile)
         .bundle()
-        .pipe(source(destFile, destFileE))
+        .pipe(source(destFile))
         .pipe(gulp.dest(destFolder));
 });
+/*
 gulp.task('browserify', function() {
     return browserify(sourceFileE)
         .bundle()
         .pipe(source(destFileE))
         .pipe(gulp.dest(destFolder));
 });
-
+*/
 
 gulp.task('default', ['serve','browserify'], function(){ //['serve', 'data' 'watch' , ],
 
