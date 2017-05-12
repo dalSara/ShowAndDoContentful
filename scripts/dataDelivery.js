@@ -304,6 +304,7 @@ function renderSingleEventList(event){
 /*-------------- GOINGbtn --------------*/
 function goingBtn(){
     document.getElementById('going').className += ' going-clicked ';
+    document.getElementById('going').innerHTML = "You're going!";
     //document.getElementById('goingInput').slideToggle(500);//.className.remove = 'hidden';
     //document.getElementsByTagName('goingDropdown').classList.toggle('show');
 }
@@ -338,7 +339,7 @@ function renderEventInfoList(event){
         '</div>' +
 
         '<div  class="goingBtnWrapper">' +
-            '<button onclick="goingBtn()" type="button" id="going" class="goingBtn"></button>' +
+            '<button onclick="goingBtn()" type="button" id="going" class="goingBtn">Going?</button>' +
             '<div id="goingDropdown" class="goingDropdownContent">' +
             '<div class="inputName">' +
                 'Name: <input type="text" value="" id="name" name="name">' +
