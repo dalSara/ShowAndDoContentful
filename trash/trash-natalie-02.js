@@ -70,10 +70,6 @@ client.getEntries({
             console.log('Later than selectedDate', oneDate);
 
             thisShowDoEvents = allDates[i + 1].fields.link; //EVENTS TO DISPLAY
-
-            //nextDate.innerHTML = allDates[globalTargetDateIndex + 1].fields.date;
-            //thisDate.innerHTML = allDates[globalTargetDateIndex].fields.date; //Display this date
-            //prevDate.innerHTML = allDates[globalTargetDateIndex - 1].fields.date;
             break;
         }
     }
@@ -81,15 +77,15 @@ client.getEntries({
 
     getEventArray(thisShowDoEvents);
     updateDateLabels();
-    /*Display dates*/
-
 
     /*Display events*/
     nextBtn.onclick = nextShowDo;
-    thisDate.onclick =
     prevBtn.onclick = previousShowDo;
 })
 /*-------------- END GET ENTRIES --------------*/
+
+
+
 
 /*-------------- GET INDEX OF THE DATE --------------*/
 function getDateIndex(index){
@@ -116,7 +112,6 @@ function updateDateLabels(){
     }
 
     thisDate.innerHTML = getDateIndex(globalTargetDateIndex - 1);
-
 }
 
 function nextShowDo(){
@@ -138,7 +133,6 @@ function nextShowDo(){
         alert('No more Show & Dos are added.'); //NEEDS A BETTER ERROR MESSAGE
         return globalTargetDateIndex--; //To stop adding index
     }
-
 }
 function previousShowDo(){
     if(globalTargetDateIndex > 0){
@@ -306,14 +300,24 @@ function renderSingleEventList(event){
 }
 /*-------------- END PUT ELEMENTS TOGETHER: LIST --------------*/
 
+
+/*-------------- GOINGbtn --------------*/
+function goingBtn(){
+    document.getElementById('going').className += ' going-clicked ';
+    //document.getElementById('goingInput').slideToggle(500);//.className.remove = 'hidden';
+    //document.getElementsByTagName('goingDropdown').classList.toggle('show');
+}
+/*-------------- END GOINGbtn --------------*/
+
+
 /*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
 function renderEventInfoList(event){
     var date = event.time;
     var startTime = date.substring(date.length - 5);
 
-    if(event.this == 'undefined'){
+    /*if(event.this == 'undefined'){
         return '';
-    }
+    }*/
 
     return  '<div class="leftListInfo">' +
         '<div class="titleEditWrapper">' +
@@ -334,12 +338,12 @@ function renderEventInfoList(event){
         '</div>' +
 
         '<div  class="goingBtnWrapper">' +
-        '<button type="button" class="goingBtn" id="going"></button>' +
-        '<div class="goingInput hidden" id="goingInput">' +
-        '<div class="inputName">' +
-        'Name: <input type="text" value="" id="name" name="name">' +
-        '<div tabindex="0" role="button" id="registerBtn" type="submit">Register</div>' +
-        '</div>' +
+            '<button onclick="goingBtn()" type="button" id="going" class="goingBtn"></button>' +
+            '<div id="goingDropdown" class="goingDropdownContent">' +
+            '<div class="inputName">' +
+                'Name: <input type="text" value="" id="name" name="name">' +
+                '<div tabindex="0" role="button" id="registerBtn" type="submit">Register</div>' +
+            '</div>' +
         '</div>' +
         '</div>' +
 

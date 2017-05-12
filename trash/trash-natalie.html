@@ -30,7 +30,7 @@
             #startTimes{
                 display: grid;
                 grid-template-columns: 120px;
-                grid-gap: 15px;
+                grid-gap: 10px;
                 float: left;
             }
             .times{
@@ -40,9 +40,10 @@
             .cal{
                 padding: 20px;
                 border-radius: 10px;
+                border: 5px solid #f6f6f6;
             }
             .cal:hover{
-                margin: -5px;
+                border: 5px solid #06f;
             }
             #calendar{
                 display: grid;
@@ -52,7 +53,7 @@
                 grid-template-rows: 200px 200px 200px;
                 /*33.33% 33.33% 33.33%;*/
                 /*border: 1px solid black;*/
-                grid-gap: 15px;
+                grid-gap: 10px;
             }
             /*LARGE*/
             .largeTrackCal{
@@ -185,7 +186,10 @@
                 clear: left;
             }
             /*----GOING-BTN----*/
-            button {
+            .goingBtnWrapper{
+                clear: left;
+            }
+            .goingBtn {
                 font-family: "Volte Semibold";
                 font-size: inherit;
                 line-height: inherit;
@@ -197,8 +201,6 @@
                 margin: 0;
                 -webkit-appearance: none;
                 cursor: pointer;
-            }
-            .goingBtn {
                 width: 250px;
                 margin-bottom: 40px;
             }
@@ -216,13 +218,14 @@
                 color: #0066FF;
                 content: "You're going!";
             }
-            .goingInput {
+            .goingDropdownContent{
+                display: none;
                 overflow: hidden;
                 width: 250px;
                 background-color: #fff;
             }
-            .hidden {
-                display: none;
+            .show{
+                display: block;
             }
             #registerBtn {
                 display: inline-block;
@@ -235,9 +238,6 @@
                 text-align: center;
                 padding: 0.5rem;
                 cursor: pointer;
-            }
-            .goingBtnWrapper{
-                clear: left;
             }
             /*----END GOING-BTN----*/
             /*-------------- END LIST --------------*/
@@ -330,7 +330,7 @@
 
         <script>
             //--------SCROLL TO MORE INFO (scrolls from calender view, down to list view, on same topic.)
-            $('a[href^="#"]').on('click', function(event) {
+            /*$('a[href^="#"]').on('click', function(event) {
                 var target = $(this.getAttribute('href'));
                 if( target.length ) {
                     event.preventDefault();
@@ -338,13 +338,13 @@
                         scrollTop: target.offset().top
                     }, 1000);
                 }
-            });
+            });*/
             //--------end SCROLL TO MORE INFO
 
-            $("#going").click(function() {
-                $("#going").addClass('going-clicked');
+            //$("#going").click(function() {
+                //$("#going").addClass('going-clicked');
                 $("#goingInput").stop().slideToggle(500).removeClass('hidden');
-            })
+            //})
             $("#registerBtn").click(function() {
                 $("#going").addClass('going-registered').removeClass('going-clicked');
                 $("#goingInput").stop().slideToggle(500).removeClass('hidden');
