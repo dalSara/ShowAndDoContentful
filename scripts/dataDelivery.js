@@ -1,97 +1,367 @@
-//Module Pattern
-var DATADELIVERYMODUL = (function(){
-    //var eventJSON = function(){
+//var moment = require('moment'); treng ikkje??
 
-    //Eksempel fra: https://jsfiddle.net/contentful/kefaj4s8/
-    /*-------------- CLIENT --------------*/
-    //var contentful = require('contentful');
-    var client = contentful.createClient({
-        // This is the space ID. A space is like a project folder in Contentful terms
-        space: '59mi8sr8zemv',
-        // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-        accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059'
-    })/*-------------- END CLIENT --------------*/
+//Eksempel fra: https://jsfiddle.net/contentful/kefaj4s8/
+//NB: Klasser er foreløpig ikke i bruk!
+//js-className
 
-    var EVENT_CONTENT_TYPE_ID = 'events';
-    //var container = document.getElementById('content');
+/*-------------- CLIENT --------------*/
+var client = contentful.createClient({
+    // This is the space ID. A space is like a project folder in Contentful terms
+    space: '59mi8sr8zemv',
+    // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+    accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059'
+})
+/*-------------- END CLIENT --------------*/
+var globalTargetDateIndex = null;
+var allDates = null;
+var selectedDate = null;
 
-    /*-------------- GET ENTRIES --------------*/
-    client.getEntries({
-        content_type: EVENT_CONTENT_TYPE_ID
-    })
-        .then(function (entries) {
-        console.log('Entry Client:', entries.items);
-        //container.innerHTML = getOneEvent(entries.items);
-    })/*-------------- END GET ENTRIES --------------*/
+var thisShowDoEvents = null;
 
-    //};/*-------------- END EVENTJSON --------------*/
+var EVENT_CONTENT_TYPE_ID = 'datesForShowDo';
 
-    /* TEST:
-    var eventJSON = {"webpageList":[
-        {"title": "Foehn", "bildeSrc": "foehn.jpg"},
-    ]};
-    var getOneEvent = function(oneEventIndex){
-        return eventJSON.webpageList[oneEventIndex];
-    };
-    var getTitle = function(titleIndex){
-        return eventJSON.webpageList[titleIndex].title;
-    };*/
+var prevDate = document.getElementById("prevDate");
+var thisDate = document.getElementById("thisDate");
+var nextDate = document.getElementById("nextDate");
 
-    var getAllEvents = function(events){
-        return events.map(getOneEvent);
-    };
+var nextBtn = document.getElementById("nextBtn");
+var thisWeekBtn = document.getElementById("thisWeekBtn");
+var prevBtn = document.getElementById("prevBtn");
 
-    var getOneEvent = function(oneEventIndex){
-        var fields = event.fields;
-        return event.fields(oneEventIndex);
-    };
+var calendar = document.getElementById('calendar');
+var list = document.getElementById('list');
 
-    var getTitle = function(titleIndex){
-        return event.fields(titleIndex).title;
-    };
+function getSelectedDate(specifiedDate) {
+    selectedDate = new Date();
+    if(specifiedDate) selectedDate = specifiedDate;
+    /*-------------- TODAYS DATE --------------*/
+    //ISO8601 formatted YYYY-MM-DD (to match Contentful):
+    var year = selectedDate.getFullYear();
+    var month = ('0' + (selectedDate.getMonth() +1)).slice(-2);
+    var day = ('0' + selectedDate.getDate()).slice(-2);
+    var selectedDate = year + '-' + month + '-' + day;
+    /*-------------- END TODAYS DATE --------------*/
 
-    /*var getLocation = function(locationIndex){
-        return eventJSON.event.fields[locationIndex].location;
-    };
+    return selectedDate;
+}
 
-    var getNumberOfParticipants = function(locationIndex){
-        return eventJSON.event.fields[numberOfParticipantsIndex].numberOfParticipants;
-    };
+/*-------------- GET ENTRIES --------------*/
+client.getEntries({
+    content_type: EVENT_CONTENT_TYPE_ID,
+    order: 'fields.date' //Sort by date in datesForShowDo
+})
+    .then(function (entries) {
 
-    var getPrerequisites = function(prerequisitesIndex){
-        return eventJSON.event.fields[prerequisitesIndex].prerequisites;
-    };
+    allDates = entries.items;
+    console.log('Entry Client: All dates (sorted):', allDates); //all dates
 
-    var getWhatToExpect = function(whatToExpectIndex){
-        return eventJSON.event.fields[whatToExpectIndex].whatToExpect;
-    };
 
-    var getWhoShouldJoin = function(whoShouldJoinIndex){
-        return eventJSON.event.fields[whoShouldJoinIndex].whoShouldJoin;
-    };
+    selectedDate = getSelectedDate();
+    /*-------------- GET THIS DATE --------------*/
+    //loop through dates in datesForShowDo
+    for(var i = 0; i < allDates.length; i++){
+        //var dates = allDates[i];
+        //var oneDate = dates.fields.date;
 
-    var getImage = function(imageIndex){
-        return eventJSON.event.fields[imageIndex].image;
-    };
+        if(allDates[i].fields.date <= selectedDate && allDates[i+1].fields.date >= selectedDate){
+            globalTargetDateIndex = i + 1;
 
-    var getAnythingElse = function(anythingElseIndex){
-        return eventJSON.event.fields[anythingElseIndex].anythingElse;
-    };
+            var oneDate = allDates[globalTargetDateIndex].fields.date;
+            console.log('Later than selectedDate', oneDate);
 
-    var getDate = function(dateIndex){
-        return eventJSON.event.fields[dateIndex].date;
-    };*/
+            thisShowDoEvents = allDates[i + 1].fields.link; //EVENTS TO DISPLAY
+            break;
+        }
+    }
+    /*-------------- END GET THIS DATE --------------*/
 
-    return{
-        getOneEvent: getOneEvent,
-        getTitle: getTitle/*,
-        getLocation: getLocation,
-        getNumberOfParticipants: getNumberOfParticipants,
-        getPrerequisites: getPrerequisites,
-        getWhatToExpect: getWhatToExpect,
-        getWhoShouldJoin: getWhoShouldJoin,
-        getImage: getImage,
-        getAnythingElse: getAnythingElse,
-        getDate: getDate*/
-    };
-}());/*-------------- END DATADELIVERYMODUL -------------*/
+    getEventArray(thisShowDoEvents);
+    updateDateLabels();
+
+    /*Display events*/
+    nextBtn.onclick = nextShowDo;
+    prevBtn.onclick = previousShowDo;
+})
+/*-------------- END GET ENTRIES --------------*/
+
+
+
+
+/*-------------- GET INDEX OF THE DATE --------------*/
+function getDateIndex(index){
+    var dateIndex = allDates[index+1]; //[index+1]
+    var date = dateIndex.fields.date;
+
+    return date;
+    console.log(date);
+}
+/*-------------- END GET INDEX OF THE  DATE --------------*/
+
+function updateDateLabels(){
+
+    if(globalTargetDateIndex > 0){
+        prevDate.innerHTML = getDateIndex(globalTargetDateIndex - 2);
+    } else {
+        prevDate.innerHTML = "";
+    }
+
+    if(globalTargetDateIndex < allDates.length - 1){
+        nextDate.innerHTML = getDateIndex(globalTargetDateIndex);
+    } else {
+        nextDate.innerHTML = "TBA";
+    }
+
+    thisDate.innerHTML = getDateIndex(globalTargetDateIndex - 1);
+}
+
+function nextShowDo(){
+    if(globalTargetDateIndex < allDates.length -1){
+        var showDoIndex = globalTargetDateIndex++;
+        updateDateLabels();
+
+        var nextShowDoDate = allDates[showDoIndex + 1].fields;
+        var nextShowDoEvents = nextShowDoDate.link;
+
+        console.log('NEXT DATE', nextShowDoDate);
+        console.log('NEXT DATES EVENTS', nextShowDoEvents);
+        //var eventArray = sortEvents(thisShowDoEvents);
+
+        getEventArray(nextShowDoEvents); //DISPLAY NEXT WEEK
+
+
+    }else{
+        alert('No more Show & Dos are added.'); //NEEDS A BETTER ERROR MESSAGE
+        return globalTargetDateIndex--; //To stop adding index
+    }
+}
+function previousShowDo(){
+    if(globalTargetDateIndex > 0){
+        var showDoIndex = globalTargetDateIndex--;
+        updateDateLabels();
+
+        var previousShowDoDate = allDates[showDoIndex - 1].fields;
+        var previousShowDoEvents = previousShowDoDate.link;
+
+        console.log('NEXT DATE', previousShowDoDate);
+        console.log('NEXT DATES EVENTS', previousShowDoEvents);
+        //var eventArray = sortEvents(thisShowDoEvents);
+
+        getEventArray(previousShowDoEvents); //DISPLAY NEXT WEEK
+
+    }else{
+        alert('No more Show & Dos to display from the past.');
+        return globalTargetDateIndex--; //To stop adding index
+    }
+}
+
+//var thisShowDoEvents = dates.fields.link; //EVENTS TO DISPLAY
+
+function sortEvents(thisShowDoEvents) {
+    var eventArray = [];
+    for(var i = 0; i < thisShowDoEvents.length; i++){
+        var oneEvent = thisShowDoEvents[i].fields;
+        eventArray.push(oneEvent);
+    }
+
+    eventArray.sort(function (a, b){
+        var sizeA = a.size;
+        var sizeB = b.size;
+
+        if(sizeA < sizeB){
+            return -1;
+        }
+        if(sizeA > sizeB){
+            return 1;
+        }
+        return 0;
+    });
+    return eventArray;
+}
+
+function getEventArray(thisShowDoEvents){
+    /*-------------- SORTING EVENTS BY SIZE --------------*/
+    if(thisShowDoEvents != null || thisShowDoEvents == true){ //if event exists in date
+        var eventArray = sortEvents(thisShowDoEvents);
+        console.log('Sortert LARGE -> SMALL ', eventArray);
+    }
+    /*-------------- END SORTING EVENTS BY SIZE --------------*/
+    calendar.innerHTML = renderEventsCal(eventArray);
+    list.innerHTML = renderEventsList(eventArray);
+}
+
+/*-------------- GET ALL EVENTS TO CALENDAR --------------*/
+function renderEventsCal(events){
+    return events.map(renderSingleEventCal).join('\n');
+}
+/*-------------- END GET ALL EVENTS CALENDAR --------------*/
+
+/*-------------- PUT ELEMENTS TOGETHER: CALENDAR --------------*/
+function renderSingleEventCal(event){
+    //if event exists in date
+    if(event != null || event == true){
+
+        //if time exists in time
+        if(event.time != null || event.time == true){
+            var time = event.time;
+            var startTime = time.substring(time.length - 5);
+        }
+    }
+
+    if(startTime == "13:00" && event.size == "Large"){
+        return '<div class="cal largeTrackCal">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "13:00" && event.size == "Medium"){
+        return '<div class="cal mediumTrackCal-13">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "13:00" && event.size == "Small"){
+        return '<div class="cal smallTrackCal-13">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Medium"){
+        return '<div class="cal mediumTrackCal-14">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Small"){
+        return '<div class="cal smallTrackCal-14">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "15:00" && event.size == "Small"){
+        return '<div class="cal smallTrackCal-15">' +
+
+            '<div class="eventInfoCal">' +
+            renderEventInfoCal(event) +
+            '</div>' +
+            '</div>';
+    }
+}
+/*-------------- END PUT ELEMENTS TOGETHER: CALENDAR --------------*/
+
+/*-------------- GET DATA FROM ONE EVENT: CALENDAR --------------*/
+function renderEventInfoCal(event){
+    var date = event.time;
+    var startTime = date.substring(date.length - 5);
+
+    if(event.location == null){
+        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
+            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
+            '<p class="locationCal">TBA</p></div>';
+    }else{
+        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
+            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
+            '<p class="locationCal">' + event.location + '</p></div>';
+    }
+}
+/*-------------- END GET DATA FROM ONE EVENT: CALENDAR --------------*/
+
+/*-------------- GET ALL EVENTS TO LIST --------------*/
+function renderEventsList(events){
+    return events.map(renderSingleEventList).join('\n');
+}
+/*-------------- END GET ALL EVENTS LIST --------------*/
+
+/*-------------- PUT ELEMENTS TOGETHER: LIST --------------*/
+function renderSingleEventList(event){
+    //if event exists in date
+    if(event != null || event == true){
+        //console.log(':::::::::', event); //one date
+
+        //if time exists in time
+        if(event.time != null || event.time == true){
+            var time = event.time;
+            var startTime = time.substring(time.length - 5);
+        }
+    }
+    return '<div class="listEvent">' +
+        '<div class="eventImage">' +
+        renderImage(event.image) +
+        '</div>' +
+
+        '<div class="eventInfoList">' +
+        renderEventInfoList(event) +
+        '</div>' +
+        '</div>';
+}
+/*-------------- END PUT ELEMENTS TOGETHER: LIST --------------*/
+
+
+/*-------------- GOINGbtn --------------*/
+function goingBtn(){
+    document.getElementById('going').className += ' going-clicked ';
+    //document.getElementById('goingInput').slideToggle(500);//.className.remove = 'hidden';
+    //document.getElementsByTagName('goingDropdown').classList.toggle('show');
+}
+/*-------------- END GOINGbtn --------------*/
+
+
+/*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
+function renderEventInfoList(event){
+    var date = event.time;
+    var startTime = date.substring(date.length - 5);
+
+    /*if(event.this == 'undefined'){
+        return '';
+    }*/
+
+    return  '<div class="leftListInfo">' +
+        '<div class="titleEditWrapper">' +
+        '<h3 class="eventTitleList">' + event.title + '</h3><i class="icon-edit"></i>' +
+        '</div>' +
+        '<h4 class="eventsHost">HOST</h4><p>' + event.host + '</p>' +
+        '<h4>WHAT TO EXPECT</h4><p>' + event.whatToExpect + '</p>' +
+        '<h4>PREREQUISITES</h4><p>' + event.prerequisites + '</p>' +
+        '<h4>BEST SUITED FOR</h4><p>' + event.whoShouldJoin + '</p>' +
+        '</div>' +
+
+        '<div class="rightListInfo">' +
+        '<div class="timeWrapperList">' +
+        '<i class="icon-clock"></i><p class="startTimeList">' + startTime + ' <i>- endtime</i></p>' +
+        '</div>' +
+        '<div class="locationWrapperList">' +
+        '<i class="icon-room"></i><p class="locationList">' + event.location + '</p>' +
+        '</div>' +
+
+        '<div  class="goingBtnWrapper">' +
+            '<button onclick="goingBtn()" type="button" id="going" class="goingBtn"></button>' +
+            '<div id="goingDropdown" class="goingDropdownContent">' +
+            '<div class="inputName">' +
+                'Name: <input type="text" value="" id="name" name="name">' +
+                '<div tabindex="0" role="button" id="registerBtn" type="submit">Register</div>' +
+            '</div>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="goingWrapperList">' +
+        /*'<h4>PEOPLE GOING</h4>*/'<p>' + event.peopleGoing + '</p>' +
+        '</div>' +
+        '</div>';
+
+}
+/*-------------- END GET DATA FROM ONE EVENT: LIST --------------*/
+
+/*-------------- GET IMAGE --------------*/
+function renderImage(image){
+    if(image && image.fields.file){
+        return '<img src="' + image.fields.file.url + '"/>';
+    /*}else if(image.fields.file == null || image.fields != true || image.fields.file == 'undefined'){
+        return '<p>Image is missing</p>';*/
+        //NEEDS ERROR MESSAGE
+    }
+}
+/*-------------- END GET IMAGE --------------*/
