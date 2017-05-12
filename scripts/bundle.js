@@ -12629,100 +12629,148 @@ function addTrack (){
     var client = contentful.createClient({
         // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
         accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
+
     });
 
-
-    //HTML-objeckter (test)
-    /*
-    var testTestText;
-    var pandaText;
-      */
 
     //Html-objekter (riktiga)
 
     var JSaddTitle;
     var JSaddHosts;
     var JSaddPrereq;
-    var JSaddStartOne; //tids formatet 2017-05-05T13:00
-    //var JSaddStartTwo;
-    //var JSaddStartthree;
+    var JSaddStartOne;
+    var JSaddStartTwo;
+    var JSaddStartThree;
     var JSaddHourOne;
-    //var JSaddHourTwo:
-    //var JSaddHourthree;
+    var JSaddHourTwo;
+    var JSaddHourThree;
     var JSaddNrOfPart;
     var JSaddExpect;
     var JSaddJoin;
     var JSaddImage;
-    //var JSaddStockOne;
-    //var JSaddStockTwo;
-    //var JSaddStockThree;
+    var JSaddStockOne;
+    var JSaddStockTwo;
+    var JSaddStockThree;
     var JSaddElse;
     // var JSaddStatus;
 
     var addTrackBtn;
 
+    var choosenTime = '2017-06-02T13:00:31Z';
+    var choosenTrack;
+    var choosenImage;
+
+    var startOne = '2017-06-02T13:00:31Z';
+
+            var imageOne = {sys: {
+            id: '4KahBhVQTCykgOYsKS66Ws',
+            linkType: "Asset",
+            type:"Link"
+        }}
+
+
+    function timeOne (){
+        choosenTime = startOne
+        document.getElementById("JSaddStartOne").classList.add('selectedTime');
+        document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStartThree").classList.remove('selectedTime');
+        return choosenTime
+    }
+
+
+    function timeTwo (){
+        var choosenTime = '2017-06-02T14:00:31Z'
+        document.getElementById("JSaddStartTwo").classList.add('selectedTime');
+        document.getElementById("JSaddStartOne").classList.remove('selectedTime');
+        document.getElementById("JSaddStartThree").classList.remove('selectedTime');
+        return choosenTime
+    }
+
+    function timeThree (){
+        var choosenTime = '2017-06-02T15:00:31Z'
+        document.getElementById("JSaddStartThree").classList.add('selectedTime');
+        document.getElementById("JSaddStartOne").classList.remove('selectedTime');
+        document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
+        return choosenTime
+    }
+
+    function smallTrack (){
+        var choosenTrack = "Small"
+        document.getElementById("JSaddHourOne").classList.add('selectedTime');
+        document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddHourThree").classList.remove('selectedTime');
+        return choosenTrack
+    }
+
+    function mediumTrack (){
+        var choosenTrack = "Medium"
+        document.getElementById("JSaddHourTwo").classList.add('selectedTime');
+        document.getElementById("JSaddHourOne").classList.remove('selectedTime');
+        document.getElementById("JSaddHourThree").classList.remove('selectedTime');
+        return choosenTrack
+    }
+    function largeTrack (){
+        var choosenTrack = "Large"
+        document.getElementById("JSaddHourThree").classList.add('selectedTime');
+        document.getElementById("JSaddHourOne").classList.remove('selectedTime');
+        document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        return choosenTrack
+    }
+
+    function chooseImageOne (){
+        var choosenImage = imageOne
+        document.getElementById("JSaddStockOne").classList.add('selectedTime');
+        document.getElementById("JSaddHourOne").classList.remove('selectedTime');
+        document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        return choosenImage
+    }
 
 
     var init = function (){
 
-        //testTestText = document.getElementById("testTestText");
-        //pandaText = document.getElementById("pandaText");
-
 
         JSaddTitle = document.getElementById("JSaddTitle");
+        JSaddHosts = document.getElementById("JSaddHosts");
         JSaddPrereq = document.getElementById ("JSaddPrereq");
         JSaddStartOne = document.getElementById("JSaddStartOne");
-        // JSaddStartTwo = document.getElementById("JSaddStartTwo");
-        //JSaddStartthree = document.getElementById("JSaddStartthree");
+        JSaddStartTwo = document.getElementById("JSaddStartTwo");
+        JSaddStartThree = document.getElementById("JSaddStartThree");
         JSaddHourOne = document.getElementById("JSaddHourOne");
-        //JSaddHourTwo= document.getElementById("JSaddHourTwo");
-        //JSaddHourthree = document.getElementById("JSaddHourthree");
+        JSaddHourTwo= document.getElementById("JSaddHourTwo");
+        JSaddHourThree = document.getElementById("JSaddHourThree");
         JSaddNrOfPart = document.getElementById("JSaddNrOfPart");
         JSaddExpect = document.getElementById("JSaddExpect");
         JSaddJoin = document.getElementById("JSaddJoin");
         JSaddImage = document.getElementById("JSaddImage");
-        //JSaddStockOne = document.getElementById("JSaddStockOne");
-        //JSaddStockTwo = document.getElementById("JSaddStockTwo");
-        //JSaddStockThree = document.getElementById("JSaddStockThree");
+        JSaddStockOne = document.getElementById("JSaddStockOne");
+        JSaddStockTwo = document.getElementById("JSaddStockTwo");
+        JSaddStockThree = document.getElementById("JSaddStockThree");
         JSaddElse = document.getElementById("JSaddElse");
         //JSaddStatus = document.getElementById("JSaddStatus");
         addTrackBtn = document.getElementById("addTrackBtn");
 
-
+        JSaddStartOne.onclick = timeOne;
+        JSaddStartTwo.onclick = timeTwo;
+        JSaddStartThree.onclick = timeThree;
+        JSaddHourOne.onclick = smallTrack;
+        JSaddHourTwo.onclick = mediumTrack;
+        JSaddHourThree.onclick = largeTrack;
+        JSaddStockOne.onclick = chooseImageOne;
+        //JSaddStockTwo;
+        //JSaddStockThree;
         addTrackBtn.onclick = createNewEvent;
-        renderImage();
+
+
 
     }(); /*--end init--*/
 
-    client.getSpace('59mi8sr8zemv')
-        .then((space) => space.getAsset('254oDdBfDs63PccEG5XRLU'))
-        .then((asset) => console.log(asset))
-        .catch(console.error)
-    
-    function renderImage(asset) {
-        if (stockPhotos && stockPhotos.fields.file.url) {
-            return 
-                '<div id="JSaddStockOne"><img src="' + stockPhotos.fields.file.url + '" width="150" height="150" /></div>'
-            console.log("if bilde")
-        } else {
-            
-            return console.log("bajs")
-        }
-    } 
-
 
     //the function that creates a new event, and post it to contentful
-    function createNewEvent (){
-        /*
-        var pandaNewText = pandaText.value;
-        var testTestNewText = testTestText.value;
-            */
-
-
+    function createNewEvent (choosenTime, choosenTrack, choosenImage){
+        alert("Your track has been added");
         var JSaddNewTitle = JSaddTitle.value;
-        var JSaddNewHosts = JSaddHosts;
+        var JSaddNewHosts = JSaddHosts.value;
         var JSaddNewPrereq = JSaddPrereq.value;
-        //use switcha
         //var JSaddNewStartOne = JSaddStartOne.value;
         //var JSaddNewStartTwo = JSaddStartTwo.value;
         //var JSaddNewStartthree = JSaddStartthree.value;
@@ -12732,7 +12780,7 @@ function addTrack (){
         var JSaddNewNrOfPart = JSaddNrOfPart.value;
         var JSaddNewExpect = JSaddExpect.value;
         var JSaddNewJoin = JSaddJoin.value;
-        var JSaddNewImage = JSaddImage.value;
+        // var JSaddNewImage = JSaddImage.value;
         //  var JSaddNewStockOne = JSaddStockOne.value;
         //var JSaddNewStockTwo = JSaddStockTwo.value;
         //var JSaddNewStockThree = JSaddStockThree.value;
@@ -12740,110 +12788,153 @@ function addTrack (){
         var JSaddStatus
 
 
-        // This API call will request a space with the specified ID
+        var imageTwo = {sys: {
+            id: '2dmGUtiw7uwugWQcsiGcUk',
+            linkType: "Asset",
+            type:"Link"
+        }}
+        var imageThree = {sys: {
+            id: '5u6CWGgkmcwiIUEIsiQMGE',
+            linkType: "Asset",
+            type:"Link"
+        }}
+
+        var choosenTime = "2017-06-02T13:00:31Z"
+
+        /*
+            function setTime (entries){
+                var timesInday = items.time;
+                for(var i = 0; i < takenTime.length; i++)
+
+
+                    if(startTime == "13:00" && event.size == "Large"){
+                        return
+
+                        '<div class="eventInfoList">' +
+                            renderEventInfoList(event) +
+                            '</div>' +
+                            '</div>';
+                        /*}else if(startTime == "13:00" && event.size == "Medium"){
+
+    }else if(startTime == "13:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Medium"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "14:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }else if(startTime == "15:00" && event.size == "Small"){
+        return '<div class="listEvent">' +
+            '<div class="eventImage">' +
+            renderImage(event.image) +
+            '</div>' +
+
+            '<div class="eventInfo">' +
+            renderEventInfoList(event) +
+            '</div>' +
+            '</div>';
+    }*/
+
+        var newTrack = {
+            fields: {
+                title: {
+                    'en-US': JSaddNewTitle
+                },
+                host: {
+                    'en-US': JSaddNewHosts
+                },
+                prerequisites: {
+                    'en-US': JSaddNewPrereq
+
+                },
+                time: {
+                    'en-US': choosenTime
+                },
+                size: {
+                    'en-US': "Small"
+                },
+
+                numberOfParticipants: {
+                    'en-US': JSaddNewNrOfPart
+                },
+                whatToExpect: {
+                    'en-US': JSaddNewExpect
+
+                },
+                whoShouldJoin: {
+                    'en-US': JSaddNewJoin
+
+                },
+                image: {
+                    'en-US': imageTwo
+                },
+                anythingElse: {
+                    'en-US': JSaddNewElse
+
+                }
+            }//end field
+        }
+
+
+        //var newImage = image.fields.file.url
         client.getSpace('59mi8sr8zemv')
             .then((space) => {
-            // Now that we have a space, we can get entries from that space
-            space.getEntries()
-                .then((entries) => {
-                console.log(entries.items)
+            space.createEntry('events', newTrack)
+                .then( event => {
+
+                var eventID = event.sys.id
+
+                //This function is finding the correct contenttype in contentful and add new data to that space
+                space.getEntry('169oorh3aSIc0saG2GW8c4')
+                    .then((entry) => {
+
+                    var newId = {sys: {
+                        id: eventID,
+                        linkType: "Entry",
+                        type:"Link"
+                    }}
+
+
+                    entry.fields.link["en-US"].push(newId)
+
+                    return entry.update()
+
+                })
+
+               space.getEntry(eventID)
+                   .then ((entry) => entry.publish())
+
             })
-
-
-
-            //This function is finding the correct contenttype in contentful and add new data to that space
-
-
-            space.createEntry('events', {
-                fields: {
-                    title: {
-                        'en-US': JSaddNewTitle
-                    },
-                    host: {
-                        'en-US': JSaddNewHosts
-                    },
-                    prerequisites: {
-                        'en-US': JSaddNewPrereq
-
-                    },
-                    time: {
-                        'en-US': "2017-05-05T13:00"
-                    },
-                    /*  JSaddStartOne: {
-                        'en-US': JSaddNewStartOne
-
-                    },
-                    JSaddStartTwo: {
-                        'en-US': JSaddNewStartTwo
-
-                    },
-                    JSaddStartthree: {
-                        'en-US': JSaddNewStartthree
-
-                  }, */ 
-                    size: {
-                        'en-US': "small"
-                    },
-                    /*JSaddHourOne: {
-                        'en-US': JSaddNewHourOne
-
-                    },
-                    JSaddHourTwo: {
-                        'en-US': JSaddNewHourTwo
-
-                    },
-                    JSaddHourthree: {
-                        'en-US': JSaddNewHourthree
-
-                 }, */  
-                    numberOfParticipants: {
-                        'en-US': JSaddNewNrOfPart
-                    },
-                    whatToExpect: {
-                        'en-US': JSaddNewExpect
-
-                    },
-                    whoShouldJoin: {
-                        'en-US': JSaddNewJoin
-
-                    },
-                    image: {
-                        'en-US': JSaddNewJoin
-
-                    },/*
-                    JSaddStockOne: {
-                        'en-US': "5ro2kn2gMwQIu4csowSYKo"
-
-                    },
-                    JSaddStockTwo: {
-                        'en-US': JSaddNewStockTwo
-
-                    },
-                    JSaddStockThree: {
-                        'en-US': JSaddNewStockThree
-
-                    }, */
-                    anythingElse: {
-                        'en-US': JSaddNewElse
-
-                    }
-                    //   JSaddStatus: {
-                    //     'en-US': "true"
-
-                    //}
-
-
-                }//end input array
-            })//end create entry
-            //.then(e => console.log(e))
 
 
         })//end getspace 
 
     }
 
-}
-
+}//end add track
 exports.addTrack = addTrack
 
 },{"contentful-management":9}],334:[function(require,module,exports){

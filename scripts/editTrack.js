@@ -1,3 +1,4 @@
+
 function editTrack (){
 
     // contentful-management.js v3.x.x
@@ -71,19 +72,9 @@ function editTrack (){
     // var JSeditStatus;
 
 
-
-    //HTML-objeckter
-
-    var testTestEdit;
-    var pandaEdit;
-    var editTrackBtn;
-    var pandaHej;
-
     var init = function (){
 
-        //     testTestEdit = document.getElementById('testTestEdit');
-        //    pandaEdit = document.getElementById("pandaEdit");
-        //    editTrackBtn = document.getElementById("editTrackBtn");
+
 
         JSeditTitle = document.getElementById("JSeditTitle");
         JSeditHosts = document.getElementById("JSeditHosts");
@@ -105,10 +96,7 @@ function editTrack (){
         // JSeditTitle = document.getElementById("JSeditTitle");
 
 
-
         editEvent();
-
-
 
 
     }(); /*--end init--*/
@@ -124,7 +112,7 @@ function editTrack (){
 
 
             //  Now that we have a space, we can get entries from that space
-            space.getEntry('6wnHeGGmisUcuQaUOqGKim')
+            space.getEntry('6p5G9RnGdUOmQe8QWs4mYM') //Defining-tone-of-vice
             //   space.getEntries('datesForShowDo')
             //     .then((entries) => {
             //console.log(entry.items[4])
@@ -137,7 +125,7 @@ function editTrack (){
 
                 .then((entry) => {
 
-                console.log(entry.fields.title)
+                console.log(entry.fields.time)
                 
                 //    function cutString(JShost){
                 //    var left = '{"en-US":"'
@@ -145,14 +133,13 @@ function editTrack (){
                     //  theString.substring(2);
             //    }
 
-                var JShost = entry.fields.host
 
             //    function newValue (){
 
                     //document.getElementById('pandaEdit').setAttribute('value', JSON.stringify(entry.fields.title));
-                    document.getElementById('JSeditTitle').setAttribute('value', JSON.stringify(entry.fields.title).substr(10));
+                    document.getElementById('JSeditTitle').setAttribute('value', toLocaleString(entry.fields.title).substr(10));
 
-                    document.getElementById('JSeditHosts').setAttribute('value', JSON.stringify(JShost).substr(10));
+                    document.getElementById('JSeditHosts').setAttribute('value', JSON.stringify(entry.fields.host).substr(10));
                     document.getElementById('JSeditPrereq').setAttribute('value', JSON.stringify(entry.fields.prerequisites).substr(10));
                     //  document.getElementById('JSeditStartOne').setAttribute('value', JSON.stringify(entry.fields.time))
                     //document.getElementById('JSeditStartTwo').setAttribute('value', JSON.stringify(entry.fields.time))
@@ -166,55 +153,20 @@ function editTrack (){
                     document.getElementById('JSeditElse').setAttribute('value', JSON.stringify(entry.fields.anythingElse).substr(10));
                     //document.getElementById('JSeditStatus').setAttribute('value', JSON.stringify(entry.fields.JSeditStatus));
 
-            //    }
 
-
-                
-                //   var editTime = entry.items.time
-
-                // function time (){
-                //    switch (new time().(editTime)) {
-                /*
-                        case 0:
-                            day = "Sunday";
-                            break;
-                        case 1:
-                            day = "Monday";
-                            break;
-                        case 2:
-                            day = "Tuesday";
-                            break;
-                        case 3:
-                            day = "Wednesday";
-                            break;
-                        case 4:
-                            day = "Thursday";
-                            break;
-                        case 5:
-                            day = "Friday";
-                            break;
-                        case 6:
-                            day = "Saturday";
-                                               }
-                }
-
-*/
 
                 })//end entry
-
-            //    function setTime (){
-
-            //    }
-
 
 
 
         })//end getSpace
 
     }//end EditEvent
-
-
     //getLink();
+
 }//end EditTrack
+
+
+
 
 exports.editTrack = editTrack

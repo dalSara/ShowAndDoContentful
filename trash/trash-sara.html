@@ -1,3 +1,51 @@
+
+var client = contentful.createClient({
+    // This is the space ID. A space is like a project folder in Contentful terms
+    space: '59mi8sr8zemv',
+    // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+    accessToken: '3f3d80d1c57594b635592e67231ad92c8bdebffca1a647ae5bca719251fbf059',
+    // resolveLinks: true
+})
+var EVENT_CONTENT_TYPE_ID = 'events';
+
+
+client.getEntries({
+    //include: 5,
+    content_type: EVENT_CONTENT_TYPE_ID,
+
+})
+    .then(function (event) {
+    console.log('Entry Client:', event.image);
+    return image;
+})
+
+function renderImage(image){
+    if (image && image.fields.file) {
+        return
+        '<div id="JSaddStockOne">' + '<img src="' + image.fields.file.url + '"/>'+'</div>'
+        console.log("if bilde")
+    } else {
+
+        return console.log("bajs")
+    }
+
+}
+
+
+/*
+function renderImage(image){
+    if(image && image.fields.file){
+        return '<img src="' + image.fields.file.url + '"/>';
+    } else {
+        return '';
+    }
+}
+
+*/
+
+
+
+
 // om link/ref i cont.  https://npm.taobao.org/package/contentful 
 
 

@@ -49,18 +49,38 @@ panda: <input id="pandaEdit" type="text" value=""><br><br>
 
                 Pick the date for your track
                 <!-------------- NAVIGATION -------------->
-                <div id="navigation">
-                    <div id="navWeek">
-                        <div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
-                        <div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateOne">05.05.17</div>
-                        <div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateTwo">15.00.17</div>
-                        <div tabindex="0" role="button"  class="selectDate selectedTime"  id="JSeditThisDate">05.05.17</div>
-                        <div tabindex="0" role="button" class="selectDate" id="JSeditNextDateOne">05.05.17</div>
-                        <div tabindex="0" role="button" class="selectDate" id="JSeditNextDateTwo">15.00.17</div>
-                        <div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
 
+            <!--         <div id="navigation">
+                    <div id="navWeek">
+                        <div><p id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous<br>
+                            <strong id="prevDate"></strong>
+                            </p>
+                        </div>
+                        <div style="text-align: center"><a id="thisWeekBtn"><br>
+                            <h2 id="thisDate"></h2><br>
+                            </a>
+                        </div>
+                        <div><p id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i><br>
+                            <strong id="nextDate"></strong>
+                            </p>
+                        </div>
                     </div>
                 </div>
+
+
+
+<div id="navigation">
+<div id="navWeek">
+<div><a id="prevBtn"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></div>
+<div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateOne">05.05.17</div>
+<div tabindex="0" role="button" class="selectDate" id="JSeditPrevDateTwo">15.00.17</div>
+<div tabindex="0" role="button"  class="selectDate selectedTime"  id="JSeditThisDate">05.05.17</div>
+<div tabindex="0" role="button" class="selectDate" id="JSeditNextDateOne">05.05.17</div>
+<div tabindex="0" role="button" class="selectDate" id="JSeditNextDateTwo">15.00.17</div>
+<div><a id="nextBtn">Next  <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+
+</div>
+</div> -->
                 <!-------------- END NAVIGATION -------------->
                 Title <br>
                 <input id="JSeditTitle" type="text" value=""><br><br> Host(s) (who’s going to hold the track? Fill in your name and co-hosts names)<br>
@@ -81,11 +101,12 @@ panda: <input id="pandaEdit" type="text" value=""><br><br>
                 <input type="text" value="A room will be assigned to you by the organizer." disabled><br><br>
                 What to expect (The agenda, what will you teach to other etc)<br>
                 <input id="JSeditExpect" type="text" value=""><br><br> Who should join? (Who is this track best suited for?)<br>
-                <input id="JSeditJoin" type="text" value=""><br><br> Do you have an image to add attention to your track? (you can edit this later)<br>
-                <input id="JSeditImage" type="text" value=""><br><br> or you can choose a stock photo (click to select)
-                <div id="JSeditStockOne"></div>
-                <div id="JSeditStockTwo"></div>
-                <div id="JSeditStockThree"></div>
+                <input id="JSeditJoin" type="text" value=""><br><br>
+                <input id="JSeditImage" type="text" value=""><br><br>you can choose a stock photo (click to select)<br>
+                <div id="JSaddStockOne" class="stockImgAddTrack"><img src="//images.contentful.com/59mi8sr8zemv/4KahBhVQTCykgOYsKS66Ws/a8f2880ff4971097c530667f14defffd/Oslo-0068.jpg"></div>
+                <div id="JSaddStockTwo" class="stockImgAddTrack"><img src="//images.contentful.com/59mi8sr8zemv/2dmGUtiw7uwugWQcsiGcUk/00ef2bcad9d4a74e17f1e52c46801ffb/Oslo-0036.jpg?">
+                <div id="JSaddStockThree" class="stockImgAddTrack"><img src="https://images.contentful.com/59mi8sr8zemv/5u6CWGgkmcwiIUEIsiQMGE/8eee432604d7e9695507b9f9907175d4/Chicago-0021__1_.jpg"></div><br>
+
 
                 Anything else to add? (links, videos for preparation, other tracks, co-host, equipment etc)<br>
                 <input id="JSeditElse" type="text" value="">
@@ -96,9 +117,14 @@ panda: <input id="pandaEdit" type="text" value=""><br><br>
             </div>
 
         </main>
+        <script src="node_modules/contentful/browser-dist/contentful.min.js"></script>
+        <!--  <script src="scripts/date.js"></script>-->
+        <script src="scripts/bundleE.js"></script>
+        <script>
+            //  initDates(function(){})
+        </script>
 
 
-        <script src="scripts/bundle.js"></script>
 
     </body>
 </html>
