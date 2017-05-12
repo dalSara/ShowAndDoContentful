@@ -15,6 +15,9 @@
 
         <title>Show & Do</title>
         <style>
+            #thisWeekBtn{
+                text-decoration: none;
+            }
 
             /*-------------- CALENDAR --------------*/
             .eventTitleCal, .startTimeCal, .locationCal{
@@ -185,6 +188,12 @@
             .locationWrapperList, .goingWrapperList, .titleEditWrapper{
                 clear: left;
             }
+
+
+
+
+
+
             /*----GOING-BTN----*/
             .goingBtnWrapper{
                 clear: left;
@@ -206,7 +215,7 @@
             }
             .goingBtn:after {
                 width: 250px;
-                content: "Going?";
+                /*content: "Going?";*/
             }
             .going-clicked {
                 background-color: #06f;
@@ -272,7 +281,7 @@
                         <strong id="prevDate"></strong>
                         </a>
                     </div>
-                    <div style="text-align: center"><a id="thisWeekBtn"><br>
+                    <div style="text-align: center"><a id="thisWeekBtn" href="index.html"><br>
                         <h2 id="thisDate"></h2><br>
                         </a>
                     </div>

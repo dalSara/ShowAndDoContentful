@@ -31,7 +31,7 @@ function addTrack (){
     var JSaddElse;
     // var JSaddStatus;
 
-    var JSaddTrackBtn;
+    var addTrackBtn;
 
     var choosenTime = '2017-06-02T13:00:31Z';
     var choosenTrack;
@@ -44,6 +44,18 @@ function addTrack (){
             linkType: "Asset",
             type:"Link"
         }}
+
+        var imageTwo = {sys: {
+            id: '2dmGUtiw7uwugWQcsiGcUk',
+            linkType: "Asset",
+            type:"Link"
+        }}
+        var imageThree = {sys: {
+            id: '5u6CWGgkmcwiIUEIsiQMGE',
+            linkType: "Asset",
+            type:"Link"
+        }}
+
 
 
     function timeOne (){
@@ -97,11 +109,26 @@ function addTrack (){
     function chooseImageOne (){
         var choosenImage = imageOne
         document.getElementById("JSaddStockOne").classList.add('selectedTime');
-        document.getElementById("JSaddHourOne").classList.remove('selectedTime');
-        document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockThree").classList.remove('selectedTime');
         return choosenImage
     }
 
+    function chooseImageTwo (){
+        var choosenImage = imageTwo
+        document.getElementById("JSaddStockTwo").classList.add('selectedTime');
+        document.getElementById("JSaddStockOne").classList.remove('selectedTime');
+        document.getElementById("JSaddStockThree").classList.remove('selectedTime');
+        return choosenImage
+    }
+
+    function chooseImageThree (){
+        var choosenImage = imageThree
+        document.getElementById("JSaddStockThree").classList.add('selectedTime');
+        document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
+        document.getElementById("JSaddStockOne").classList.remove('selectedTime');
+        return choosenImage
+    }
 
     var init = function (){
 
@@ -124,7 +151,7 @@ function addTrack (){
         JSaddStockThree = document.getElementById("JSaddStockThree");
         JSaddElse = document.getElementById("JSaddElse");
         //JSaddStatus = document.getElementById("JSaddStatus");
-        JSaddTrackBtn = document.getElementById("JSaddTrackBtn");
+        addTrackBtn = document.getElementById("addTrackBtn");
 
         JSaddStartOne.onclick = timeOne;
         JSaddStartTwo.onclick = timeTwo;
@@ -133,9 +160,9 @@ function addTrack (){
         JSaddHourTwo.onclick = mediumTrack;
         JSaddHourThree.onclick = largeTrack;
         JSaddStockOne.onclick = chooseImageOne;
-        //JSaddStockTwo;
-        //JSaddStockThree;
-        JSaddTrackBtn.onclick = createNewEvent;
+        JSaddStockTwo.onclick = chooseImageTwo;
+        JSaddStockThree.onclick = chooseImageThree;
+        addTrackBtn.onclick = createNewEvent;
 
 
 
@@ -143,7 +170,7 @@ function addTrack (){
 
 
     //the function that creates a new event, and post it to contentful
-    function createNewEvent (choosenTime, choosenTrack, choosenImage){
+    function createNewEvent (){
         alert("Your track has been added");
         var JSaddNewTitle = JSaddTitle.value;
         var JSaddNewHosts = JSaddHosts.value;
@@ -164,17 +191,6 @@ function addTrack (){
         var JSaddNewElse = JSaddElse.value;
         var JSaddStatus
 
-
-        var imageTwo = {sys: {
-            id: '2dmGUtiw7uwugWQcsiGcUk',
-            linkType: "Asset",
-            type:"Link"
-        }}
-        var imageThree = {sys: {
-            id: '5u6CWGgkmcwiIUEIsiQMGE',
-            linkType: "Asset",
-            type:"Link"
-        }}
 
         var choosenTime = "2017-06-02T13:00:31Z";
         var choosenTrack = "Small";
