@@ -77,6 +77,7 @@ client.getEntries({
 
     getEventArray(thisShowDoEvents);
     updateDateLabels();
+    addId(); //Add id to events (in calendar and list)
 
     /*Display events*/
     nextBtn.onclick = nextShowDo;
@@ -85,11 +86,9 @@ client.getEntries({
 /*-------------- END GET ENTRIES --------------*/
 
 
-
-
 /*-------------- GET INDEX OF THE DATE --------------*/
 function getDateIndex(index){
-    var dateIndex = allDates[index+1]; //[index+1]
+    var dateIndex = allDates[index + 1]; //[index+1]
     var date = dateIndex.fields.date;
 
     return date;
@@ -124,16 +123,15 @@ function nextShowDo(){
 
         console.log('NEXT DATE', nextShowDoDate);
         console.log('NEXT DATES EVENTS', nextShowDoEvents);
-        //var eventArray = sortEvents(thisShowDoEvents);
 
         getEventArray(nextShowDoEvents); //DISPLAY NEXT WEEK
-
-
+        addId();//Add id to events (in calendar and list)
     }else{
         alert('No more Show & Dos are added.'); //NEEDS A BETTER ERROR MESSAGE
         return globalTargetDateIndex--; //To stop adding index
     }
 }
+
 function previousShowDo(){
     if(globalTargetDateIndex > 0){
         var showDoIndex = globalTargetDateIndex--;
@@ -144,17 +142,14 @@ function previousShowDo(){
 
         console.log('NEXT DATE', previousShowDoDate);
         console.log('NEXT DATES EVENTS', previousShowDoEvents);
-        //var eventArray = sortEvents(thisShowDoEvents);
 
         getEventArray(previousShowDoEvents); //DISPLAY NEXT WEEK
-
+        addId();//Add id to events (in calendar and list)
     }else{
         alert('No more Show & Dos to display from the past.');
         return globalTargetDateIndex--; //To stop adding index
     }
 }
-
-//var thisShowDoEvents = dates.fields.link; //EVENTS TO DISPLAY
 
 function sortEvents(thisShowDoEvents) {
     var eventArray = [];
@@ -208,42 +203,42 @@ function renderSingleEventCal(event){
     }
 
     if(startTime == "13:00" && event.size == "Large"){
-        return '<div class="cal largeTrackCal">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal largeTrackCal">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Medium"){
-        return '<div class="cal mediumTrackCal-13">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal mediumTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Small"){
-        return '<div class="cal smallTrackCal-13">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Medium"){
-        return '<div class="cal mediumTrackCal-14">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal mediumTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Small"){
-        return '<div class="cal smallTrackCal-14">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "15:00" && event.size == "Small"){
-        return '<div class="cal smallTrackCal-15">' +
+        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-15">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
@@ -288,7 +283,8 @@ function renderSingleEventList(event){
             var startTime = time.substring(time.length - 5);
         }
     }
-    return '<div class="listEvent">' +
+
+    return '<div class="eventList">' +
         '<div class="eventImage">' +
         renderImage(event.image) +
         '</div>' +
@@ -300,16 +296,39 @@ function renderSingleEventList(event){
 }
 /*-------------- END PUT ELEMENTS TOGETHER: LIST --------------*/
 
+function addId(){
+    var cal = document.getElementsByClassName("cal");
+    var eventList = document.getElementsByClassName("eventList");
+
+    for (i = 0, length = eventList.length; i < length; i++) {
+        cal[i].id= "eventID_" + (i + 1);
+        eventList[i].id= "eventID_" + (i + 1);
+    }
+}
+
+// Scroll to a certain element
+function scrollForMoreInfo(clicked_id){
+    //document.querySelectorAll('div[id^="eventID_"]');//.scrollIntoView({    //Get matching id...
+        //behavior: 'smooth'
+    //});
+    alert(clicked_id);
+}
 
 /*-------------- GOINGbtn --------------*/
 function goingBtn(){
     document.getElementById('going').className += ' going-clicked ';
     document.getElementById('going').innerHTML = "You're going!";
     //document.getElementById('goingInput').slideToggle(500);//.className.remove = 'hidden';
-    //document.getElementsByTagName('goingDropdown').classList.toggle('show');
+    document.getElementsById('goingDropdown').className.toggle('show');
+    /*var className = ' ' + going.className + ' ';
+
+    if ( ~className.indexOf(' active ') ) {
+        this.className = className.replace(' active ', ' ');
+    } else {
+        this.className += ' active';
+    }  */
 }
 /*-------------- END GOINGbtn --------------*/
-
 
 /*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
 function renderEventInfoList(event){
