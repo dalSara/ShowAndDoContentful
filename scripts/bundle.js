@@ -12815,7 +12815,7 @@ function addTrack (){
         var JSaddStatus
 
 
-        var choosenTime = "2017-06-02T13:00:31Z";
+        var choosenTime = "2017-06-02T13:00";
         var choosenTrack = "Small";
 
 

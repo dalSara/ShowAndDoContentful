@@ -28,7 +28,7 @@ dokumentasjonen på browserify
 https://github.com/substack/browserify-handbook
 https://github.com/substack/node-browserify#usage
 
-ikke i bruk før stunden (15 mars)
+Contentful managment module
 https://github.com/contentful/contentful-management.js
 
 ------------ kode standard
@@ -36,8 +36,8 @@ https://github.com/contentful/contentful-management.js
 
 //javascript-klasse og id skrives slik: 
 
-.js-klasse
-#js-id 
+.JS for klass
+#JS for id 
 
 //andre klasser og id-er skal skrives slik:
 
