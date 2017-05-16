@@ -617,10 +617,14 @@ button {
     color: inherit;
     font-size: .778rem; }
 
+#test {
+  width: 20px; }
+
 .buttonsAddTrack {
   display: table;
   table-layout: fixed;
-  width: 100%; }
+  width: 100%;
+  margin-top: 20px; }
 
 .buttonsAddTrack div {
   display: table-cell;

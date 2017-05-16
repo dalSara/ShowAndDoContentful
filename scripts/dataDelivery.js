@@ -79,6 +79,8 @@ client.getEntries({
     updateDateLabels();
     addId(); //Add id to events (in calendar and list)
 
+    //initSmoothScrolling();
+
     /*Display events*/
     nextBtn.onclick = nextShowDo;
     prevBtn.onclick = previousShowDo;
@@ -203,42 +205,42 @@ function renderSingleEventCal(event){
     }
 
     if(startTime == "13:00" && event.size == "Large"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal largeTrackCal">' +
+        return '<div onclick="scroll(0, 1000)" class="cal largeTrackCal">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Medium"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal mediumTrackCal-13">' +
+        return '<div onclick="scrollForMoreInfo()" class="cal mediumTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "13:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-13">' +
+        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Medium"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal mediumTrackCal-14">' +
+        return '<div onclick="scrollForMoreInfo()" class="cal mediumTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "14:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-14">' +
+        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
             '</div>';
     }else if(startTime == "15:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo(this.id)" class="cal smallTrackCal-15">' +
+        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-15">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
@@ -296,24 +298,6 @@ function renderSingleEventList(event){
 }
 /*-------------- END PUT ELEMENTS TOGETHER: LIST --------------*/
 
-function addId(){
-    var cal = document.getElementsByClassName("cal");
-    var eventList = document.getElementsByClassName("eventList");
-
-    for (i = 0, length = eventList.length; i < length; i++) {
-        cal[i].id= "eventID_" + (i + 1);
-        eventList[i].id= "eventID_" + (i + 1);
-    }
-}
-
-// Scroll to a certain element
-function scrollForMoreInfo(clicked_id){
-    //document.querySelectorAll('div[id^="eventID_"]');//.scrollIntoView({    //Get matching id...
-        //behavior: 'smooth'
-    //});
-    alert(clicked_id);
-}
-
 /*-------------- GOINGbtn --------------*/
 function goingBtn(){
     document.getElementById('going').className += ' going-clicked ';
@@ -329,6 +313,33 @@ function goingBtn(){
     }  */
 }
 /*-------------- END GOINGbtn --------------*/
+
+
+function addId(){
+    var cal = document.getElementsByClassName("cal");
+    var eventList = document.getElementsByClassName("eventList");
+
+    for (i = 0, length = eventList.length; i < length; i++) {
+        cal[i].id= "eventID_" + (i + 1);
+        eventList[i].id= "eventID_" + (i + 1);
+    }
+}
+
+// Scroll to a certain element
+//function scrollForMoreInfo(){
+    //document.querySelectorAll('div[id^="eventID_"]');//.scrollIntoView({    //Get matching id...
+        //behavior: 'smooth'
+    //});
+
+    /*window.scroll({
+        top: 2500,
+        left: 0,
+        behavior: 'smooth'
+    });*/
+
+    //alert(clicked_id);
+//}
+
 
 /*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
 function renderEventInfoList(event){
