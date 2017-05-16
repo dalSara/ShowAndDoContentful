@@ -5,7 +5,7 @@ function editTrack (){
     const contentful = require('contentful-management')
 
     const client = contentful.createClient({
-        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b',
+        accessToken: '',
         //  Space: '59mi8sr8zemv',
         resolveLinks: true
     })

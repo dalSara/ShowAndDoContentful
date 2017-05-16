@@ -5,12 +5,12 @@ function addTrack (){
     var contentful = require('contentful-management')
     var client = contentful.createClient({
         // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-        accessToken: 'b60f393ec836a43747cb5a238cdc49e379361c7d7a0a96012191fb3745e2532b'
+        accessToken: ''
 
     });
 
 
-    //Html-objekter (riktiga)
+    //Html-objekter
 
     var JSaddTitle;
     var JSaddHosts;
@@ -56,78 +56,62 @@ function addTrack (){
             type:"Link"
         }}
 
-
+//temporary code for the usertest
 
     function timeOne (){
-        choosenTime = startOne
         document.getElementById("JSaddStartOne").classList.add('selectedTime');
         document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStartThree").classList.remove('selectedTime');
-        return choosenTime
     }
 
 
     function timeTwo (){
-        var choosenTime = '2017-06-02T14:00:31Z'
         document.getElementById("JSaddStartTwo").classList.add('selectedTime');
         document.getElementById("JSaddStartOne").classList.remove('selectedTime');
         document.getElementById("JSaddStartThree").classList.remove('selectedTime');
-        return choosenTime
     }
 
     function timeThree (){
-        var choosenTime = '2017-06-02T15:00:31Z'
         document.getElementById("JSaddStartThree").classList.add('selectedTime');
         document.getElementById("JSaddStartOne").classList.remove('selectedTime');
         document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
-        return choosenTime
+
     }
 
     function smallTrack (){
-        var choosenTrack = "Small"
         document.getElementById("JSaddHourOne").classList.add('selectedTime');
         document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
         document.getElementById("JSaddHourThree").classList.remove('selectedTime');
-        return choosenTrack
     }
 
     function mediumTrack (){
-        var choosenTrack = "Medium"
         document.getElementById("JSaddHourTwo").classList.add('selectedTime');
         document.getElementById("JSaddHourOne").classList.remove('selectedTime');
         document.getElementById("JSaddHourThree").classList.remove('selectedTime');
-        return choosenTrack
     }
     function largeTrack (){
-        var choosenTrack = "Large"
         document.getElementById("JSaddHourThree").classList.add('selectedTime');
         document.getElementById("JSaddHourOne").classList.remove('selectedTime');
         document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
-        return choosenTrack
     }
 
     function chooseImageOne (){
-        var choosenImage = imageOne
         document.getElementById("JSaddStockOne").classList.add('selectedTime');
         document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStockThree").classList.remove('selectedTime');
-        return choosenImage
     }
 
     function chooseImageTwo (){
-        var choosenImage = imageTwo
         document.getElementById("JSaddStockTwo").classList.add('selectedTime');
         document.getElementById("JSaddStockOne").classList.remove('selectedTime');
         document.getElementById("JSaddStockThree").classList.remove('selectedTime');
-        return choosenImage
     }
 
     function chooseImageThree (){
-        var choosenImage = imageThree
         document.getElementById("JSaddStockThree").classList.add('selectedTime');
         document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStockOne").classList.remove('selectedTime');
-        return choosenImage
+
     }
 
     var init = function (){
@@ -218,6 +202,9 @@ function addTrack (){
                 numberOfParticipants: {
                     'en-US': JSaddNewNrOfPart
                 },
+                location: {
+                    'en-US': "TBA"
+                },
                 whatToExpect: {
                     'en-US': JSaddNewExpect
 
@@ -237,7 +224,7 @@ function addTrack (){
         }
 
 
-        //var newImage = image.fields.file.url
+
         client.getSpace('59mi8sr8zemv')
             .then((space) => {
             space.createEntry('events', newTrack)
@@ -245,23 +232,25 @@ function addTrack (){
 
                 var eventID = event.sys.id
 
-                //This function is finding the correct contenttype in contentful and add new data to that space
+                //This function is gets the entry of 2 june
                 space.getEntry('169oorh3aSIc0saG2GW8c4')
                     .then((entry) => {
 
+                    //Gets the ID from the newly created event
                     var newId = {sys: {
                         id: eventID,
                         linkType: "Entry",
                         type:"Link"
                     }}
 
-
+                    //Creates a reference field in dates for show & do
                     entry.fields.link["en-US"].push(newId)
 
+                    //update the event
                     return entry.update()
 
                 })
-
+                //publish event
                space.getEntry(eventID)
                    .then ((entry) => entry.publish())
 
