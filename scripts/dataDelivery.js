@@ -4,6 +4,8 @@
 //NB: Klasser er foreløpig ikke i bruk!
 //js-className
 
+
+
 /*-------------- CLIENT --------------*/
 var client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
@@ -84,6 +86,64 @@ client.getEntries({
     /*Display events*/
     nextBtn.onclick = nextShowDo;
     prevBtn.onclick = previousShowDo;
+
+    /*-------------- SMOOTH SCROLL TO MORE INFO --------------*/
+    $(function(){
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('header').outerHeight();
+
+        $(window).scroll(function(event) {
+            didScroll = true;
+        });
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+
+            // Make sure they scroll more than delta
+            if (Math.abs(lastScrollTop - st) <= delta)
+                return;
+
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight) {
+                // Scroll Down
+                $('header').removeClass('nav-down').addClass('nav-up');
+            } else {
+                // Scroll Up
+                if (st + $(window).height() < $(document).height()) {
+                    $('header').removeClass('nav-up').addClass('nav-down');
+                }
+            }
+
+            lastScrollTop = st;
+        }
+
+        $(".scroll").click(function(event) {
+            event.preventDefault();
+            //calculate destination place
+            var dest = 0;
+            if ($(this.hash).offset().top > $(document).height() - $(window).height()) {
+                dest = $(document).height() - $(window).height();
+            } else {
+                dest = $(this.hash).offset().top;
+            }
+            //go to destination
+            $('html,body').animate({
+                scrollTop: dest
+            }, 800, 'swing');
+        });
+    });
+    /*-------------- END SMOOTH SCROLL TO MORE INFO --------------*/
+
 })
 /*-------------- END GET ENTRIES --------------*/
 
@@ -205,47 +265,47 @@ function renderSingleEventCal(event){
     }
 
     if(startTime == "13:00" && event.size == "Large"){
-        return '<div onclick="scroll(0, 1000)" class="cal largeTrackCal">' +
+        return '<a class="scroll cal largeTrackCal">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }else if(startTime == "13:00" && event.size == "Medium"){
-        return '<div onclick="scrollForMoreInfo()" class="cal mediumTrackCal-13">' +
+        return '<a class="scroll cal mediumTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }else if(startTime == "13:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-13">' +
+        return '<a class="scroll cal smallTrackCal-13">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }else if(startTime == "14:00" && event.size == "Medium"){
-        return '<div onclick="scrollForMoreInfo()" class="cal mediumTrackCal-14">' +
+        return '<a class="scroll cal mediumTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }else if(startTime == "14:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-14">' +
+        return '<a class="scroll cal smallTrackCal-14">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }else if(startTime == "15:00" && event.size == "Small"){
-        return '<div onclick="scrollForMoreInfo()" class="cal smallTrackCal-15">' +
+        return '<a class="scroll cal smallTrackCal-15">' +
 
             '<div class="eventInfoCal">' +
             renderEventInfoCal(event) +
             '</div>' +
-            '</div>';
+            '</a>';
     }
 }
 /*-------------- END PUT ELEMENTS TOGETHER: CALENDAR --------------*/
@@ -255,15 +315,9 @@ function renderEventInfoCal(event){
     var date = event.time;
     var startTime = date.substring(date.length - 5);
 
-    if(event.location == null){
-        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
-            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
-            '<p class="locationCal">TBA</p></div>';
-    }else{
-        return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
-            '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
-            '<p class="locationCal">' + event.location + '</p></div>';
-    }
+    return  '<h4 class="eventTitleCal">' + event.title + '</h4>' +
+        '<div class="locationWrapperCal"><i class="icon-room-filled-cal"></i>' +
+        '<p class="locationCal">' + event.location + '</p></div>';
 }
 /*-------------- END GET DATA FROM ONE EVENT: CALENDAR --------------*/
 
@@ -303,7 +357,7 @@ function goingBtn(){
     document.getElementById('going').className += ' going-clicked ';
     document.getElementById('going').innerHTML = "You're going!";
     //document.getElementById('goingInput').slideToggle(500);//.className.remove = 'hidden';
-    document.getElementsById('goingDropdown').className.toggle('show');
+    //document.getElementsById('goingDropdown').className.toggle('show');
     /*var className = ' ' + going.className + ' ';
 
     if ( ~className.indexOf(' active ') ) {
@@ -319,27 +373,11 @@ function addId(){
     var cal = document.getElementsByClassName("cal");
     var eventList = document.getElementsByClassName("eventList");
 
-    for (i = 0, length = eventList.length; i < length; i++) {
-        cal[i].id= "eventID_" + (i + 1);
-        eventList[i].id= "eventID_" + (i + 1);
+    for (i = 0, length = eventList.length; i < length; i++) { //eventList or cal.lenght
+        cal[i].href= "#eventID_" + (i + 1); //Add link to calendar
+        eventList[i].id= "eventID_" + (i + 1); //Add id to list
     }
 }
-
-// Scroll to a certain element
-//function scrollForMoreInfo(){
-    //document.querySelectorAll('div[id^="eventID_"]');//.scrollIntoView({    //Get matching id...
-        //behavior: 'smooth'
-    //});
-
-    /*window.scroll({
-        top: 2500,
-        left: 0,
-        behavior: 'smooth'
-    });*/
-
-    //alert(clicked_id);
-//}
-
 
 /*-------------- GET DATA FROM ONE EVENT: LIST --------------*/
 function renderEventInfoList(event){
@@ -349,6 +387,8 @@ function renderEventInfoList(event){
     /*if(event.this == 'undefined'){
         return '';
     }*/
+
+    //var count = event.peopleGoing.split(' ').length;
 
     return  '<div class="leftListInfo">' +
         '<div class="titleEditWrapper">' +
@@ -362,7 +402,7 @@ function renderEventInfoList(event){
 
         '<div class="rightListInfo">' +
         '<div class="timeWrapperList">' +
-        '<i class="icon-clock"></i><p class="startTimeList">' + startTime + ' <i>- endtime</i></p>' +
+        '<i class="icon-clock"></i><p class="startTimeList">' + startTime + ' - 15:45</p>' +
         '</div>' +
         '<div class="locationWrapperList">' +
         '<i class="icon-room"></i><p class="locationList">' + event.location + '</p>' +
@@ -379,7 +419,7 @@ function renderEventInfoList(event){
         '</div>' +
 
         '<div class="goingWrapperList">' +
-        /*'<h4>PEOPLE GOING</h4>*/'<p>' + event.peopleGoing + '</p>' +
+        /*'<h4>' + count + ' ?PEOPLE GOING</h4>*/'<p>' + event.peopleGoing + '</p>' +
         '</div>' +
         '</div>';
 
