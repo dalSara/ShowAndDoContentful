@@ -10,37 +10,6 @@ function editTrack (){
         resolveLinks: true
     })
 
-    /*
-
-    //  function getLink (client){
-    console.log("hej")
-    // getting a specific Post
-    client.getSpace('59mi8sr8zemv')
-       .then((space) => space.getEntries({include: 5, 'content_type': 'datesForShowDo'})).then((entries) => { 
-        //.then((space) => space.getEntries({include: 5,'sys.id': '4MT7iMgIcwOEI2gcsyWmcE'})).then((entries) => { //5mai
-       // .then((space) => space.getEntries({include: 5,'sys.id': '4ZBsibjyqETi1J2agzRLU2'})).then((entries) => {
-        // output the author name
-        //  for (var i = 0; i < entries.items.length; i++){
-        //    console.log(entries.items[i].fields.title)
-        //    }
-
-
-        //finner ett datum
-        var eventsInDate = entries.items[0].fields.link; //events
-        if(eventsInDate != null || eventsInDate == true){
-            console.log('All events in this date', eventsInDate);//[0]);
-
-            //loop through events in one date
-            for(var i = 0; i < eventsInDate.length; i++){
-                var oneEvent = eventsInDate[i];
-                console.log(eventsInDate[i]);
-            }//end for
-            console.log("end", JSON.stringify(oneEvent));
-        }//end if
-    })//end get entries 
-
-    */
-
 
 
 

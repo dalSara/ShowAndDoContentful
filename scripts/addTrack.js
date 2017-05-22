@@ -59,59 +59,76 @@ function addTrack (){
 //temporary code for the usertest
 
     function timeOne (){
+        choosenTime = startOne
         document.getElementById("JSaddStartOne").classList.add('selectedTime');
         document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStartThree").classList.remove('selectedTime');
+        return choosenTime
     }
 
 
     function timeTwo (){
+        var choosenTime = '2017-06-02T14:00:31Z'
         document.getElementById("JSaddStartTwo").classList.add('selectedTime');
         document.getElementById("JSaddStartOne").classList.remove('selectedTime');
         document.getElementById("JSaddStartThree").classList.remove('selectedTime');
+        return choosenTime
     }
 
     function timeThree (){
+        var choosenTime = '2017-06-02T15:00:31Z'
         document.getElementById("JSaddStartThree").classList.add('selectedTime');
         document.getElementById("JSaddStartOne").classList.remove('selectedTime');
         document.getElementById("JSaddStartTwo").classList.remove('selectedTime');
-
+        return choosenTime
     }
 
     function smallTrack (){
+        var choosenTrack = "Small"
         document.getElementById("JSaddHourOne").classList.add('selectedTime');
         document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
         document.getElementById("JSaddHourThree").classList.remove('selectedTime');
+        return choosenTrack
     }
 
     function mediumTrack (){
+        var choosenTrack = "Medium"
         document.getElementById("JSaddHourTwo").classList.add('selectedTime');
         document.getElementById("JSaddHourOne").classList.remove('selectedTime');
         document.getElementById("JSaddHourThree").classList.remove('selectedTime');
+        return choosenTrack
     }
     function largeTrack (){
+        var choosenTrack = "Large"
         document.getElementById("JSaddHourThree").classList.add('selectedTime');
         document.getElementById("JSaddHourOne").classList.remove('selectedTime');
         document.getElementById("JSaddHourTwo").classList.remove('selectedTime');
+        return choosenImage
+
     }
 
     function chooseImageOne (){
+        var choosenImage = imageOne
         document.getElementById("JSaddStockOne").classList.add('selectedTime');
         document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStockThree").classList.remove('selectedTime');
+        return choosenImage
     }
 
     function chooseImageTwo (){
+        var choosenImage = imageTwo
         document.getElementById("JSaddStockTwo").classList.add('selectedTime');
         document.getElementById("JSaddStockOne").classList.remove('selectedTime');
         document.getElementById("JSaddStockThree").classList.remove('selectedTime');
+        return choosenImage
     }
 
     function chooseImageThree (){
+        var choosenImage = imageThree
         document.getElementById("JSaddStockThree").classList.add('selectedTime');
         document.getElementById("JSaddStockTwo").classList.remove('selectedTime');
         document.getElementById("JSaddStockOne").classList.remove('selectedTime');
-
+        return choosenImage
     }
 
     var init = function (){
